@@ -1,0 +1,90 @@
+# *************************************************************************
+#                       FreeRTOS I2C Commands for Sensing USB Card
+#                Converted from INI format
+# *************************************************************************
+
+#
+# *************************************************************************
+# Configuration for Sensing USB Card
+# MAX9296 + MAX96717 + OX08D10 (4K 30fps HDR)
+# *************************************************************************
+#
+
+#
+# MAX96717G (Serializer) Config - I2C Address: 0x84
+#
+# I2C Slave Address: 0x84
+i2cwrite 1 0x84 0x000d 2 1 0xbf
+i2cwrite 1 0x84 0x0330 2 1 0x00
+# DELAY= 100ms
+
+#
+# MAX9296 (Deserializer) Config - I2C Address: 0x90
+#
+# I2C Slave Address: 0x90
+i2cwrite 1 0x90 0x0001 2 1 0x42
+i2cwrite 1 0x90 0x0003 2 1 0x00
+i2cwrite 1 0x90 0x0007 2 1 0xF0
+
+# 核心路由设置：由于 0x13=EA，必须将数据流从物理 B 口导向 CSI 输出
+i2cwrite 1 0x90 0x00F0 2 1 0x01
+i2cwrite 1 0x90 0x0004 2 1 0x01
+i2cwrite 1 0x90 0x0313 2 1 0x02
+# DELAY= 100ms
+
+#
+# OX08D10 Sensor Config - I2C Address: 0x6C
+#
+# I2C Slave Address: 0x6C
+
+# --- 软件复位与时钟准备 ---
+i2cwrite 1 0x6C 0x0100 2 1 0x00
+i2cwrite 1 0x6C 0x0107 2 1 0x01
+# DELAY= 10ms
+
+# --- 核心 PLL 与 MIPI 时序配置 (1100Mbps) ---
+i2cwrite 1 0x6C 0x4837 2 1 0x0e
+i2cwrite 1 0x6C 0x0303 2 1 0x01
+i2cwrite 1 0x6C 0x0304 2 1 0x01
+i2cwrite 1 0x6C 0x0305 2 1 0x13
+i2cwrite 1 0x6C 0x0362 2 1 0xaa
+
+# --- 开启模拟核心时钟 (关键修正) ---
+i2cwrite 1 0x6C 0x301E 2 1 0xb4
+
+# --- 图像尺寸与精准 VTS (30.03 fps) ---
+i2cwrite 1 0x6C 0x380e 2 1 0x05
+i2cwrite 1 0x6C 0x380f 2 1 0x5c
+
+# --- 加载 ASIL 与数据格式 (HDR4 PWL12) ---
+i2cwrite 1 0x6C 0x431c 2 1 0x2a
+i2cwrite 1 0x6C 0x4613 2 1 0x09
+i2cwrite 1 0x6C 0x507a 2 1 0xad
+i2cwrite 1 0x6C 0x507b 2 1 0xf1
+
+# --- 传感器内部量化阵列配置 (KickStart) ---
+# 这些寄存器确保 ADC 能够从初始化态迁移到运行态
+i2cwrite 1 0x6C 0x374f 2 1 0x40
+i2cwrite 1 0x6C 0x3750 2 1 0xc3
+i2cwrite 1 0x6C 0x3751 2 1 0x60
+i2cwrite 1 0x6C 0x3752 2 1 0x4e
+
+# --- 加载 0x6A/0x6B 核心逻辑块 ---
+# 注意：若未全量加载 vendor txt 中的 6aXX 范围寄存器，gmac_state 将卡死在 0x00
+i2cwrite 1 0x6C 0x6a04 2 1 0x08
+i2cwrite 1 0x6C 0x6a05 2 1 0x02
+i2cwrite 1 0x6C 0x6a07 2 1 0x16
+
+# --- 启动看门狗并退出待机 (StreamOn) ---
+i2cwrite 1 0x6C 0x4f05 2 1 0xf8
+i2cwrite 1 0x6C 0x0100 2 1 0x01
+
+# -------------------------------------------------------------------------
+# Debug Verification (读取回读)
+# -------------------------------------------------------------------------
+# I2C Slave Address: 0x6C
+i2cwrite 1 0x6C 0x1059 2 1 0x00
+
+# I2C Slave Address: 0x90
+i2cwrite 1 0x90 0x0108 2 1 0x00
+i2cwrite 1 0x90 0x08d2 2 1 0x00

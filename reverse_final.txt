@@ -1,24 +1,43 @@
 # *************************************************************************
 #                       FreeRTOS I2C Commands for Sensing USB Card
-#                MAX9296 + MAX96716 + OX08D10 (4K 30fps HDR)
+#                Converted from INI format
+# *************************************************************************
+
+#
+# *************************************************************************
+# Configuration for Sensing USB Card
+# Converted from FreeRTOS format
+# *************************************************************************
+#
+# *************************************************************************
+# FreeRTOS I2C Commands for Sensing USB Card
+# MAX9296 + MAX96716 + OX08D10 (4K 30fps HDR)
 # *************************************************************************
 
 # Device ID Detection - Verify I2C Access
 # MAX96717 (Serializer) Device ID Check - I2C Address: 0x84
 # Check device ID (should return 0x57 for MAX96717)
+
+# I2C Slave Address: 0x42
 i2cread 1 0x42 0x000d 2 1
 
 # MAX9296 (Deserializer) Device ID Check - I2C Address: 0x90
 # Check device ID (should return 0x52 for MAX9296)
+
+# I2C Slave Address: 0x48
 i2cread 1 0x48 0x000d 2 1
 
 # OX08D10 (Sensor) Device ID Check - I2C Address: 0x6C
 # Check device ID (should return 0x5808D1 for OX08D10)
-i2cread 1 0x36 0x300a 2 3
+
+# I2C Slave Address: 0x36
+i2cread 1 0x36 0x300a 2 1
 
 # MAX96716 (Serializer) Config - I2C Address: 0x84
 # NOTE: Runtime debug indicates MAX96716 + OX08D10 is connected on Deserializer Port B.
 # 基础GMSL2链路配置
+
+# I2C Slave Address: 0x42
 i2cwrite 1 0x42 0x0057 2 1 0x12
 i2cwrite 1 0x42 0x005B 2 1 0x11
 i2cwrite 1 0x42 0x0318 2 1 0x00
@@ -27,7 +46,9 @@ i2cwrite 1 0x42 0x0331 2 1 0x11
 
 # MAX9296 (Deserializer) Config - I2C Address: 0x90
 # MIPI 速率调整，1100Mbps建议调高此范围
-i2cwrite 1 0x48 0x0320 2 1 0x3F
+
+# I2C Slave Address: 0x48
+i2cwrite 1 0x48 0x0320 2 1 0x3f
 # MIPI enable
 i2cwrite 1 0x48 0x0313 2 1 0x02
 
@@ -44,16 +65,18 @@ i2cwrite 1 0x48 0x0314 2 1 0x01
 
 # OX08D10 Sensor Config - I2C Address: 0x6C
 # --- Initial Setup ---
+
+# I2C Slave Address: 0x36
 i2cwrite 1 0x36 0x0100 2 1 0x00
 i2cwrite 1 0x36 0x0040 2 1 0x00
-i2cwrite 1 0x36 0x00a0 2 2 0x1000
+i2cwrite 1 0x36 0x00a0 2 1 0x1000
 # set XCLK to 24mhz
-i2cwrite 1 0x36 0x00c0 2 2 0x2400
+i2cwrite 1 0x36 0x00c0 2 1 0x2400
 i2cwrite 1 0x36 0x0020 2 1 0x10
 i2cwrite 1 0x36 0x0080 2 1 0x01
 i2cwrite 1 0x36 0x0081 2 1 0x00
-i2cwrite 1 0x36 0x0082 2 2 0x0f00
-i2cwrite 1 0x36 0x0083 2 2 0x0870
+i2cwrite 1 0x36 0x0082 2 1 0x0f00
+i2cwrite 1 0x36 0x0083 2 1 0x0870
 
 # --- Tools Settings (OvPanther) from vendor TXT header ---
 i2cwrite 1 0x36 0x0110 2 1 0x40
@@ -62,13 +85,13 @@ i2cwrite 1 0x36 0x0110 2 1 0xc0
 i2cwrite 1 0x36 0x0110 2 1 0x20
 i2cwrite 1 0x36 0x0100 2 1 0x00
 i2cwrite 1 0x36 0x0040 2 1 0x00
-i2cwrite 1 0x36 0x00a0 2 2 0x1000
-i2cwrite 1 0x36 0x00c0 2 2 0x2400
+i2cwrite 1 0x36 0x00a0 2 1 0x1000
+i2cwrite 1 0x36 0x00c0 2 1 0x2400
 i2cwrite 1 0x36 0x0020 2 1 0x10
 i2cwrite 1 0x36 0x0080 2 1 0x01
 i2cwrite 1 0x36 0x0081 2 1 0x00
-i2cwrite 1 0x36 0x0082 2 2 0x0f00
-i2cwrite 1 0x36 0x0083 2 2 0x0870
+i2cwrite 1 0x36 0x0082 2 1 0x0f00
+i2cwrite 1 0x36 0x0083 2 1 0x0870
 
 # --- Software Reset ---
 i2cwrite 1 0x36 0x0107 2 1 0x01
@@ -89,7 +112,7 @@ i2cwrite 1 0x36 0x4d25 2 1 0x00
 i2cwrite 1 0x36 0x4d28 2 1 0xaf
 i2cwrite 1 0x36 0x4d29 2 1 0x00
 i2cwrite 1 0x36 0x4d1b 2 1 0x01
-i2cwrite 1 0x36 0x4d1c 2 2 0x0b8
+i2cwrite 1 0x36 0x4d1c 2 1 0xb8
 i2cwrite 1 0x36 0x3017 2 1 0xf0
 i2cwrite 1 0x36 0x4d36 2 1 0x26
 
@@ -115,18 +138,18 @@ i2cwrite 1 0x36 0x3208 2 1 0xa2
 i2cwrite 1 0x36 0x3208 2 1 0x0a
 i2cwrite 1 0x36 0x3507 2 1 0x00
 i2cwrite 1 0x36 0x3208 2 1 0x1a
-i2cwrite 1 0x36 0x0362 2 2 0x0a8
+i2cwrite 1 0x36 0x0362 2 1 0xa8
 i2cwrite 1 0x36 0x4505 2 1 0x30
 i2cwrite 1 0x36 0x3b40 2 1 0x05
-i2cwrite 1 0x36 0x3b41 2 2 0x040
+i2cwrite 1 0x36 0x3b41 2 1 0x40
 i2cwrite 1 0x36 0x3b42 2 1 0x01
-i2cwrite 1 0x36 0x3b43 2 2 0x010
-i2cwrite 1 0x36 0x3b45 2 2 0x080
-i2cwrite 1 0x36 0x3b47 2 2 0x080
-i2cwrite 1 0x36 0x3b48 2 2 0x00e
+i2cwrite 1 0x36 0x3b43 2 1 0x10
+i2cwrite 1 0x36 0x3b45 2 1 0x80
+i2cwrite 1 0x36 0x3b47 2 1 0x80
+i2cwrite 1 0x36 0x3b48 2 1 0x0e
 i2cwrite 1 0x36 0x3b49 2 1 0x09
 i2cwrite 1 0x36 0x3b4a 2 1 0x0c
-i2cwrite 1 0x36 0x3b4b 2 2 0x0a5
+i2cwrite 1 0x36 0x3b4b 2 1 0xa5
 i2cwrite 1 0x36 0x3b4d 2 1 0x44
 i2cwrite 1 0x36 0x3b4e 2 1 0x44
 i2cwrite 1 0x36 0x3704 2 1 0x00
@@ -146,24 +169,24 @@ i2cwrite 1 0x36 0x3400 2 1 0x0c
 i2cwrite 1 0x36 0x3406 2 1 0x01
 i2cwrite 1 0x36 0x3407 2 1 0x01
 i2cwrite 1 0x36 0x3408 2 1 0x02
-i2cwrite 1 0x36 0x3409 2 2 0x00c
+i2cwrite 1 0x36 0x3409 2 1 0x0c
 i2cwrite 1 0x36 0x340b 2 1 0x0b
 i2cwrite 1 0x36 0x3426 2 1 0x10
 i2cwrite 1 0x36 0x3429 2 1 0x01
 i2cwrite 1 0x36 0x342b 2 1 0x00
 i2cwrite 1 0x36 0x3589 2 1 0x60
 i2cwrite 1 0x36 0x354a 2 1 0x01
-i2cwrite 1 0x36 0x354b 2 2 0x0a0
+i2cwrite 1 0x36 0x354b 2 1 0xa0
 i2cwrite 1 0x36 0x35c9 2 1 0x60
 i2cwrite 1 0x36 0x3611 2 1 0x80
 i2cwrite 1 0x36 0x3616 2 1 0x30
 i2cwrite 1 0x36 0x361d 2 1 0x0b
-i2cwrite 1 0x36 0x3620 2 2 0x0c0
+i2cwrite 1 0x36 0x3620 2 1 0xc0
 i2cwrite 1 0x36 0x3621 2 1 0x02
 i2cwrite 1 0x36 0x3627 2 1 0x3c
 i2cwrite 1 0x36 0x3634 2 1 0x3c
 i2cwrite 1 0x36 0x3636 2 1 0x52
-i2cwrite 1 0x36 0x3637 2 2 0x0ca
+i2cwrite 1 0x36 0x3637 2 1 0xca
 i2cwrite 1 0x36 0x363b 2 1 0xe4
 i2cwrite 1 0x36 0x3673 2 1 0x11
 i2cwrite 1 0x36 0x3674 2 1 0x0a
@@ -196,7 +219,7 @@ i2cwrite 1 0x36 0x4d36 2 1 0x3e
 i2cwrite 1 0x36 0x4d37 2 1 0x00
 i2cwrite 1 0x36 0x4022 2 1 0x80
 i2cwrite 1 0x36 0x408a 2 1 0x01
-i2cwrite 1 0x36 0x408b 2 2 0x040
+i2cwrite 1 0x36 0x408b 2 1 0x40
 
 # --- LUT Tables (6a00 to 6e00 range) ---
 i2cwrite 1 0x36 0x6a04 2 1 0x08
@@ -1157,14 +1180,14 @@ i2cwrite 1 0x36 0x458e 2 1 0x1c
 # cybersecurity masked
 # only unmasked if settings are setup for cybersecurity
 i2cwrite 1 0x36 0x1035 2 1 0x7f
-#------------------------------------------------------------------------------------
-#------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------
 # ASIL Watchdog and Configs
 # 0x4f00~0x4f03   Mask of each ASIL functions
 # 0x4f04[3:2]	Mask Fault Signals
-# 		  2'b00 enable fault (enter safemode upon fault detected)
-# 	   	  2'b11 never enter safemode (fault masked)
-#------------------------------------------------------------------------------------
+# 2'b00 enable fault (enter safemode upon fault detected)
+# 2'b11 never enter safemode (fault masked)
+# ------------------------------------------------------------------------------------
 i2cwrite 1 0x36 0x4f00 2 1 0x00
 i2cwrite 1 0x36 0x4f01 2 1 0x00
 i2cwrite 1 0x36 0x4f02 2 1 0x00
@@ -1177,40 +1200,46 @@ i2cwrite 1 0x36 0x4f05 2 1 0xf8
 i2cwrite 1 0x36 0x0100 2 1 0x01
 
 # --- Tools Settings (OvPanther) ---
-#i2cwrite 1 0x36 0x0110 2 1 0x80
-#i2cwrite 1 0x36 0x0110 2 1 0x40
+# i2cwrite 1 0x36 0x0110 2 1 0x80
+# i2cwrite 1 0x36 0x0110 2 1 0x40
 
 # Note: RESOLUTION setting is not an I2C register and would need to be handled differently in FreeRTOS environment
 # RESOLUTION= RAWDATA_12BIT,3840,2160
 
 # *************************************************************************
-#                       Debug Checkpoint Registers
+# Debug Checkpoint Registers
 # *************************************************************************
 
 # --- OX08D10 (Sensor) Status Checks ---
 # Check Streaming Status (0x0100): Should be 0x01 to confirm streaming enabled
+
+# I2C Slave Address: 0x36
 i2cread 1 0x36 0x0100 2 1
 # Check Frame Counter (0x483E/0x483F): Values should increment to show sensor data output
-i2cread 1 0x36 0x483e 2 2
+i2cread 1 0x36 0x483e 2 1
 # Check Internal Fault Flags (0x4F08/0x4F09): BLC or timing errors (0x4F09 should be 0x00)
-i2cread 1 0x36 0x4f08 2 2
+i2cread 1 0x36 0x4f08 2 1
 # Check MIPI Lane Configuration (0x3012): Should be 0x41 for 4-lane mode
 i2cread 1 0x36 0x3012 2 1
 
 # --- MAX96717 (Serializer) Status Checks ---
 # Check GMSL Link Lock (0x0013): Physical connection (Bit 3 should be 1)
+
+# I2C Slave Address: 0x42
 i2cread 1 0x42 0x0013 2 1
 # Check Pixel Clock Detection (0x0112): PCLKDET (Bit 7) should be 1 to confirm sensor clock received
 i2cread 1 0x42 0x0112 2 1
 # Check MIPI Input Lane Count (0x331): Should match sensor's 4-lane setting (0x30)
 i2cread 1 0x42 0x0331 2 1
 # Check MIPI Input Errors (0x0343/0x0344): Should be 0x00 for no ECC/CRC errors
-i2cread 1 0x42 0x0343 2 2
+i2cread 1 0x42 0x0343 2 1
 # Check MIPI Input Clock Count (0x0390): Value should change dynamically indicating hardware connection
 i2cread 1 0x42 0x0390 2 1
 
 # --- MAX9296 (Deserializer) Status Checks ---
 # Check GMSL Link Lock (0x0013): Physical link status with serializer
+
+# I2C Slave Address: 0x48
 i2cread 1 0x48 0x0013 2 1
 # Check Video Pipeline Z Packet Detection (0x012C): VID_PKT_DET (Bit 5) and VID_LOCK (Bit 6) should be 1
 i2cread 1 0x48 0x012c 2 1

@@ -1,0 +1,1380 @@
+=~=~=~=~=~=~=~=~=~=~=~= MobaXterm log 2026.02.03 19:21:52 =~=~=~=~=~=~=~=~=~=~=~=
+
+
+>
+
+>
+
+>
+
+>
+
+># *************************************************************************
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>#                       FreeRTOS I2C Commands for Sensing USB Card
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>#                MAX9296 + MAX96716 + OX08D10 (4K 30fps HDR)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+># *************************************************************************
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>
+
+
+># Device ID Detection - Verify I2C Access
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+># MAX96717 (Serializer) Device ID Check - I2C Address: 0x84
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+># Check device ID (should return 0x57 for MAX96717)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x42 0x000d 2 1
+
+4483.222.293:[C3][T]read success
+4483.223.009:[C3][T]0xbf
+
+Command Complete
+
+>
+
+
+># MAX9296 (Deserializer) Device ID Check - I2C Address: 0x90
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+># Check device ID (should return 0x52 for MAX9296)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x48 0x000d 2 1
+
+4483.231.402:[C3][T]read success
+4483.232.118:[C3][T]0x94
+
+Command Complete
+
+>
+
+
+># OX08D10 (Sensor) Device ID Check - I2C Address: 0x6C
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+># Check device ID (should return 0x5808D1 for OX08D10)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x36 0x300a 2 3
+
+4483.240.530:[C3][T]read success
+4483.241.246:[C3][T]0x58
+4483.241.825:[C3][T]0x8
+4483.242.383:[C3][T]0x44
+
+Command Complete
+
+>
+
+
+># MAX96716 (Serializer) Config - I2C Address: 0x84
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+># NOTE: Runtime debug indicates MAX96716 + OX08D10 is connected on Deserializer Port B.
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+># GMSL2
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cwrite 1 0x42 0x0057 2 1 0x12
+
+4483.253.775:[C3][T]Get from CLi bus_is is 1 
+4483.254.801:[C3][T]Get from CLi slave address is 0x42
+4483.256.024:[C3][T]Get from CLi register address is 0x57
+4483.257.312:[C3][T]Get from CLi bus width is 2
+4483.258.386:[C3][T]Get from CLi read length is 1
+4483.259.502:[C3][T]Get from CLi data is 0x12
+4483.260.690:[C3][T]i2c_1 write 0x42 reg 0x57 len 1  data 0x12 Success
+
+Command Complete
+
+>i2cwrite 1 0x42 0x005B 2 1 0x11
+
+4483.263.563:[C3][T]Get from CLi bus_is is 1 
+4483.264.589:[C3][T]Get from CLi slave address is 0x42
+4483.265.812:[C3][T]Get from CLi register address is 0x5b
+4483.267.101:[C3][T]Get from CLi bus width is 2
+4483.268.174:[C3][T]Get from CLi read length is 1
+4483.269.290:[C3][T]Get from CLi data is 0x11
+4483.270.477:[C3][T]i2c_1 write 0x42 reg 0x5b len 1  data 0x11 Success
+
+Command Complete
+
+>2 1 0x0a
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cwrite 1 0x36 0x4d23 2 1 0x00
+
+4483.275.457:[C3][T]Get from CLi bus_is is 1 
+4483.276.482:[C3][T]Get from CLi slave address is 0x36
+4483.277.706:[C3][T]Get from CLi register address is 0x4d23
+4483.279.037:[C3][T]Get from CLi bus width is 2
+4483.280.110:[C3][T]Get from CLi read length is 1
+4483.281.227:[C3][T]Get from CLi data is 0x0
+4483.282.393:[C3][T]i2c_1 write 0x36 reg 0x4d23 len 1  data 0x0 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x4d26 2 1 0x0a
+
+4483.285.286:[C3][T]Get from CLi bus_is is 1 
+4483.286.312:[C3][T]Get from CLi slave address is 0x36
+4483.287.536:[C3][T]Get from CLi register address is 0x4d26
+4483.288.866:[C3][T]Get from CLi bus width is 2
+4483.289.940:[C3][T]Get from CLi read length is 1
+4483.291.056:[C3][T]Get from CLi data is 0xa
+4483.292.222:[C3][T]i2c_1 write 0x36 reg 0x4d26 len 1  data 0xa Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x4d27 2 1 0x00
+
+4483.295.120:[C3][T]Get from CLi bus_is is 1 
+4483.296.145:[C3][T]Get from CLi slave address is 0x36
+4483.297.369:[C3][T]Get from CLi register address is 0x4d27
+4483.298.700:[C3][T]Get from CLi bus width is 2
+4483.299.773:[C3][T]Get from CLi read length is 1
+4483.300.890:[C3][T]Get from CLi data is 0x0
+4483.302.055:[C3][T]i2c_1 write 0x36 reg 0x4d27 len 1  data 0x0 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x4d19 2 1 0xaf
+
+4483.304.948:[C3][T]Get from CLi bus_is is 1 
+4483.305.974:[C3][T]Get from CLi slave address is 0x36
+4483.307.197:[C3][T]Get from CLi register address is 0x4d19
+4483.308.528:[C3][T]Get from CLi bus width is 2
+4483.309.602:[C3][T]Get from CLi read length is 1
+4483.310.718:[C3][T]Get from CLi data is 0xaf
+4483.311.905:[C3][T]i2c_1 write 0x36 reg 0x4d19 len 1  data 0xaf Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x4d1a 2 1 0x00
+
+4483.314.822:[C3][T]Get from CLi bus_is is 1 
+4483.315.848:[C3][T]Get from CLi slave address is 0x36
+4483.317.072:[C3][T]Get from CLi register address is 0x4d1a
+4483.318.403:[C3][T]Get from CLi bus width is 2
+4483.319.476:[C3][T]Get from CLi read length is 1
+4483.320.593:[C3][T]Get from CLi data is 0x0
+4483.321.759:[C3][T]i2c_1 write 0x36 reg 0x4d1a len 1  data 0x0 Success
+
+Command Complete
+
+>e 1 0x36 0x342b 2 1 0x00
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cwrite 1 0x36 0x3589 2 1 0x60
+
+4483.327.099:[C3][T]Get from CLi bus_is is 1 
+4483.328.125:[C3][T]Get from CLi slave address is 0x36
+4483.329.349:[C3][T]Get from CLi register address is 0x3589
+4483.330.679:[C3][T]Get from CLi bus width is 2
+4483.331.753:[C3][T]Get from CLi read length is 1
+4483.332.869:[C3][T]Get from CLi data is 0x60
+4483.334.057:[C3][T]i2c_1 write 0x36 reg 0x3589 len 1  data 0x60 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x354a 2 1 0x01
+
+4483.336.973:[C3][T]Get from CLi bus_is is 1 
+4483.337.999:[C3][T]Get from CLi slave address is 0x36
+4483.339.222:[C3][T]Get from CLi register address is 0x354a
+4483.340.553:[C3][T]Get from CLi bus width is 2
+4483.341.627:[C3][T]Get from CLi read length is 1
+4483.342.743:[C3][T]Get from CLi data is 0x1
+4483.343.908:[C3][T]i2c_1 write 0x36 reg 0x354a len 1  data 0x1 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x354b 2 2 0x0a0
+
+4483.346.825:[C3][T]Get from CLi bus_is is 1 
+4483.347.851:[C3][T]Get from CLi slave address is 0x36
+4483.349.075:[C3][T]Get from CLi register address is 0x354b
+4483.350.406:[C3][T]Get from CLi bus width is 2
+4483.351.479:[C3][T]Get from CLi read length is 2
+4483.352.595:[C3][T]Get from CLi data is 0xa0
+4483.353.815:[C3][T]i2c_1 write 0x36 reg 0x354b len 2  data 0xa0 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x35c9 2 1 0x60
+
+4483.356.731:[C3][T]Get from CLi bus_is is 1 
+4483.357.757:[C3][T]Get from CLi slave address is 0x36
+4483.358.980:[C3][T]Get from CLi register address is 0x35c9
+4483.360.311:[C3][T]Get from CLi bus width is 2
+4483.361.385:[C3][T]Get from CLi read length is 1
+4483.362.501:[C3][T]Get from CLi data is 0x60
+4483.363.689:[C3][T]i2c_1 write 0x36 reg 0x35c9 len 1  data 0x60 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x3611 2 1 0x80
+
+4483.366.605:[C3][T]Get from CLi bus_is is 1 
+4483.367.631:[C3][T]Get from CLi slave address is 0x36
+4483.368.855:[C3][T]Get from CLi register address is 0x3611
+4483.370.186:[C3][T]Get from CLi bus width is 2
+4483.371.259:[C3][T]Get from CLi read length is 1
+4483.372.375:[C3][T]Get from CLi data is 0x80
+4483.373.562:[C3][T]i2c_1 write 0x36 reg 0x3611 len 1  data 0x80 Success
+
+Command Complete
+
+>6a23 2 1 0x0a
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cwrite 1 0x36 0x6a25 2 1 0x3f
+
+4483.378.689:[C3][T]Get from CLi bus_is is 1 
+4483.379.715:[C3][T]Get from CLi slave address is 0x36
+4483.380.938:[C3][T]Get from CLi register address is 0x6a25
+4483.382.269:[C3][T]Get from CLi bus width is 2
+4483.383.342:[C3][T]Get from CLi read length is 1
+4483.384.459:[C3][T]Get from CLi data is 0x3f
+4483.385.646:[C3][T]i2c_1 write 0x36 reg 0x6a25 len 1  data 0x3f Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6a26 2 1 0x15
+
+4483.388.560:[C3][T]Get from CLi bus_is is 1 
+4483.389.586:[C3][T]Get from CLi slave address is 0x36
+4483.390.810:[C3][T]Get from CLi register address is 0x6a26
+4483.392.141:[C3][T]Get from CLi bus width is 2
+4483.393.214:[C3][T]Get from CLi read length is 1
+4483.394.331:[C3][T]Get from CLi data is 0x15
+4483.395.517:[C3][T]i2c_1 write 0x36 reg 0x6a26 len 1  data 0x15 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6a28 2 1 0x41
+
+4483.398.433:[C3][T]Get from CLi bus_is is 1 
+4483.399.459:[C3][T]Get from CLi slave address is 0x36
+4483.400.683:[C3][T]Get from CLi register address is 0x6a28
+4483.402.014:[C3][T]Get from CLi bus width is 2
+4483.403.087:[C3][T]Get from CLi read length is 1
+4483.404.203:[C3][T]Get from CLi data is 0x41
+4483.405.391:[C3][T]i2c_1 write 0x36 reg 0x6a28 len 1  data 0x41 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6a29 2 1 0x0b
+
+4483.408.306:[C3][T]Get from CLi bus_is is 1 
+4483.409.332:[C3][T]Get from CLi slave address is 0x36
+4483.410.556:[C3][T]Get from CLi register address is 0x6a29
+4483.411.886:[C3][T]Get from CLi bus width is 2
+4483.412.960:[C3][T]Get from CLi read length is 1
+4483.414.076:[C3][T]Get from CLi data is 0xb
+4483.415.242:[C3][T]i2c_1 write 0x36 reg 0x6a29 len 1  data 0xb Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6a2b 2 1 0x43
+
+4483.418.137:[C3][T]Get from CLi bus_is is 1 
+4483.419.162:[C3][T]Get from CLi slave address is 0x36
+4483.420.386:[C3][T]Get from CLi register address is 0x6a2b
+4483.421.717:[C3][T]Get from CLi bus width is 2
+4483.422.790:[C3][T]Get from CLi read length is 1
+4483.423.907:[C3][T]Get from CLi data is 0x43
+4483.425.093:[C3][T]i2c_1 write 0x36 reg 0x6a2b len 1  data 0x43 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6a8f 2 1 0x14
+
+4483.428.012:[C3][T]Get from CLi bus_is is 1 
+4483.429.038:[C3][T]Get from CLi slave address is 0x36
+4483.430.261:[C3][T]Get from CLi register address is 0x6a8f
+4483.431.592:[C3][T]Get from CLi bus width is 2
+4483.432.665:[C3][T]Get from CLi read length is 1
+4483.433.782:[C3][T]Get from CLi data is 0x14
+4483.434.969:[C3][T]i2c_1 write 0x36 reg 0x6a8f len 1  data 0x14 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6a91 2 1 0xd8
+
+4483.437.884:[C3][T]Get from CLi bus_is is 1 
+4483.438.910:[C3][T]Get from CLi slave address is 0x36
+4483.440.134:[C3][T]Get from CLi register address is 0x6a91
+4483.441.465:[C3][T]Get from CLi bus width is 2
+4483.442.538:[C3][T]Get from CLi read length is 1
+4483.443.655:[C3][T]Get from CLi data is 0xd8
+4483.444.841:[C3][T]i2c_1 write 0x36 reg 0x6a91 len 1  data 0xd8 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6a92 2 1 0x0d
+
+4483.447.756:[C3][T]Get from CLi bus_is is 1 
+4483.448.782:[C3][T]Get from CLi slave address is 0x36
+4483.450.006:[C3][T]Get from CLi register address is 0x6a92
+4483.451.337:[C3][T]Get from CLi bus width is 2
+4483.452.410:[C3][T]Get from CLi read length is 1
+4483.453.526:[C3][T]Get from CLi data is 0xd
+4483.454.692:[C3][T]i2c_1 write 0x36 reg 0x6a92 len 1  data 0xd Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6a94 2 1 0xdd
+
+4483.457.586:[C3][T]Get from CLi bus_is is 1 
+4483.458.612:[C3][T]Get from CLi slave address is 0x36
+4483.459.836:[C3][T]Get from CLi register address is 0x6a94
+4483.461.167:[C3][T]Get from CLi bus width is 2
+4483.462.240:[C3][T]Get from CLi read length is 1
+4483.463.360:[C3][T]Get from CLi data is 0xdd
+4483.464.543:[C3][T]i2c_1 write 0x36 reg 0x6a94 len 1  data 0xdd Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6a95 2 1 0x5b
+
+4483.467.459:[C3][T]Get from CLi bus_is is 1 
+4483.468.485:[C3][T]Get from CLi slave address is 0x36
+4483.469.709:[C3][T]Get from CLi register address is 0x6a95
+4483.471.039:[C3][T]Get from CLi bus width is 2
+4483.472.113:[C3][T]Get from CLi read length is 1
+4483.473.229:[C3][T]Get from CLi data is 0x5b
+4483.474.416:[C3][T]i2c_1 write 0x36 reg 0x6a95 len 1  data 0x5b Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6a97 2 1 0xdf
+
+4483.477.332:[C3][T]Get from CLi bus_is is 1 
+4483.478.358:[C3][T]Get from CLi slave address is 0x36
+4483.479.582:[C3][T]Get from CLi register address is 0x6a97
+4483.480.913:[C3][T]Get from CLi bus width is 2
+4483.481.986:[C3][T]Get from CLi read length is 1
+4483.483.102:[C3][T]Get from CLi data is 0xdf
+4483.484.289:[C3][T]i2c_1 write 0x36 reg 0x6a97 len 1  data 0xdf Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6b4e 2 1 0x00
+
+4483.487.203:[C3][T]Get from CLi bus_is is 1 
+4483.488.229:[C3][T]Get from CLi slave address is 0x36
+4483.489.453:[C3][T]Get from CLi register address is 0x6b4e
+4483.490.784:[C3][T]Get from CLi bus width is 2
+4483.491.857:[C3][T]Get from CLi read length is 1
+4483.492.973:[C3][T]Get from CLi data is 0x0
+4483.494.139:[C3][T]i2c_1 write 0x36 reg 0x6b4e len 1  data 0x0 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6b59 2 1 0x05
+
+4483.497.034:[C3][T]Get from CLi bus_is is 1 
+4483.498.060:[C3][T]Get from CLi slave address is 0x36
+4483.499.283:[C3][T]Get from CLi register address is 0x6b59
+4483.500.614:[C3][T]Get from CLi bus width is 2
+4483.501.688:[C3][T]Get from CLi read length is 1
+4483.502.804:[C3][T]Get from CLi data is 0x5
+4483.503.970:[C3][T]i2c_1 write 0x36 reg 0x6b59 len 1  data 0x5 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6b5a 2 1 0x6c
+
+4483.506.864:[C3][T]Get from CLi bus_is is 1 
+4483.507.889:[C3][T]Get from CLi slave address is 0x36
+4483.509.113:[C3][T]Get from CLi register address is 0x6b5a
+4483.510.444:[C3][T]Get from CLi bus width is 2
+4483.511.517:[C3][T]Get from CLi read length is 1
+4483.512.634:[C3][T]Get from CLi data is 0x6c
+4483.513.821:[C3][T]i2c_1 write 0x36 reg 0x6b5a len 1  data 0x6c Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6b5b 2 1 0x89
+
+4483.516.736:[C3][T]Get from CLi bus_is is 1 
+4483.517.762:[C3][T]Get from CLi slave address is 0x36
+4483.518.986:[C3][T]Get from CLi register address is 0x6b5b
+4483.520.317:[C3][T]Get from CLi bus width is 2
+4483.521.390:[C3][T]Get from CLi read length is 1
+4483.522.506:[C3][T]Get from CLi data is 0x89
+4483.523.693:[C3][T]i2c_1 write 0x36 reg 0x6b5b len 1  data 0x89 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6b5c 2 1 0x8e
+
+4483.526.608:[C3][T]Get from CLi bus_is is 1 
+4483.527.634:[C3][T]Get from CLi slave address is 0x36
+4483.528.857:[C3][T]Get from CLi register address is 0x6b5c
+4483.530.188:[C3][T]Get from CLi bus width is 2
+4483.531.262:[C3][T]Get from CLi read length is 1
+4483.532.378:[C3][T]Get from CLi data is 0x8e
+4483.533.566:[C3][T]i2c_1 write 0x36 reg 0x6b5c len 1  data 0x8e Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6bc2 2 1 0xf0
+
+4483.536.483:[C3][T]Get from CLi bus_is is 1 
+4483.537.509:[C3][T]Get from CLi slave address is 0x36
+4483.538.732:[C3][T]Get from CLi register address is 0x6bc2
+4483.540.063:[C3][T]Get from CLi bus width is 2
+4483.541.137:[C3][T]Get from CLi read length is 1
+4483.542.253:[C3][T]Get from CLi data is 0xf0
+4483.543.440:[C3][T]i2c_1 write 0x36 reg 0x6bc2 len 1  data 0xf0 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6bc3 2 1 0xbe
+
+4483.546.354:[C3][T]Get from CLi bus_is is 1 
+4483.547.380:[C3][T]Get from CLi slave address is 0x36
+4483.548.604:[C3][T]Get from CLi register address is 0x6bc3
+4483.549.935:[C3][T]Get from CLi bus width is 2
+4483.551.008:[C3][T]Get from CLi read length is 1
+4483.552.124:[C3][T]Get from CLi data is 0xbe
+4483.553.312:[C3][T]i2c_1 write 0x36 reg 0x6bc3 len 1  data 0xbe Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6bc4 2 1 0xdc
+
+4483.556.227:[C3][T]Get from CLi bus_is is 1 
+4483.557.253:[C3][T]Get from CLi slave address is 0x36
+4483.558.477:[C3][T]Get from CLi register address is 0x6bc4
+4483.559.808:[C3][T]Get from CLi bus width is 2
+4483.560.881:[C3][T]Get from CLi read length is 1
+4483.561.997:[C3][T]Get from CLi data is 0xdc
+4483.563.185:[C3][T]i2c_1 write 0x36 reg 0x6bc4 len 1  data 0xdc Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6bc7 2 1 0x22
+
+4483.566.101:[C3][T]Get from CLi bus_is is 1 
+4483.567.127:[C3][T]Get from CLi slave address is 0x36
+4483.568.350:[C3][T]Get from CLi register address is 0x6bc7
+4483.569.681:[C3][T]Get from CLi bus width is 2
+4483.570.755:[C3][T]Get from CLi read length is 1
+4483.571.871:[C3][T]Get from CLi data is 0x22
+4483.573.058:[C3][T]i2c_1 write 0x36 reg 0x6bc7 len 1  data 0x22 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6bc8 2 1 0x19
+
+4483.575.974:[C3][T]Get from CLi bus_is is 1 
+4483.577.000:[C3][T]Get from CLi slave address is 0x36
+4483.578.224:[C3][T]Get from CLi register address is 0x6bc8
+4483.579.555:[C3][T]Get from CLi bus width is 2
+4483.580.628:[C3][T]Get from CLi read length is 1
+4483.581.744:[C3][T]Get from CLi data is 0x19
+4483.582.932:[C3][T]i2c_1 write 0x36 reg 0x6bc8 len 1  data 0x19 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6c21 2 1 0x2b
+
+4483.585.847:[C3][T]Get from CLi bus_is is 1 
+4483.586.873:[C3][T]Get from CLi slave address is 0x36
+4483.588.096:[C3][T]Get from CLi register address is 0x6c21
+4483.589.427:[C3][T]Get from CLi bus width is 2
+4483.590.501:[C3][T]Get from CLi read length is 1
+4483.591.617:[C3][T]Get from CLi data is 0x2b
+4483.592.804:[C3][T]i2c_1 write 0x36 reg 0x6c21 len 1  data 0x2b Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6c22 2 1 0x2d
+
+4483.595.720:[C3][T]Get from CLi bus_is is 1 
+4483.596.746:[C3][T]Get from CLi slave address is 0x36
+4483.597.970:[C3][T]Get from CLi register address is 0x6c22
+4483.599.300:[C3][T]Get from CLi bus width is 2
+4483.600.374:[C3][T]Get from CLi read length is 1
+4483.601.495:[C3][T]Get from CLi data is 0x2d
+4483.602.677:[C3][T]i2c_1 write 0x36 reg 0x6c22 len 1  data 0x2d Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6c25 2 1 0x7f
+
+4483.605.592:[C3][T]Get from CLi bus_is is 1 
+4483.606.618:[C3][T]Get from CLi slave address is 0x36
+4483.607.841:[C3][T]Get from CLi register address is 0x6c25
+4483.609.172:[C3][T]Get from CLi bus width is 2
+4483.610.246:[C3][T]Get from CLi read length is 1
+4483.611.362:[C3][T]Get from CLi data is 0x7f
+4483.612.549:[C3][T]i2c_1 write 0x36 reg 0x6c25 len 1  data 0x7f Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6c26 2 1 0x83
+
+4483.615.468:[C3][T]Get from CLi bus_is is 1 
+4483.616.494:[C3][T]Get from CLi slave address is 0x36
+4483.617.717:[C3][T]Get from CLi register address is 0x6c26
+4483.619.048:[C3][T]Get from CLi bus width is 2
+4483.620.122:[C3][T]Get from CLi read length is 1
+4483.621.238:[C3][T]Get from CLi data is 0x83
+4483.622.425:[C3][T]i2c_1 write 0x36 reg 0x6c26 len 1  data 0x83 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6c27 2 1 0xe9
+
+4483.625.339:[C3][T]Get from CLi bus_is is 1 
+4483.626.365:[C3][T]Get from CLi slave address is 0x36
+4483.627.589:[C3][T]Get from CLi register address is 0x6c27
+4483.628.920:[C3][T]Get from CLi bus width is 2
+4483.629.993:[C3][T]Get from CLi read length is 1
+4483.631.109:[C3][T]Get from CLi data is 0xe9
+4483.632.296:[C3][T]i2c_1 write 0x36 reg 0x6c27 len 1  data 0xe9 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6ca4 2 1 0x8c
+
+4483.635.214:[C3][T]Get from CLi bus_is is 1 
+4483.636.240:[C3][T]Get from CLi slave address is 0x36
+4483.637.464:[C3][T]Get from CLi register address is 0x6ca4
+4483.638.794:[C3][T]Get from CLi bus width is 2
+4483.639.868:[C3][T]Get from CLi read length is 1
+4483.640.984:[C3][T]Get from CLi data is 0x8c
+4483.642.172:[C3][T]i2c_1 write 0x36 reg 0x6ca4 len 1  data 0x8c Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6ca6 2 1 0x5d
+
+4483.645.086:[C3][T]Get from CLi bus_is is 1 
+4483.646.112:[C3][T]Get from CLi slave address is 0x36
+4483.647.336:[C3][T]Get from CLi register address is 0x6ca6
+4483.648.667:[C3][T]Get from CLi bus width is 2
+4483.649.740:[C3][T]Get from CLi read length is 1
+4483.650.856:[C3][T]Get from CLi data is 0x5d
+4483.652.043:[C3][T]i2c_1 write 0x36 reg 0x6ca6 len 1  data 0x5d Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6ca7 2 1 0x69
+
+4483.654.958:[C3][T]Get from CLi bus_is is 1 
+4483.655.984:[C3][T]Get from CLi slave address is 0x36
+4483.657.208:[C3][T]Get from CLi register address is 0x6ca7
+4483.658.538:[C3][T]Get from CLi bus width is 2
+4483.659.612:[C3][T]Get from CLi read length is 1
+4483.660.728:[C3][T]Get from CLi data is 0x69
+4483.661.915:[C3][T]i2c_1 write 0x36 reg 0x6ca7 len 1  data 0x69 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6caa 2 1 0x30
+
+4483.664.835:[C3][T]Get from CLi bus_is is 1 
+4483.665.861:[C3][T]Get from CLi slave address is 0x36
+4483.667.085:[C3][T]Get from CLi register address is 0x6caa
+4483.668.416:[C3][T]Get from CLi bus width is 2
+4483.669.489:[C3][T]Get from CLi read length is 1
+4483.670.605:[C3][T]Get from CLi data is 0x30
+4483.671.792:[C3][T]i2c_1 write 0x36 reg 0x6caa len 1  data 0x30 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6cac 2 1 0x65
+
+4483.674.707:[C3][T]Get from CLi bus_is is 1 
+4483.675.733:[C3][T]Get from CLi slave address is 0x36
+4483.676.957:[C3][T]Get from CLi register address is 0x6cac
+4483.678.288:[C3][T]Get from CLi bus width is 2
+4483.679.361:[C3][T]Get from CLi read length is 1
+4483.680.478:[C3][T]Get from CLi data is 0x65
+4483.681.665:[C3][T]i2c_1 write 0x36 reg 0x6cac len 1  data 0x65 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6cad 2 1 0x21
+
+4483.684.580:[C3][T]Get from CLi bus_is is 1 
+4483.685.606:[C3][T]Get from CLi slave address is 0x36
+4483.686.829:[C3][T]Get from CLi register address is 0x6cad
+4483.688.160:[C3][T]Get from CLi bus width is 2
+4483.689.234:[C3][T]Get from CLi read length is 1
+4483.690.350:[C3][T]Get from CLi data is 0x21
+4483.691.537:[C3][T]i2c_1 write 0x36 reg 0x6cad len 1  data 0x21 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6dc3 2 1 0x3e
+
+4483.694.454:[C3][T]Get from CLi bus_is is 1 
+4483.695.479:[C3][T]Get from CLi slave address is 0x36
+4483.696.703:[C3][T]Get from CLi register address is 0x6dc3
+4483.698.034:[C3][T]Get from CLi bus width is 2
+4483.699.107:[C3][T]Get from CLi read length is 1
+4483.700.224:[C3][T]Get from CLi data is 0x3e
+4483.701.411:[C3][T]i2c_1 write 0x36 reg 0x6dc3 len 1  data 0x3e Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6dc4 2 1 0x50
+
+4483.704.326:[C3][T]Get from CLi bus_is is 1 
+4483.705.352:[C3][T]Get from CLi slave address is 0x36
+4483.706.575:[C3][T]Get from CLi register address is 0x6dc4
+4483.707.906:[C3][T]Get from CLi bus width is 2
+4483.708.980:[C3][T]Get from CLi read length is 1
+4483.710.096:[C3][T]Get from CLi data is 0x50
+4483.711.283:[C3][T]i2c_1 write 0x36 reg 0x6dc4 len 1  data 0x50 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6dc5 2 1 0x74
+
+4483.714.198:[C3][T]Get from CLi bus_is is 1 
+4483.715.224:[C3][T]Get from CLi slave address is 0x36
+4483.716.448:[C3][T]Get from CLi register address is 0x6dc5
+4483.717.779:[C3][T]Get from CLi bus width is 2
+4483.718.852:[C3][T]Get from CLi read length is 1
+4483.719.969:[C3][T]Get from CLi data is 0x74
+4483.721.155:[C3][T]i2c_1 write 0x36 reg 0x6dc5 len 1  data 0x74 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6dc6 2 1 0x87
+
+4483.724.070:[C3][T]Get from CLi bus_is is 1 
+4483.725.096:[C3][T]Get from CLi slave address is 0x36
+4483.726.320:[C3][T]Get from CLi register address is 0x6dc6
+4483.727.651:[C3][T]Get from CLi bus width is 2
+4483.728.724:[C3][T]Get from CLi read length is 1
+4483.729.840:[C3][T]Get from CLi data is 0x87
+4483.731.027:[C3][T]i2c_1 write 0x36 reg 0x6dc6 len 1  data 0x87 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6dc7 2 1 0x0a
+
+4483.733.944:[C3][T]Get from CLi bus_is is 1 
+4483.734.970:[C3][T]Get from CLi slave address is 0x36
+4483.736.193:[C3][T]Get from CLi register address is 0x6dc7
+4483.737.524:[C3][T]Get from CLi bus width is 2
+4483.738.598:[C3][T]Get from CLi read length is 1
+4483.739.714:[C3][T]Get from CLi data is 0xa
+4483.740.880:[C3][T]i2c_1 write 0x36 reg 0x6dc7 len 1  data 0xa Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6e16 2 1 0x36
+
+4483.743.773:[C3][T]Get from CLi bus_is is 1 
+4483.744.799:[C3][T]Get from CLi slave address is 0x36
+4483.746.023:[C3][T]Get from CLi register address is 0x6e16
+4483.747.354:[C3][T]Get from CLi bus width is 2
+4483.748.427:[C3][T]Get from CLi read length is 1
+4483.749.543:[C3][T]Get from CLi data is 0x36
+4483.750.730:[C3][T]i2c_1 write 0x36 reg 0x6e16 len 1  data 0x36 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6e17 2 1 0xbb
+
+4483.753.647:[C3][T]Get from CLi bus_is is 1 
+4483.754.673:[C3][T]Get from CLi slave address is 0x36
+4483.755.897:[C3][T]Get from CLi register address is 0x6e17
+4483.757.228:[C3][T]Get from CLi bus width is 2
+4483.758.301:[C3][T]Get from CLi read length is 1
+4483.759.417:[C3][T]Get from CLi data is 0xbb
+4483.760.604:[C3][T]i2c_1 write 0x36 reg 0x6e17 len 1  data 0xbb Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6e18 2 1 0x71
+
+4483.763.518:[C3][T]Get from CLi bus_is is 1 
+4483.764.544:[C3][T]Get from CLi slave address is 0x36
+4483.765.768:[C3][T]Get from CLi register address is 0x6e18
+4483.767.099:[C3][T]Get from CLi bus width is 2
+4483.768.172:[C3][T]Get from CLi read length is 1
+4483.769.288:[C3][T]Get from CLi data is 0x71
+4483.770.475:[C3][T]i2c_1 write 0x36 reg 0x6e18 len 1  data 0x71 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6e1b 2 1 0x36
+
+4483.773.392:[C3][T]Get from CLi bus_is is 1 
+4483.774.418:[C3][T]Get from CLi slave address is 0x36
+4483.775.642:[C3][T]Get from CLi register address is 0x6e1b
+4483.776.972:[C3][T]Get from CLi bus width is 2
+4483.778.046:[C3][T]Get from CLi read length is 1
+4483.779.162:[C3][T]Get from CLi data is 0x36
+4483.780.349:[C3][T]i2c_1 write 0x36 reg 0x6e1b len 1  data 0x36 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6e1c 2 1 0x5f
+
+4483.783.263:[C3][T]Get from CLi bus_is is 1 
+4483.784.289:[C3][T]Get from CLi slave address is 0x36
+4483.785.513:[C3][T]Get from CLi register address is 0x6e1c
+4483.786.844:[C3][T]Get from CLi bus width is 2
+4483.787.917:[C3][T]Get from CLi read length is 1
+4483.789.033:[C3][T]Get from CLi data is 0x5f
+4483.790.220:[C3][T]i2c_1 write 0x36 reg 0x6e1c len 1  data 0x5f Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6ec6 2 1 0x5e
+
+4483.793.136:[C3][T]Get from CLi bus_is is 1 
+4483.794.162:[C3][T]Get from CLi slave address is 0x36
+4483.795.385:[C3][T]Get from CLi register address is 0x6ec6
+4483.796.716:[C3][T]Get from CLi bus width is 2
+4483.797.789:[C3][T]Get from CLi read length is 1
+4483.798.906:[C3][T]Get from CLi data is 0x5e
+4483.800.093:[C3][T]i2c_1 write 0x36 reg 0x6ec6 len 1  data 0x5e Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6ec8 2 1 0x72
+
+4483.803.008:[C3][T]Get from CLi bus_is is 1 
+4483.804.034:[C3][T]Get from CLi slave address is 0x36
+4483.805.258:[C3][T]Get from CLi register address is 0x6ec8
+4483.806.589:[C3][T]Get from CLi bus width is 2
+4483.807.662:[C3][T]Get from CLi read length is 1
+4483.808.779:[C3][T]Get from CLi data is 0x72
+4483.809.966:[C3][T]i2c_1 write 0x36 reg 0x6ec8 len 1  data 0x72 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6ecb 2 1 0xbb
+
+4483.812.887:[C3][T]Get from CLi bus_is is 1 
+4483.813.912:[C3][T]Get from CLi slave address is 0x36
+4483.815.136:[C3][T]Get from CLi register address is 0x6ecb
+4483.816.467:[C3][T]Get from CLi bus width is 2
+4483.817.540:[C3][T]Get from CLi read length is 1
+4483.818.657:[C3][T]Get from CLi data is 0xbb
+4483.819.844:[C3][T]i2c_1 write 0x36 reg 0x6ecb len 1  data 0xbb Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6ed3 2 1 0x62
+
+4483.822.759:[C3][T]Get from CLi bus_is is 1 
+4483.823.784:[C3][T]Get from CLi slave address is 0x36
+4483.825.008:[C3][T]Get from CLi register address is 0x6ed3
+4483.826.339:[C3][T]Get from CLi bus width is 2
+4483.827.412:[C3][T]Get from CLi read length is 1
+4483.828.529:[C3][T]Get from CLi data is 0x62
+4483.829.716:[C3][T]i2c_1 write 0x36 reg 0x6ed3 len 1  data 0x62 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6ed4 2 1 0x9d
+
+4483.832.631:[C3][T]Get from CLi bus_is is 1 
+4483.833.658:[C3][T]Get from CLi slave address is 0x36
+4483.834.881:[C3][T]Get from CLi register address is 0x6ed4
+4483.836.212:[C3][T]Get from CLi bus width is 2
+4483.837.285:[C3][T]Get from CLi read length is 1
+4483.838.402:[C3][T]Get from CLi data is 0x9d
+4483.839.589:[C3][T]i2c_1 write 0x36 reg 0x6ed4 len 1  data 0x9d Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6f4d 2 1 0x08
+
+4483.842.507:[C3][T]Get from CLi bus_is is 1 
+4483.843.532:[C3][T]Get from CLi slave address is 0x36
+4483.844.756:[C3][T]Get from CLi register address is 0x6f4d
+4483.846.087:[C3][T]Get from CLi bus width is 2
+4483.847.160:[C3][T]Get from CLi read length is 1
+4483.848.277:[C3][T]Get from CLi data is 0x8
+4483.849.442:[C3][T]i2c_1 write 0x36 reg 0x6f4d len 1  data 0x8 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6f4e 2 1 0x0a
+
+4483.852.337:[C3][T]Get from CLi bus_is is 1 
+4483.853.363:[C3][T]Get from CLi slave address is 0x36
+4483.854.586:[C3][T]Get from CLi register address is 0x6f4e
+4483.855.917:[C3][T]Get from CLi bus width is 2
+4483.856.991:[C3][T]Get from CLi read length is 1
+4483.858.107:[C3][T]Get from CLi data is 0xa
+4483.859.272:[C3][T]i2c_1 write 0x36 reg 0x6f4e len 1  data 0xa Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6f4f 2 1 0x41
+
+4483.862.166:[C3][T]Get from CLi bus_is is 1 
+4483.863.192:[C3][T]Get from CLi slave address is 0x36
+4483.864.416:[C3][T]Get from CLi register address is 0x6f4f
+4483.865.746:[C3][T]Get from CLi bus width is 2
+4483.866.820:[C3][T]Get from CLi read length is 1
+4483.867.936:[C3][T]Get from CLi data is 0x41
+4483.869.123:[C3][T]i2c_1 write 0x36 reg 0x6f4f len 1  data 0x41 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6f50 2 1 0x43
+
+4483.872.042:[C3][T]Get from CLi bus_is is 1 
+4483.873.067:[C3][T]Get from CLi slave address is 0x36
+4483.874.291:[C3][T]Get from CLi register address is 0x6f50
+4483.875.622:[C3][T]Get from CLi bus width is 2
+4483.876.696:[C3][T]Get from CLi read length is 1
+4483.877.812:[C3][T]Get from CLi data is 0x43
+4483.878.999:[C3][T]i2c_1 write 0x36 reg 0x6f50 len 1  data 0x43 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6f51 2 1 0x5a
+
+4483.881.914:[C3][T]Get from CLi bus_is is 1 
+4483.882.940:[C3][T]Get from CLi slave address is 0x36
+4483.884.164:[C3][T]Get from CLi register address is 0x6f51
+4483.885.495:[C3][T]Get from CLi bus width is 2
+4483.886.568:[C3][T]Get from CLi read length is 1
+4483.887.684:[C3][T]Get from CLi data is 0x5a
+4483.888.873:[C3][T]i2c_1 write 0x36 reg 0x6f51 len 1  data 0x5a Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x6f52 2 1 0x6c
+
+4483.891.790:[C3][T]Get from CLi bus_is is 1 
+4483.892.816:[C3][T]Get from CLi slave address is 0x36
+4483.894.039:[C3][T]Get from CLi register address is 0x6f52
+4483.895.370:[C3][T]Get from CLi bus width is 2
+4483.896.443:[C3][T]Get from CLi read length is 1
+4483.897.560:[C3][T]Get from CLi data is 0x6c
+4483.898.747:[C3][T]i2c_1 write 0x36 reg 0x6f52 len 1  data 0x6c Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x5dad 2 1 0xca
+
+4483.901.662:[C3][T]Get from CLi bus_is is 1 
+4483.902.688:[C3][T]Get from CLi slave address is 0x36
+4483.903.912:[C3][T]Get from CLi register address is 0x5dad
+4483.905.243:[C3][T]Get from CLi bus width is 2
+4483.906.316:[C3][T]Get from CLi read length is 1
+4483.907.432:[C3][T]Get from CLi data is 0xca
+4483.908.619:[C3][T]i2c_1 write 0x36 reg 0x5dad len 1  data 0xca Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x5dae 2 1 0xf5
+
+4483.911.535:[C3][T]Get from CLi bus_is is 1 
+4483.912.561:[C3][T]Get from CLi slave address is 0x36
+4483.913.784:[C3][T]Get from CLi register address is 0x5dae
+4483.915.115:[C3][T]Get from CLi bus width is 2
+4483.916.189:[C3][T]Get from CLi read length is 1
+4483.917.305:[C3][T]Get from CLi data is 0xf5
+4483.918.492:[C3][T]i2c_1 write 0x36 reg 0x5dae len 1  data 0xf5 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x5e01 2 1 0x08
+
+4483.921.408:[C3][T]Get from CLi bus_is is 1 
+4483.922.434:[C3][T]Get from CLi slave address is 0x36
+4483.923.658:[C3][T]Get from CLi register address is 0x5e01
+4483.924.989:[C3][T]Get from CLi bus width is 2
+4483.926.062:[C3][T]Get from CLi read length is 1
+4483.927.178:[C3][T]Get from CLi data is 0x8
+4483.928.344:[C3][T]i2c_1 write 0x36 reg 0x5e01 len 1  data 0x8 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x5e02 2 1 0x09
+
+4483.931.242:[C3][T]Get from CLi bus_is is 1 
+4483.932.267:[C3][T]Get from CLi slave address is 0x36
+4483.933.491:[C3][T]Get from CLi register address is 0x5e02
+4483.934.822:[C3][T]Get from CLi bus width is 2
+4483.935.895:[C3][T]Get from CLi read length is 1
+4483.937.012:[C3][T]Get from CLi data is 0x9
+4483.938.177:[C3][T]i2c_1 write 0x36 reg 0x5e02 len 1  data 0x9 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x5e04 2 1 0x0b
+
+4483.941.071:[C3][T]Get from CLi bus_is is 1 
+4483.942.097:[C3][T]Get from CLi slave address is 0x36
+4483.943.320:[C3][T]Get from CLi register address is 0x5e04
+4483.944.651:[C3][T]Get from CLi bus width is 2
+4483.945.724:[C3][T]Get from CLi read length is 1
+4483.946.841:[C3][T]Get from CLi data is 0xb
+4483.948.006:[C3][T]i2c_1 write 0x36 reg 0x5e04 len 1  data 0xb Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x5f0f 2 1 0x0e
+
+4483.950.901:[C3][T]Get from CLi bus_is is 1 
+4483.951.927:[C3][T]Get from CLi slave address is 0x36
+4483.953.150:[C3][T]Get from CLi register address is 0x5f0f
+4483.954.481:[C3][T]Get from CLi bus width is 2
+4483.955.554:[C3][T]Get from CLi read length is 1
+4483.956.671:[C3][T]Get from CLi data is 0xe
+4483.957.836:[C3][T]i2c_1 write 0x36 reg 0x5f0f len 1  data 0xe Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x5f10 2 1 0x0e
+
+4483.960.729:[C3][T]Get from CLi bus_is is 1 
+4483.961.755:[C3][T]Get from CLi slave address is 0x36
+4483.962.979:[C3][T]Get from CLi register address is 0x5f10
+4483.964.310:[C3][T]Get from CLi bus width is 2
+4483.965.383:[C3][T]Get from CLi read length is 1
+4483.966.499:[C3][T]Get from CLi data is 0xe
+4483.967.665:[C3][T]i2c_1 write 0x36 reg 0x5f10 len 1  data 0xe Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x5f11 2 1 0x0e
+
+4483.970.559:[C3][T]Get from CLi bus_is is 1 
+4483.971.585:[C3][T]Get from CLi slave address is 0x36
+4483.972.809:[C3][T]Get from CLi register address is 0x5f11
+4483.974.140:[C3][T]Get from CLi bus width is 2
+4483.975.213:[C3][T]Get from CLi read length is 1
+4483.976.330:[C3][T]Get from CLi data is 0xe
+4483.977.495:[C3][T]i2c_1 write 0x36 reg 0x5f11 len 1  data 0xe Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x5f12 2 1 0x0e
+
+4483.980.389:[C3][T]Get from CLi bus_is is 1 
+4483.981.415:[C3][T]Get from CLi slave address is 0x36
+4483.982.639:[C3][T]Get from CLi register address is 0x5f12
+4483.983.970:[C3][T]Get from CLi bus width is 2
+4483.985.043:[C3][T]Get from CLi read length is 1
+4483.986.160:[C3][T]Get from CLi data is 0xe
+4483.987.325:[C3][T]i2c_1 write 0x36 reg 0x5f12 len 1  data 0xe Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x5f13 2 1 0x0f
+
+4483.990.220:[C3][T]Get from CLi bus_is is 1 
+4483.991.246:[C3][T]Get from CLi slave address is 0x36
+4483.992.469:[C3][T]Get from CLi register address is 0x5f13
+4483.993.804:[C3][T]Get from CLi bus width is 2
+4483.994.874:[C3][T]Get from CLi read length is 1
+4483.995.990:[C3][T]Get from CLi data is 0xf
+4483.997.155:[C3][T]i2c_1 write 0x36 reg 0x5f13 len 1  data 0xf Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x66d7 2 1 0x01
+
+4484.000.049:[C3][T]Get from CLi bus_is is 1 
+4484.001.075:[C3][T]Get from CLi slave address is 0x36
+4484.002.299:[C3][T]Get from CLi register address is 0x66d7
+4484.003.629:[C3][T]Get from CLi bus width is 2
+4484.004.703:[C3][T]Get from CLi read length is 1
+4484.005.819:[C3][T]Get from CLi data is 0x1
+4484.006.984:[C3][T]i2c_1 write 0x36 reg 0x66d7 len 1  data 0x1 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x66d8 2 1 0x01
+
+4484.009.881:[C3][T]Get from CLi bus_is is 1 
+4484.010.907:[C3][T]Get from CLi slave address is 0x36
+4484.012.131:[C3][T]Get from CLi register address is 0x66d8
+4484.013.461:[C3][T]Get from CLi bus width is 2
+4484.014.535:[C3][T]Get from CLi read length is 1
+4484.015.652:[C3][T]Get from CLi data is 0x1
+4484.016.817:[C3][T]i2c_1 write 0x36 reg 0x66d8 len 1  data 0x1 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x66d9 2 1 0x11
+
+4484.019.711:[C3][T]Get from CLi bus_is is 1 
+4484.020.737:[C3][T]Get from CLi slave address is 0x36
+4484.021.961:[C3][T]Get from CLi register address is 0x66d9
+4484.023.292:[C3][T]Get from CLi bus width is 2
+4484.024.365:[C3][T]Get from CLi read length is 1
+4484.025.481:[C3][T]Get from CLi data is 0x11
+4484.026.668:[C3][T]i2c_1 write 0x36 reg 0x66d9 len 1  data 0x11 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x66da 2 1 0x11
+
+4484.029.584:[C3][T]Get from CLi bus_is is 1 
+4484.030.610:[C3][T]Get from CLi slave address is 0x36
+4484.031.834:[C3][T]Get from CLi register address is 0x66da
+4484.033.165:[C3][T]Get from CLi bus width is 2
+4484.034.238:[C3][T]Get from CLi read length is 1
+4484.035.354:[C3][T]Get from CLi data is 0x11
+4484.036.542:[C3][T]i2c_1 write 0x36 reg 0x66da len 1  data 0x11 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x66db 2 1 0x11
+
+4484.039.457:[C3][T]Get from CLi bus_is is 1 
+4484.040.483:[C3][T]Get from CLi slave address is 0x36
+4484.041.706:[C3][T]Get from CLi register address is 0x66db
+4484.043.037:[C3][T]Get from CLi bus width is 2
+4484.044.110:[C3][T]Get from CLi read length is 1
+4484.045.227:[C3][T]Get from CLi data is 0x11
+4484.046.414:[C3][T]i2c_1 write 0x36 reg 0x66db len 1  data 0x11 Success
+
+Command Complete
+
+> 1 0x36 0x3589 2 1 0x60
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cwrite 1 0x36 0x354a 2 1 0x01
+
+4484.051.756:[C3][T]Get from CLi bus_is is 1 
+4484.052.782:[C3][T]Get from CLi slave address is 0x36
+4484.054.006:[C3][T]Get from CLi register address is 0x354a
+4484.055.337:[C3][T]Get from CLi bus width is 2
+4484.056.410:[C3][T]Get from CLi read length is 1
+4484.057.526:[C3][T]Get from CLi data is 0x1
+4484.058.692:[C3][T]i2c_1 write 0x36 reg 0x354a len 1  data 0x1 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x354b 2 1 0xa0
+
+4484.061.585:[C3][T]Get from CLi bus_is is 1 
+4484.062.611:[C3][T]Get from CLi slave address is 0x36
+4484.063.835:[C3][T]Get from CLi register address is 0x354b
+4484.065.165:[C3][T]Get from CLi bus width is 2
+4484.066.239:[C3][T]Get from CLi read length is 1
+4484.067.356:[C3][T]Get from CLi data is 0xa0
+4484.068.542:[C3][T]i2c_1 write 0x36 reg 0x354b len 1  data 0xa0 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x354c 2 1 0x00
+
+4484.071.459:[C3][T]Get from CLi bus_is is 1 
+4484.072.484:[C3][T]Get from CLi slave address is 0x36
+4484.073.708:[C3][T]Get from CLi register address is 0x354c
+4484.075.039:[C3][T]Get from CLi bus width is 2
+4484.076.112:[C3][T]Get from CLi read length is 1
+4484.077.229:[C3][T]Get from CLi data is 0x0
+4484.078.394:[C3][T]i2c_1 write 0x36 reg 0x354c len 1  data 0x0 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x35c8 2 1 0x01
+
+4484.081.287:[C3][T]Get from CLi bus_is is 1 
+4484.082.313:[C3][T]Get from CLi slave address is 0x36
+4484.083.536:[C3][T]Get from CLi register address is 0x35c8
+4484.084.867:[C3][T]Get from CLi bus width is 2
+4484.085.941:[C3][T]Get from CLi read length is 1
+4484.087.057:[C3][T]Get from CLi data is 0x1
+4484.088.222:[C3][T]i2c_1 write 0x36 reg 0x35c8 len 1  data 0x1 Success
+
+Command Complete
+
+>i2cwrite 1 0x36 0x35c9 2 1 0x60
+
+4484.091.117:[C3][T]Get from CLi bus_is is 1 
+4484.092.143:[C3][T]Get from CLi slave address is 0x36
+4484.093.366:[C3][T]Get from CLi register address is 0x35c9
+4484.094.697:[C3][T]Get from CLi bus width is 2
+4484.095.771:[C3][T]Get from CLi read length is 1
+4484.096.889:[C3][T]Get from CLi data is 0x60
+4484.098.074:[C3][T]i2c_1 write 0x36 reg 0x35c9 len 1  data 0x60 Success
+
+Command Complete
+
+>*******************************
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>
+
+
+># --- OX08D10 (Sensor) Status Checks ---
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+># Check Streaming Status (0x0100): Should be 0x01 to confirm streaming enabled
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x36 0x0100 2 1
+
+4484.110.229:[C3][T]read success
+4484.110.944:[C3][T]0x0
+
+Command Complete
+
+># Check Frame Counter (0x483E/0x483F): Values should increment to show sensor data output
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x36 0x483e 2 2
+
+4484.116.771:[C3][T]read success
+4484.117.487:[C3][T]0x0
+4484.118.045:[C3][T]0x0
+
+Command Complete
+
+># Check Internal Fault Flags (0x4F08/0x4F09): BLC or timing errors (0x4F09 should be 0x00)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x36 0x4f08 2 2
+
+4484.123.891:[C3][T]read success
+4484.124.606:[C3][T]0x67
+4484.125.186:[C3][T]0xfe
+
+Command Complete
+
+># Check MIPI Lane Configuration (0x3012): Should be 0x41 for 4-lane mode
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x36 0x3012 2 1
+
+4484.130.637:[C3][T]read success
+4484.131.352:[C3][T]0x41
+
+Command Complete
+
+>
+
+
+># --- MAX96717 (Serializer) Status Checks ---
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+># Check GMSL Link Lock (0x0013): Physical connection (Bit 3 should be 1)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x42 0x0013 2 1
+
+4484.139.894:[C3][T]read success
+4484.140.609:[C3][T]0xda
+
+Command Complete
+
+># Check Pixel Clock Detection (0x0112): PCLKDET (Bit 7) should be 1 to confirm sensor clock received
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x42 0x0112 2 1
+
+4484.146.661:[C3][T]read success
+4484.147.376:[C3][T]0xa
+
+Command Complete
+
+># Check MIPI Input Lane Count (0x331): Should match sensor's 4-lane setting (0x30)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x42 0x0331 2 1
+
+4484.153.022:[C3][T]read success
+4484.153.737:[C3][T]0x30
+
+Command Complete
+
+># Check MIPI Input Errors (0x0343/0x0344): Should be 0x00 for no ECC/CRC errors
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x42 0x0343 2 2
+
+4484.159.370:[C3][T]read success
+4484.160.085:[C3][T]0x0
+4484.160.643:[C3][T]0x0
+
+Command Complete
+
+># Check MIPI Input Clock Count (0x0390): Value should change dynamically indicating hardware connection
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x42 0x0390 2 1
+
+4484.166.738:[C3][T]read success
+4484.167.453:[C3][T]0x0
+
+Command Complete
+
+>
+
+
+># --- MAX9296 (Deserializer) Status Checks ---
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+># Check GMSL Link Lock (0x0013): Physical link status with serializer
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x48 0x0013 2 1
+
+4484.175.932:[C3][T]read success
+4484.176.647:[C3][T]0xda
+
+Command Complete
+
+># Check Video Pipeline Z Packet Detection (0x012C): VID_PKT_DET (Bit 5) and VID_LOCK (Bit 6) should be 1
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x48 0x012c 2 1
+
+4484.182.788:[C3][T]read success
+4484.183.503:[C3][T]0x2
+
+Command Complete
+
+># Check CSI Routing Map (0x04AD): Pipe Z should map to DPHY2/Port B (should be 0x80)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x48 0x04ad 2 1
+
+4484.189.190:[C3][T]read success
+4484.189.905:[C3][T]0x0
+
+Command Complete
+
+># Check CSI PLL Lock Status (0x0308): Output clock lock (with Port B, Bit 6 should be 1)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x48 0x0308 2 1
+
+4484.195.679:[C3][T]read success
+4484.196.394:[C3][T]0x1
+
+Command Complete
+
+># Check CSI Output Total Enable (0x0313): Output switch should be open (should be 0x02)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x48 0x0313 2 1
+
+4484.202.149:[C3][T]read success
+4484.202.863:[C3][T]0x2
+
+Command Complete
+
+># Check Port B Output Frequency (0x0323): Rate setting should match SoC requirements
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x48 0x0323 2 1
+
+4484.208.550:[C3][T]read success
+4484.209.265:[C3][T]0x2f
+
+Command Complete
+
+># Check Pipeline Heartbeat Setting (0x012A): Heartbeat match (recommended value 0x0A)
+
+Command not recognised.  Enter 'help' to view a list of available commands.
+
+
+>i2cread 1 0x48 0x012a 2 1
+4486.514.208:[C3][T]read success
+4486.514.923:[C3][T]0x2
+
+Command Complete
+
+>
