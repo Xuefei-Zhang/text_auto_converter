@@ -94,6 +94,7 @@ python unified_converter.py --mode txt_to_ini --input freertos_config.txt --outp
 - The script preserves register addresses and values during conversion
 - Comments and device information are maintained where possible
 - Device addresses are properly converted between 7-bit and 8-bit representations
+- Delay comments in vendor format (e.g., "# Note: Original had delay here") are converted to proper DELAY statements
 - Always verify the converted configuration works in your target environment
 - The script handles both single and multiple data value writes
 

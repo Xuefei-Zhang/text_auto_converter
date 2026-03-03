@@ -337,9 +337,27 @@ def parse_vendor_config(content):
         if not line:
             continue
 
+        # Handle delay commands in vendor format FIRST, before treating as comment
+        # Look for delay-like comments that might indicate a delay
+        if line.startswith('#') and ('delay' in line.lower() or 'wait' in line.lower()):
+            # Add delay as a special operation
+            delay_val = extract_delay_value(line)
+            # If no numeric value found in the comment, use a default of 10ms
+            if delay_val == 10 and ('delay here' in line.lower() or 'had delay' in line.lower()):
+                # Common pattern indicating a standard delay was in original config
+                delay_val = 10  # Default to 10ms for this pattern
+            operations.append({
+                'device': current_device_info.copy(),
+                'delay': True,
+                'delay_value': delay_val,
+                'op_type': 'delay'
+            })
+            continue
+
         # Handle comments
         if line.startswith('#'):
             # Look for device information in comments
+            # Handle original vendor format: # Device 1: Deserializer MAX9296 (7-bit Addr: 0x48)
             if 'Device' in line:
                 # Extract device name and address from comment
                 device_match = re.search(r'Device \d+: ([^(]+) \([^)]+Addr: (0x[0-9a-fA-F]+)\)', line)
@@ -350,6 +368,43 @@ def parse_vendor_config(content):
                     addr_7bit_int = int(current_device_info['addr'], 16)
                     addr_8bit = hex(addr_7bit_int << 1)
                     current_device_info['addr_8bit'] = addr_8bit
+            # Handle alternative format: #max9296 0x90 or #max96717 0x84
+            elif 'max9296' in line.lower() or 'max96717' in line.lower() or 'ox08d10' in line.lower() or 'ox03c' in line.lower():
+                # Try to extract address from alternative format
+                alt_device_match = re.search(r'(max9296|max96717|ox08d10|ox03c|ox\d+d\d+?)\s+(0x[0-9a-fA-F]+)', line.replace(':', ' '), re.IGNORECASE)
+                if alt_device_match:
+                    device_name = alt_device_match.group(1).upper()
+                    addr = alt_device_match.group(2)
+                    # In this format, the address in the comment is often the target 8-bit address
+                    # So we'll use it directly as the 8-bit address and calculate the 7-bit address
+                    current_device_info['name'] = device_name
+                    addr_8bit_int = int(addr, 16)
+                    addr_7bit = hex(addr_8bit_int >> 1)  # Shift right to get 7-bit address
+                    current_device_info['addr'] = addr_7bit
+                    current_device_info['addr_8bit'] = addr  # Use the provided address as 8-bit
+                else:
+                    # Try simpler pattern: look for max9296 or similar followed by address
+                    simple_match = re.search(r'(max9296|max96717|ox08d10|ox03c|ox\d+d\d+?)\W+(0x[0-9a-fA-F]+)', line, re.IGNORECASE)
+                    if simple_match:
+                        device_name = simple_match.group(1).upper()
+                        addr = simple_match.group(2)
+                        # This might be a 7-bit address that needs to be converted to 8-bit
+                        # Or it might already be an 8-bit address - we'll assume it's 7-bit and convert to 8-bit
+                        addr_7bit_int = int(addr, 16)
+                        # Check if the address is in the typical 7-bit range (0x08-0x77)
+                        if addr_7bit_int >= 0x08 and addr_7bit_int <= 0x77:
+                            # Likely a 7-bit address, convert to 8-bit
+                            addr_8bit = hex(addr_7bit_int << 1)
+                            current_device_info['name'] = device_name
+                            current_device_info['addr'] = addr
+                            current_device_info['addr_8bit'] = addr_8bit
+                        else:
+                            # Likely already an 8-bit address, use as is
+                            current_device_info['name'] = device_name
+                            addr_8bit_int = int(addr, 16)
+                            addr_7bit = hex(addr_8bit_int >> 1)  # Calculate 7-bit from 8-bit
+                            current_device_info['addr'] = addr_7bit
+                            current_device_info['addr_8bit'] = addr
             current_device_info['comments'].append(line)
             continue
 
@@ -391,6 +446,37 @@ def parse_vendor_config(content):
     return operations
 
 
+def extract_delay_value(line):
+    """
+    Extract delay value from a line that might contain delay information
+
+    Args:
+        line (str): Line that might contain delay information
+
+    Returns:
+        int: Delay value in milliseconds, default 10 if not found
+    """
+    # Look for patterns like "delay 10ms", "wait 5", "delay=10", etc.
+    # Case-insensitive search for delay followed by a number
+    patterns = [
+        r'delay[=:.\s]*(\d+)',      # delay=10, delay 10, delay:10
+        r'wait[=:.\s]*(\d+)',       # wait=5, wait 5
+        r'(\d+)\s*ms',              # 10ms
+        r'(\d+)\s*msec',            # 10msec
+        r'(\d+)'                    # just a number in a delay context
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, line, re.IGNORECASE)
+        if match:
+            try:
+                return int(match.group(1))
+            except ValueError:
+                continue
+
+    return 10  # default delay
+
+
 def convert_vendor_to_ini(vendor_operations):
     """
     Convert vendor's raw register format to INI format
@@ -414,6 +500,11 @@ def convert_vendor_to_ini(vendor_operations):
     current_slave_addr = None
 
     for op in vendor_operations:
+        # Handle delay operations
+        if op.get('op_type') == 'delay':
+            ini_lines.append(f"DELAY= {op['delay_value']}")
+            continue
+
         # Add any comments associated with this operation
         for comment in op['device']['comments']:
             ini_lines.append(comment)
@@ -434,9 +525,10 @@ def convert_vendor_to_ini(vendor_operations):
         # Add the register operation
         if op['op_type'] == 'write':
             ini_lines.append(f"REG= {op['reg_addr']},{op['reg_data']}")
-        else:
+        elif op['op_type'] == 'read':
             # For read operations, just add the register address
             ini_lines.append(f"REG= {op['reg_addr']}")
+        # For other operation types, do nothing
 
     return '\n'.join(ini_lines)
 
@@ -464,6 +556,11 @@ def convert_vendor_to_txt(vendor_operations):
     current_bus = 1
 
     for op in vendor_operations:
+        # Handle delay operations
+        if op.get('op_type') == 'delay':
+            txt_lines.append(f"# DELAY= {op['delay_value']}ms")
+            continue
+
         # Add any comments associated with this operation
         for comment in op['device']['comments']:
             txt_lines.append(comment)
@@ -480,9 +577,10 @@ def convert_vendor_to_txt(vendor_operations):
         if op['op_type'] == 'write':
             # Format: i2cwrite bus slave_addr reg_addr width data_width data_value
             txt_lines.append(f"i2cwrite {current_bus} {current_slave_addr_7bit} {op['reg_addr']} 2 1 {op['reg_data']}")
-        else:
+        elif op['op_type'] == 'read':
             # Format: i2cread bus slave_addr reg_addr width num_bytes
             txt_lines.append(f"i2cread {current_bus} {current_slave_addr_7bit} {op['reg_addr']} 2 1")
+        # For other operation types, do nothing
 
     return '\n'.join(txt_lines)
 
