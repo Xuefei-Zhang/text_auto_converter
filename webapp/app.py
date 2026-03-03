@@ -45,7 +45,7 @@ app = Flask(__name__)
 BASE_DIR = Path(__file__).parent.parent.absolute()
 UPLOAD_FOLDER = BASE_DIR / "restore" / "uploads"
 OUTPUT_FOLDER = BASE_DIR / "restore" / "outputs"
-ALLOWED_EXTENSIONS = {"txt", "ini", "cfg"}
+ALLOWED_EXTENSIONS = {"txt", "ini", "cfg", "md", "log"}
 
 # Ensure directories exist
 UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)
@@ -208,7 +208,7 @@ def upload_file():
         return jsonify(
             {
                 "success": False,
-                "error": "File type not allowed. Allowed: .txt, .ini, .cfg",
+                "error": "File type not allowed. Allowed: .txt, .ini, .cfg, .md, .log",
             }
         ), 400
 
