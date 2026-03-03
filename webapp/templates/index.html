@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Config Converter</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <span class="title-icon">⚡</span>
+                    <span class="title-text">Sensor Configuration Converter</span>
+                </h1>
+                <p class="subtitle">Transform configuration files between vendor, INI, and FreeRTOS formats</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="converter-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <span class="card-icon">📤</span>
+                            Upload File
+                        </h2>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div 
+                            class="upload-zone" 
+                            id="uploadZone"
+                            onclick="document.getElementById('fileInput').click()"
+                        >
+                            <input 
+                                type="file" 
+                                id="fileInput" 
+                                accept=".txt,.ini,.cfg" 
+                                style="display: none"
+                            >
+                            <div class="upload-icon">📁</div>
+                            <div class="upload-text">
+                                <strong>Click to upload</strong> or drag and drop
+                            </div>
+                            <div class="upload-hint">
+                                Supported formats: .txt, .ini, .cfg
+                            </div>
+                        </div>
+
+                        <div class="file-info" id="fileInfo" style="display: none;">
+                            <div class="file-details">
+                                <div class="file-icon">📄</div>
+                                <div class="file-meta">
+                                    <div class="file-name" id="fileName"></div>
+                                    <div class="file-size" id="fileSize"></div>
+                                </div>
+                                <div class="file-format" id="fileFormat"></div>
+                            </div>
+                            <button class="btn-remove" onclick="removeFile()">✕</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <span class="card-icon">🔄</span>
+                            Conversion Mode
+                        </h2>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="mode-grid">
+                            <label class="mode-option">
+                                <input type="radio" name="conversionMode" value="auto" checked>
+                                <div class="mode-card">
+                                    <div class="mode-icon">🤖</div>
+                                    <div class="mode-label">Auto-Detect</div>
+                                    <div class="mode-desc">Automatically detect and convert</div>
+                                </div>
+                            </label>
+
+                            <label class="mode-option">
+                                <input type="radio" name="conversionMode" value="vendor_to_ini">
+                                <div class="mode-card">
+                                    <div class="mode-icon">📋</div>
+                                    <div class="mode-label">Vendor → INI</div>
+                                    <div class="mode-desc">Raw registers to USB format</div>
+                                </div>
+                            </label>
+
+                            <label class="mode-option">
+                                <input type="radio" name="conversionMode" value="vendor_to_txt">
+                                <div class="mode-card">
+                                    <div class="mode-icon">💻</div>
+                                    <div class="mode-label">Vendor → FreeRTOS</div>
+                                    <div class="mode-desc">Raw registers to CLI format</div>
+                                </div>
+                            </label>
+
+                            <label class="mode-option">
+                                <input type="radio" name="conversionMode" value="ini_to_freertos">
+                                <div class="mode-card">
+                                    <div class="mode-icon">🔧</div>
+                                    <div class="mode-label">INI → FreeRTOS</div>
+                                    <div class="mode-desc">USB format to development board</div>
+                                </div>
+                            </label>
+
+                            <label class="mode-option">
+                                <input type="radio" name="conversionMode" value="freertos_to_ini">
+                                <div class="mode-card">
+                                    <div class="mode-icon">🔌</div>
+                                    <div class="mode-label">FreeRTOS → INI</div>
+                                    <div class="mode-desc">Development board to USB format</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button 
+                        class="btn-convert" 
+                        id="convertBtn" 
+                        onclick="convertFile()"
+                        disabled
+                    >
+                        <span class="btn-icon">⚡</span>
+                        Convert Now
+                    </button>
+                </div>
+            </section>
+
+            <section class="result-section" id="resultSection" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <span class="card-icon">✅</span>
+                            Conversion Result
+                        </h2>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="result-info">
+                            <div class="success-badge">✓ Success</div>
+                            <div class="result-details">
+                                <div class="result-row">
+                                    <span class="result-label">Output:</span>
+                                    <span class="result-value" id="outputFilename"></span>
+                                </div>
+                                <div class="result-row">
+                                    <span class="result-label">Status:</span>
+                                    <span class="result-value" id="conversionMessage"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-actions">
+                            <button class="btn-download" onclick="downloadFile()">
+                                <span class="btn-icon">⬇️</span>
+                                Download File
+                            </button>
+                            <button class="btn-preview" onclick="previewFile()">
+                                <span class="btn-icon">👁️</span>
+                                Preview Content
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="previewCard" style="display: none;">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <span class="card-icon">📝</span>
+                            File Preview
+                        </h2>
+                        <button class="btn-close" onclick="closePreview()">✕</button>
+                    </div>
+                    <div class="card-body">
+                        <pre class="preview-content" id="previewContent"></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>Sensor Configuration Converter v1.0</p>
+                <p class="footer-note">Local development server • Files stored in restore/ directory</p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
