@@ -1,0 +1,48 @@
+
+# *************************************************************************
+# Debug Checkpoint Registers
+# *************************************************************************
+
+# --- OX08D10 (Sensor) Status Checks ---
+# Check Streaming Status (0x0100): Should be 0x01 to confirm streaming enabled
+
+# I2C Slave Address: 0x36
+i2cread 1 0x36 0x0100 2 1
+# Check Frame Counter (0x483E/0x483F): Values should increment to show sensor data output
+i2cread 1 0x36 0x483e 2 1
+# Check Internal Fault Flags (0x4F08/0x4F09): BLC or timing errors (0x4F09 should be 0x00)
+i2cread 1 0x36 0x4f08 2 1
+# Check MIPI Lane Configuration (0x3012): Should be 0x41 for 4-lane mode
+i2cread 1 0x36 0x3012 2 1
+
+# --- MAX96717 (Serializer) Status Checks ---
+# Check GMSL Link Lock (0x0013): Physical connection (Bit 3 should be 1)
+
+# I2C Slave Address: 0x42
+i2cread 1 0x42 0x0013 2 1
+# Check Pixel Clock Detection (0x0112): PCLKDET (Bit 7) should be 1 to confirm sensor clock received
+i2cread 1 0x42 0x0112 2 1
+# Check MIPI Input Lane Count (0x331): Should match sensor's 4-lane setting (0x30)
+i2cread 1 0x42 0x0331 2 1
+# Check MIPI Input Errors (0x0343/0x0344): Should be 0x00 for no ECC/CRC errors
+i2cread 1 0x42 0x0343 2 1
+# Check MIPI Input Clock Count (0x0390): Value should change dynamically indicating hardware connection
+i2cread 1 0x42 0x0390 2 1
+
+# --- MAX9296 (Deserializer) Status Checks ---
+# Check GMSL Link Lock (0x0013): Physical link status with serializer
+
+# I2C Slave Address: 0x48
+i2cread 1 0x48 0x0013 2 1
+# Check Video Pipeline Z Packet Detection (0x012C): VID_PKT_DET (Bit 5) and VID_LOCK (Bit 6) should be 1
+i2cread 1 0x48 0x012c 2 1
+# Check CSI Routing Map (0x04AD): Pipe Z should map to DPHY2/Port B (should be 0x80)
+i2cread 1 0x48 0x04ad 2 1
+# Check CSI PLL Lock Status (0x0308): Output clock lock (with Port B, Bit 6 should be 1)
+i2cread 1 0x48 0x0308 2 1
+# Check CSI Output Total Enable (0x0313): Output switch should be open (should be 0x02)
+i2cread 1 0x48 0x0313 2 1
+# Check Port B Output Frequency (0x0323): Rate setting should match SoC requirements
+i2cread 1 0x48 0x0323 2 1
+# Check Pipeline Heartbeat Setting (0x012A): Heartbeat match (recommend value 0x0A)
+i2cread 1 0x48 0x012a 2 1
