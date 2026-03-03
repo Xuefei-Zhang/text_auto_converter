@@ -38,6 +38,7 @@ from unified_converter import (
     convert_vendor_to_ini,
     convert_vendor_to_txt,
 )
+from i2c_log_parser import parse_i2c_log, format_output
 
 app = Flask(__name__)
 
@@ -392,6 +393,69 @@ def list_files():
             )
 
         return jsonify({"success": True, "uploads": uploads, "outputs": outputs})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/parse-i2c-log", methods=["POST"])
+def parse_i2c_log_api():
+    """Handle I2C log parsing request"""
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"success": False, "error": "No data provided"}), 400
+
+    filename = data.get("filename")
+
+    if not filename:
+        return jsonify({"success": False, "error": "No filename provided"}), 400
+
+    # Validate filename (security)
+    filename = secure_filename(filename)
+    input_path = Path(app.config["UPLOAD_FOLDER"]) / filename
+
+    if not input_path.exists():
+        return jsonify({"success": False, "error": "File not found"}), 404
+
+    # Generate output filename
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    input_name_parts = filename.rsplit(".", 1)
+    output_filename = f"{input_name_parts[0]}_parsed_{timestamp}.txt"
+    output_path = Path(app.config["OUTPUT_FOLDER"]) / output_filename
+
+    try:
+        # Read input file
+        with open(input_path, "r", encoding="utf-8") as f:
+            log_content = f.read()
+
+        # Parse the log
+        results = parse_i2c_log(log_content)
+
+        if not results:
+            return jsonify(
+                {
+                    "success": False,
+                    "error": "No successful I2C reads found in the log file",
+                }
+            ), 400
+
+        # Format output
+        output = format_output(results)
+
+        # Write output file
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write(output + "\n")
+
+        return jsonify(
+            {
+                "success": True,
+                "message": f"Successfully parsed {len(results)} register reads",
+                "output_filename": output_filename,
+                "download_url": f"/api/download/{output_filename}",
+                "preview_url": f"/api/preview/{output_filename}",
+            }
+        )
+
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 

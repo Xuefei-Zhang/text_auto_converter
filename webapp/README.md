@@ -12,6 +12,7 @@ A modern web-based GUI for converting sensor configuration files between differe
   - Vendor TXT → FreeRTOS TXT
   - INI → FreeRTOS TXT
   - FreeRTOS TXT → INI
+- **I2C Log Parser**: Parse FreeRTOS I2C read logs into simplified reg=value format
 - **File Preview**: Preview converted files before downloading
 - **Organized Storage**: All files stored in `restore/` directory
 
@@ -78,6 +79,22 @@ i2cwrite 1 0x36 0x0001 2 1 0x01
 i2cread 1 0x36 0x0002 2 1
 ```
 
+### I2C Log Parser Input
+FreeRTOS I2C read logs (from debug console):
+```
+>i2cread 1 0x36 0x0100 2 1
+read success
+0xda
+Command Complete
+```
+
+### I2C Log Parser Output
+Parsed register values:
+```
+# I2C Address: 0x36
+0x0100=0xda
+```
+
 ## File Storage
 
 All files are automatically organized:
@@ -88,11 +105,17 @@ Files persist locally for easy access and debugging.
 
 ## API Endpoints
 
+### Configuration Converter
 - `POST /api/upload` - Upload a file
 - `POST /api/convert` - Convert uploaded file
 - `GET /api/download/<filename>` - Download converted file
 - `GET /api/preview/<filename>` - Preview file content
 - `GET /api/files` - List recent files
+
+### I2C Log Parser
+- `POST /api/parse-i2c-log` - Parse FreeRTOS I2C read log file
+  - Request body: `{"filename": "uploaded_file.txt"}`
+  - Returns: Parsed register values in reg=value format
 
 ## Troubleshooting
 
@@ -119,6 +142,44 @@ The web app uses:
 - **Styling**: Custom CSS with industrial aesthetic
 
 To modify conversion logic, edit `app.py` which imports from `unified_converter.py`.
+To modify I2C log parsing logic, edit `i2c_log_parser.py`.
+
+## I2C Log Parser Feature
+
+The I2C Log Parser allows you to parse FreeRTOS I2C read logs and extract successful register reads into a simplified format.
+
+### How to Use:
+
+1. Click on the "I2C Log Parser" tab at the top
+2. Upload your FreeRTOS I2C log file (.txt, .md, or .log)
+3. Click "Parse I2C Log"
+4. Download or preview the parsed register values
+
+### Input Format:
+
+The parser expects FreeRTOS I2C read logs in this format:
+```
+>i2cread 1 0x36 0x0100 2 1
+read success
+0xda
+Command Complete
+```
+
+### Output Format:
+
+Parsed output groups registers by I2C address:
+```
+# I2C Address: 0x36
+0x0100=0xda
+0x0101=0xff
+```
+
+### Command Line Usage:
+
+You can also use the parser from command line:
+```bash
+python i2c_log_parser.py <input_log_file> [output_file]
+```
 
 ## License
 

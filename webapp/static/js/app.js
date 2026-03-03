@@ -2,6 +2,9 @@
 let currentFile = null;
 let currentConversionMode = 'auto';
 
+// I2C Log Parser state
+let currentI2cFile = null;
+
 // Initialize upload zone
 const uploadZone = document.getElementById('uploadZone');
 const fileInput = document.getElementById('fileInput');
@@ -227,4 +230,213 @@ function formatFileSize(bytes) {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     
     return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+}
+
+// ============================================
+// I2C Log Parser Functions
+// ============================================
+
+const i2cUploadZone = document.getElementById('i2cUploadZone');
+const i2cFileInput = document.getElementById('i2cFileInput');
+
+if (i2cUploadZone) {
+    i2cUploadZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        i2cUploadZone.classList.add('dragover');
+    });
+
+    i2cUploadZone.addEventListener('dragleave', () => {
+        i2cUploadZone.classList.remove('dragover');
+    });
+
+    i2cUploadZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        i2cUploadZone.classList.remove('dragover');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            handleI2cFile(files[0]);
+        }
+    });
+}
+
+if (i2cFileInput) {
+    i2cFileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            handleI2cFile(e.target.files[0]);
+        }
+    });
+}
+
+async function handleI2cFile(file) {
+    const allowedTypes = ['txt', 'md', 'log'];
+    const fileExt = file.name.split('.').pop().toLowerCase();
+    
+    if (!allowedTypes.includes(fileExt)) {
+        showToast('Invalid file type. Please upload .txt, .md, or .log files', 'error');
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+        showToast('Uploading file...', 'info');
+        
+        const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            currentI2cFile = result;
+            displayI2cFileInfo(result);
+            showToast('File uploaded successfully', 'success');
+        } else {
+            showToast(`Upload failed: ${result.error}`, 'error');
+        }
+    } catch (error) {
+        showToast(`Upload error: ${error.message}`, 'error');
+    }
+}
+
+function displayI2cFileInfo(fileData) {
+    const fileInfo = document.getElementById('i2cFileInfo');
+    const fileName = document.getElementById('i2cFileName');
+    const fileSize = document.getElementById('i2cFileSize');
+    const uploadZone = document.getElementById('i2cUploadZone');
+    
+    fileName.textContent = fileData.original_filename;
+    fileSize.textContent = formatFileSize(fileData.file_size);
+    
+    uploadZone.style.display = 'none';
+    fileInfo.style.display = 'flex';
+    
+    document.getElementById('parseBtn').disabled = false;
+}
+
+function removeI2cFile() {
+    currentI2cFile = null;
+    
+    const fileInfo = document.getElementById('i2cFileInfo');
+    const uploadZone = document.getElementById('i2cUploadZone');
+    
+    fileInfo.style.display = 'none';
+    uploadZone.style.display = 'block';
+    
+    document.getElementById('i2cFileInput').value = '';
+    document.getElementById('parseBtn').disabled = true;
+    
+    document.getElementById('i2cResultSection').style.display = 'none';
+}
+
+async function parseI2cLog() {
+    if (!currentI2cFile) {
+        showToast('Please upload a file first', 'error');
+        return;
+    }
+    
+    const parseBtn = document.getElementById('parseBtn');
+    parseBtn.classList.add('loading');
+    parseBtn.disabled = true;
+    
+    try {
+        showToast('Parsing I2C log...', 'info');
+        
+        const response = await fetch('/api/parse-i2c-log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                filename: currentI2cFile.filename
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            displayI2cResult(result);
+            showToast('Parsing successful!', 'success');
+        } else {
+            showToast(`Parsing failed: ${result.error}`, 'error');
+        }
+    } catch (error) {
+        showToast(`Parsing error: ${error.message}`, 'error');
+    } finally {
+        parseBtn.classList.remove('loading');
+        parseBtn.disabled = false;
+    }
+}
+
+function displayI2cResult(result) {
+    const resultSection = document.getElementById('i2cResultSection');
+    const outputFilename = document.getElementById('i2cOutputFilename');
+    const conversionMessage = document.getElementById('i2cConversionMessage');
+    
+    outputFilename.textContent = result.output_filename;
+    conversionMessage.textContent = result.message;
+    
+    resultSection.style.display = 'block';
+    resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    window.currentI2cDownloadUrl = result.download_url;
+    window.currentI2cOutputFilename = result.output_filename;
+}
+
+function downloadI2cFile() {
+    if (window.currentI2cDownloadUrl) {
+        window.open(window.currentI2cDownloadUrl, '_blank');
+    }
+}
+
+async function previewI2cFile() {
+    if (!window.currentI2cOutputFilename) {
+        showToast('No file to preview', 'error');
+        return;
+    }
+    
+    try {
+        const response = await fetch(`/api/preview/${window.currentI2cOutputFilename}`);
+        const result = await response.json();
+        
+        if (result.success) {
+            const previewCard = document.getElementById('i2cPreviewCard');
+            const previewContent = document.getElementById('i2cPreviewContent');
+            
+            previewContent.textContent = result.content;
+            previewCard.style.display = 'block';
+            previewCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+            showToast(`Preview failed: ${result.error}`, 'error');
+        }
+    } catch (error) {
+        showToast(`Preview error: ${error.message}`, 'error');
+    }
+}
+
+function closeI2cPreview() {
+    document.getElementById('i2cPreviewCard').style.display = 'none';
+}
+
+// Mode switching function
+function switchMode(mode) {
+    const converterSection = document.querySelector('.converter-section');
+    const i2cParserSection = document.getElementById('i2cParserSection');
+    const tabConverter = document.getElementById('tab-converter');
+    const tabI2cParser = document.getElementById('tab-i2c-parser');
+    
+    if (mode === 'converter') {
+        converterSection.style.display = 'block';
+        i2cParserSection.style.display = 'none';
+        tabConverter.classList.add('active');
+        tabI2cParser.classList.remove('active');
+    } else if (mode === 'i2c-parser') {
+        converterSection.style.display = 'none';
+        i2cParserSection.style.display = 'block';
+        tabConverter.classList.remove('active');
+        tabI2cParser.classList.add('active');
+    }
 }

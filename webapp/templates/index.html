@@ -16,6 +16,14 @@
                 </h1>
                 <p class="subtitle">Transform configuration files between vendor, INI, and FreeRTOS formats</p>
             </div>
+            <div class="mode-tabs">
+                <button class="mode-tab active" onclick="switchMode('converter')" id="tab-converter">
+                    <span class="tab-icon">🔄</span> Config Converter
+                </button>
+                <button class="mode-tab" onclick="switchMode('i2c-parser')" id="tab-i2c-parser">
+                    <span class="tab-icon">📊</span> I2C Log Parser
+                </button>
+            </div>
         </header>
 
         <main class="main-content">
@@ -184,6 +192,115 @@
                     </div>
                 </div>
             </section>
+        </section>
+
+        <!-- I2C Log Parser Section -->
+        <section class="i2c-parser-section" id="i2cParserSection" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon">📤</span>
+                        Upload I2C Log File
+                    </h2>
+                </div>
+                
+                <div class="card-body">
+                    <div 
+                        class="upload-zone" 
+                        id="i2cUploadZone"
+                        onclick="document.getElementById('i2cFileInput').click()"
+                    >
+                        <input 
+                            type="file" 
+                            id="i2cFileInput" 
+                            accept=".txt,.md,.log" 
+                            style="display: none"
+                        >
+                        <div class="upload-icon">📋</div>
+                        <div class="upload-text">
+                            <strong>Click to upload</strong> or drag and drop
+                        </div>
+                        <div class="upload-hint">
+                            Supported formats: .txt, .md, .log (FreeRTOS I2C read logs)
+                        </div>
+                    </div>
+
+                    <div class="file-info" id="i2cFileInfo" style="display: none;">
+                        <div class="file-details">
+                            <div class="file-icon">📄</div>
+                            <div class="file-meta">
+                                <div class="file-name" id="i2cFileName"></div>
+                                <div class="file-size" id="i2cFileSize"></div>
+                            </div>
+                        </div>
+                        <button class="btn-remove" onclick="removeI2cFile()">✕</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <button 
+                    class="btn-convert" 
+                    id="parseBtn" 
+                    onclick="parseI2cLog()"
+                    disabled
+                >
+                    <span class="btn-icon">⚡</span>
+                    Parse I2C Log
+                </button>
+            </div>
+
+            <div class="result-section" id="i2cResultSection" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <span class="card-icon">✅</span>
+                            Parsing Result
+                        </h2>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="result-info">
+                            <div class="success-badge">✓ Success</div>
+                            <div class="result-details">
+                                <div class="result-row">
+                                    <span class="result-label">Output:</span>
+                                    <span class="result-value" id="i2cOutputFilename"></span>
+                                </div>
+                                <div class="result-row">
+                                    <span class="result-label">Status:</span>
+                                    <span class="result-value" id="i2cConversionMessage"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-actions">
+                            <button class="btn-download" onclick="downloadI2cFile()">
+                                <span class="btn-icon">⬇️</span>
+                                Download File
+                            </button>
+                            <button class="btn-preview" onclick="previewI2cFile()">
+                                <span class="btn-icon">👁️</span>
+                                Preview Content
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="i2cPreviewCard" style="display: none;">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <span class="card-icon">📝</span>
+                            File Preview
+                        </h2>
+                        <button class="btn-close" onclick="closeI2cPreview()">✕</button>
+                    </div>
+                    <div class="card-body">
+                        <pre class="preview-content" id="i2cPreviewContent"></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
         </main>
 
         <footer class="footer">
