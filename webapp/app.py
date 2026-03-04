@@ -35,6 +35,9 @@ from unified_converter import (
     parse_vendor_config,
     convert_vendor_to_ini,
     convert_vendor_to_txt,
+    parse_adi_fae_config,
+    convert_adi_fae_to_ini,
+    convert_adi_fae_to_txt,
 )
 from i2c_log_parser import parse_i2c_log, format_output
 
@@ -44,7 +47,7 @@ app = Flask(__name__)
 BASE_DIR = Path(__file__).parent.absolute()
 UPLOAD_FOLDER = BASE_DIR / "uploads"
 OUTPUT_FOLDER = BASE_DIR / "outputs"
-ALLOWED_EXTENSIONS = {"txt", "ini", "cfg", "md", "log"}
+ALLOWED_EXTENSIONS = {"txt", "ini", "cfg", "md", "log", "cpp"}
 
 # Ensure directories exist
 UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)
@@ -63,11 +66,14 @@ def allowed_file(filename):
 def detect_file_format(content, filename):
     """
     Detect the format of the input file
-    Returns: 'vendor', 'ini', or 'freertos'
+    Returns: 'vendor', 'ini', 'freertos', or 'adi_fae'
     """
     # Check by file extension first
     if filename.endswith(".ini"):
         return "ini"
+
+    if filename.endswith(".cpp"):
+        return "adi_fae"
 
     # Analyze content
     lines = content.split("\n")[:20]  # Check first 20 lines
@@ -80,6 +86,20 @@ def detect_file_format(content, filename):
     # Check for FreeRTOS format (i2cwrite/i2cread commands)
     if "i2cwrite" in content_sample or "i2cread" in content_sample:
         return "freertos"
+
+    # Check for ADI FAE format (5-byte comma-separated: 0x04,0x90,0x03,0x13,0x00)
+    adi_pattern = False
+    for line in lines:
+        line = line.strip()
+        if line and not line.startswith("//") and not line.startswith("#"):
+            if line.startswith("0x"):
+                parts = [p.strip() for p in line.rstrip(",").split(",")]
+                if len(parts) == 5 and all(p.startswith("0x") for p in parts):
+                    adi_pattern = True
+                    break
+
+    if adi_pattern:
+        return "adi_fae"
 
     # Check for vendor format (register,data pairs)
     vendor_pattern = False
@@ -134,6 +154,14 @@ def convert_file(input_path, output_path, conversion_mode):
             operations = parse_vendor_config(content)
             output_content = convert_vendor_to_txt(operations)
 
+        elif conversion_mode == "adi_fae_to_ini":
+            operations = parse_adi_fae_config(content)
+            output_content = convert_adi_fae_to_ini(operations)
+
+        elif conversion_mode == "adi_fae_to_txt":
+            operations = parse_adi_fae_config(content)
+            output_content = convert_adi_fae_to_txt(operations)
+
         elif conversion_mode == "ini_to_freertos":
             if detected_format != "ini":
                 return {
@@ -155,6 +183,9 @@ def convert_file(input_path, output_path, conversion_mode):
             if detected_format == "vendor":
                 operations = parse_vendor_config(content)
                 output_content = convert_vendor_to_ini(operations)
+            elif detected_format == "adi_fae":
+                operations = parse_adi_fae_config(content)
+                output_content = convert_adi_fae_to_ini(operations)
             elif detected_format == "ini":
                 output_content = convert_ini_to_txt(content)
             elif detected_format == "freertos":

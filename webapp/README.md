@@ -5,13 +5,15 @@ A modern web-based GUI for converting sensor configuration files between differe
 ## Features
 
 - **Drag & Drop Upload**: Easy file upload with drag-and-drop support
-- **Auto-Detection**: Automatically detects file format (Vendor TXT, INI, FreeRTOS TXT)
+- **Auto-Detection**: Automatically detects file format (Vendor TXT, INI, FreeRTOS TXT, ADI FAE)
 - **Multiple Conversion Modes**:
   - Auto-Detect (recommended)
   - Vendor TXT → INI
   - Vendor TXT → FreeRTOS TXT
   - INI → FreeRTOS TXT
   - FreeRTOS TXT → INI
+  - **NEW**: ADI FAE (MAX9295/96) → INI
+  - **NEW**: ADI FAE (MAX9295/96) → FreeRTOS TXT
 - **I2C Log Parser**: Parse FreeRTOS I2C read logs into simplified reg=value format
 - **File Preview**: Preview converted files before downloading
 - **Self-Contained**: All Python modules included - no external dependencies needed
@@ -98,6 +100,13 @@ Development board CLI format:
 ```
 i2cwrite 1 0x36 0x0001 2 1 0x01
 i2cread 1 0x36 0x0002 2 1
+```
+
+### ADI FAE (NEW)
+Analog Devices FAE C++ format for MAX9295/MAX9296:
+```cpp
+0x04,0x90,0x03,0x13,0x00, //  (CSI_OUT_EN): CSI output disabled
+0x00,0x78, // 120 msec delay
 ```
 
 ### I2C Log Parser Input

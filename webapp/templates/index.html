@@ -14,7 +14,7 @@
                     <span class="title-icon">⚡</span>
                     <span class="title-text">Sensor Configuration Converter</span>
                 </h1>
-                <p class="subtitle">Transform configuration files between vendor, INI, and FreeRTOS formats</p>
+                <p class="subtitle">Transform configuration files between vendor, INI, FreeRTOS, and ADI FAE formats</p>
             </div>
             <div class="mode-tabs">
                 <button class="mode-tab active" onclick="switchMode('converter')" id="tab-converter">
@@ -45,7 +45,7 @@
                             <input 
                                 type="file" 
                                 id="fileInput" 
-                                accept=".txt,.ini,.cfg" 
+                                accept=".txt,.ini,.cfg,.cpp" 
                                 style="display: none"
                             >
                             <div class="upload-icon">📁</div>
@@ -53,7 +53,7 @@
                                 <strong>Click to upload</strong> or drag and drop
                             </div>
                             <div class="upload-hint">
-                                Supported formats: .txt, .ini, .cfg
+                                Supported formats: .txt, .ini, .cfg, .cpp
                             </div>
                         </div>
 
@@ -123,6 +123,24 @@
                                     <div class="mode-icon">🔌</div>
                                     <div class="mode-label">FreeRTOS → INI</div>
                                     <div class="mode-desc">Development board to USB format</div>
+                                </div>
+                            </label>
+
+                            <label class="mode-option">
+                                <input type="radio" name="conversionMode" value="adi_fae_to_ini">
+                                <div class="mode-card">
+                                    <div class="mode-icon">📟</div>
+                                    <div class="mode-label">ADI FAE → INI</div>
+                                    <div class="mode-desc">MAX9295/96 C++ to USB format</div>
+                                </div>
+                            </label>
+
+                            <label class="mode-option">
+                                <input type="radio" name="conversionMode" value="adi_fae_to_txt">
+                                <div class="mode-card">
+                                    <div class="mode-icon">💾</div>
+                                    <div class="mode-label">ADI FAE → FreeRTOS</div>
+                                    <div class="mode-desc">MAX9295/96 C++ to CLI format</div>
                                 </div>
                             </label>
                         </div>

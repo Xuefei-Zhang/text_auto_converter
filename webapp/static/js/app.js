@@ -44,11 +44,11 @@ document.querySelectorAll('input[name="conversionMode"]').forEach(radio => {
 });
 
 async function handleFile(file) {
-    const allowedTypes = ['txt', 'ini', 'cfg'];
+    const allowedTypes = ['txt', 'ini', 'cfg', 'cpp'];
     const fileExt = file.name.split('.').pop().toLowerCase();
     
     if (!allowedTypes.includes(fileExt)) {
-        showToast('Invalid file type. Please upload .txt, .ini, or .cfg files', 'error');
+        showToast('Invalid file type. Please upload .txt, .ini, .cfg, or .cpp files', 'error');
         return;
     }
     
@@ -93,7 +93,8 @@ function displayFileInfo(fileData) {
     const formatColors = {
         'VENDOR': 'linear-gradient(135deg, #ff006e, #ff6b35)',
         'INI': 'linear-gradient(135deg, #00f0ff, #0088ff)',
-        'FREERTOS': 'linear-gradient(135deg, #00ff88, #00cc6a)'
+        'FREERTOS': 'linear-gradient(135deg, #00ff88, #00cc6a)',
+        'ADI_FAE': 'linear-gradient(135deg, #9d4edd, #ff00ff)'
     };
     fileFormat.style.background = formatColors[fileData.detected_format.toUpperCase()] || formatColors.INI;
     fileFormat.style.color = '#0a0a0f';
