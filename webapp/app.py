@@ -28,9 +28,7 @@ from flask import (
 )
 from werkzeug.utils import secure_filename
 
-parent_dir = Path(__file__).parent.parent
-sys.path.insert(0, str(parent_dir))
-
+# Import local modules (no parent directory dependency)
 from unified_converter import (
     convert_txt_to_ini,
     convert_ini_to_txt,
@@ -42,9 +40,10 @@ from i2c_log_parser import parse_i2c_log, format_output
 
 app = Flask(__name__)
 
-BASE_DIR = Path(__file__).parent.parent.absolute()
-UPLOAD_FOLDER = BASE_DIR / "restore" / "uploads"
-OUTPUT_FOLDER = BASE_DIR / "restore" / "outputs"
+# Use paths relative to this webapp directory for standalone operation
+BASE_DIR = Path(__file__).parent.absolute()
+UPLOAD_FOLDER = BASE_DIR / "uploads"
+OUTPUT_FOLDER = BASE_DIR / "outputs"
 ALLOWED_EXTENSIONS = {"txt", "ini", "cfg", "md", "log"}
 
 # Ensure directories exist

@@ -14,24 +14,42 @@ A modern web-based GUI for converting sensor configuration files between differe
   - FreeRTOS TXT → INI
 - **I2C Log Parser**: Parse FreeRTOS I2C read logs into simplified reg=value format
 - **File Preview**: Preview converted files before downloading
-- **Organized Storage**: All files stored in `restore/` directory
+- **Self-Contained**: All Python modules included - no external dependencies needed
+- **Cross-Platform**: Works on Windows, Linux, and Mac
 
 ## Quick Start
 
-### 1. Install Dependencies
+### One-Click Start (Recommended)
+
+**Windows:**
+```bash
+# Double-click start.bat
+# Or from command line:
+start.bat
+```
+
+**Linux/Mac:**
+```bash
+chmod +x start.sh
+./start.sh
+```
+
+### Manual Start
+
+#### 1. Install Dependencies
 
 ```bash
 cd webapp
 pip install -r requirements.txt
 ```
 
-### 2. Run the Application
+#### 2. Run the Application
 
 ```bash
 python app.py
 ```
 
-### 3. Open in Browser
+#### 3. Open in Browser
 
 Navigate to: **http://localhost:5000**
 
@@ -39,19 +57,22 @@ Navigate to: **http://localhost:5000**
 
 ```
 webapp/
-├── app.py                 # Flask backend
-├── requirements.txt       # Python dependencies
+├── app.py                    # Flask backend (self-contained)
+├── unified_converter.py      # Conversion logic (included)
+├── i2c_log_parser.py         # I2C log parser (included)
+├── requirements.txt          # Python dependencies
+├── start.bat                 # Windows startup script
+├── start.sh                  # Linux/Mac startup script
 ├── templates/
-│   └── index.html        # Main HTML page
+│   └── index.html           # Main HTML page
 ├── static/
 │   ├── css/
-│   │   └── style.css     # Styling
+│   │   └── style.css        # Styling
 │   └── js/
-│       └── app.js        # Frontend logic
-├── restore/              # Auto-created storage
-│   ├── uploads/          # Uploaded input files
-│   └── outputs/          # Converted output files
-└── README.md             # This file
+│       └── app.js           # Frontend logic
+├── uploads/                  # Auto-created for uploaded files
+├── outputs/                  # Auto-created for converted files
+└── README.md                 # This file
 ```
 
 ## Supported Formats
@@ -97,11 +118,29 @@ Parsed register values:
 
 ## File Storage
 
-All files are automatically organized:
-- **Uploads**: `restore/uploads/` - Input files with session IDs
-- **Outputs**: `restore/outputs/` - Converted files with timestamps
+All files are automatically organized in the webapp directory:
+- **Uploads**: `uploads/` - Input files with session IDs
+- **Outputs**: `outputs/` - Converted files with timestamps
 
 Files persist locally for easy access and debugging.
+
+## Portability
+
+This webapp is **fully self-contained** and can be moved to any location:
+
+1. **Copy the entire `webapp/` folder** to your desired location
+2. **Run the startup script** for your platform:
+   - Windows: `start.bat`
+   - Linux/Mac: `./start.sh`
+3. **Done!** The app will automatically:
+   - Install dependencies if needed
+   - Create necessary directories
+   - Start the server
+
+### Requirements
+
+- Python 3.8 or higher
+- Internet connection (first run only, for installing Flask)
 
 ## API Endpoints
 
@@ -136,13 +175,16 @@ pip install flask werkzeug
 
 ## Development
 
-The web app uses:
+The webapp uses:
 - **Backend**: Flask (Python)
 - **Frontend**: Vanilla JavaScript (no framework)
 - **Styling**: Custom CSS with industrial aesthetic
 
-To modify conversion logic, edit `app.py` which imports from `unified_converter.py`.
-To modify I2C log parsing logic, edit `i2c_log_parser.py`.
+All conversion logic is included in the webapp directory:
+- `unified_converter.py` - Format conversion logic
+- `i2c_log_parser.py` - I2C log parsing logic
+
+No external file dependencies - completely self-contained.
 
 ## I2C Log Parser Feature
 
