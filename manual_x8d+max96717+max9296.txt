@@ -19,12 +19,16 @@ max9296 0x90
 # Bit 3=1 (LIM_HEART enabled)
 #i2cwrite 1 0x48 0x012A 2 1 0x0A
 #i2cwrite 1 0x48 0x044a 2 1 0xc0
+# 0x44b configu port a to capture data from pipez
+i2cwrite 1 0x48 0x044b 2 1 0x08
 i2cwrite 1 0x48 0x0320 2 1 0x2f
 #i2cwrite 1 0x48 0x0330 2 1 0x04
 #i2cwrite 1 0x48 0x0316 2 1 0x6c
 # CORE ENABLE: Turn on CSI output master switch [Ref: DS Page 162, BACKTOP12]
 # Bit 1=1 (CSI_OUT_EN), otherwise pins remain in high-impedance LP11 state
 i2cwrite 1 0x48 0x0313 2 1 0x02
+
+i2cwrite 1 0x48 0x0325 2 1 0x80 
 
 #
 # max9296 config

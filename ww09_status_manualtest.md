@@ -1,104 +1,63 @@
->i2cread 1 0x42 0x0013 2 1
-
-37.938.488:[C3][T]read success
-37.939.160:[C3][T]0xda
-
-Command Complete
-
->i2cread 1 0x42 0x0112 2 1
-
-37.941.091:[C3][T]read success
-37.941.763:[C3][T]0x8a
-
-Command Complete
-
->i2cread 1 0x42 0x0331 2 1
-
-37.943.693:[C3][T]read success
-37.944.365:[C3][T]0x30
-
-Command Complete
-
->i2cread 1 0x42 0x0343 2 1
-
-37.946.297:[C3][T]read success
-37.946.969:[C3][T]0x0
-
-Command Complete
-
->i2cread 1 0x42 0x0390 2 1
-
-37.948.877:[C3][T]read success
-37.949.549:[C3][T]0x0
-
-Command Complete
-
->
-
-
->
-
-
 >i2cread 1 0x48 0x0013 2 1
 
-37.951.846:[C3][T]read success
-37.952.518:[C3][T]0xda
+42.329.279:[C3][T]read success
+42.329.952:[C3][T]0xda
 
 Command Complete
 
 >i2cread 1 0x48 0x012c 2 1
 
-37.954.446:[C3][T]read success
-37.955.118:[C3][T]0x62
+42.331.885:[C3][T]read success
+42.332.557:[C3][T]0x2
 
 Command Complete
 
 >i2cread 1 0x48 0x011a 2 1
 
-37.957.047:[C3][T]read success
-37.957.719:[C3][T]0x2
+42.334.468:[C3][T]read success
+42.335.140:[C3][T]0x62
 
 Command Complete
 
 >i2cread 1 0x48 0x04ad 2 1
 
-37.959.627:[C3][T]read success
-37.960.299:[C3][T]0x0
+42.337.069:[C3][T]read success
+42.337.742:[C3][T]0x0
 
 Command Complete
 
 >i2cread 1 0x48 0x0308 2 1
 
-37.962.207:[C3][T]read success
-37.962.879:[C3][T]0x61
+42.339.650:[C3][T]read success
+42.340.322:[C3][T]0x6f
 
 Command Complete
 
 >i2cread 1 0x48 0x0313 2 1
 
-37.964.808:[C3][T]read success
-37.965.480:[C3][T]0x2
+42.342.251:[C3][T]read success
+42.342.923:[C3][T]0x2
 
 Command Complete
 
 >i2cread 1 0x48 0x0320 2 1
 
-37.967.387:[C3][T]read success
-37.968.058:[C3][T]0x28
+42.344.829:[C3][T]read success
+42.345.501:[C3][T]0x2f
 
 Command Complete
 
 >i2cread 1 0x48 0x0323 2 1
 
-37.969.987:[C3][T]read success
-37.970.659:[C3][T]0x2f
+42.347.431:[C3][T]read success
+42.348.105:[C3][T]0x26
 
 Command Complete
 
 >i2cread 1 0x48 0x012a 2 1
 
-37.972.587:[C3][T]read success
-37.973.259:[C3][T]0x2
+42.350.036:[C3][T]read success
+42.350.708:[C3][T]0x2
 
 Command Complete
 
@@ -110,27 +69,27 @@ Command Complete
 
 >i2cread 1 0x48 0x0442 2 1
 
-37.975.575:[C3][T]read success
-37.976.246:[C3][T]0x0
+42.353.023:[C3][T]read success
+42.353.696:[C3][T]0x0
 
 Command Complete
 
 >i2cread 1 0x48 0x0482 2 1
 
-37.978.154:[C3][T]read success
-37.978.826:[C3][T]0x0
+42.355.604:[C3][T]read success
+42.356.276:[C3][T]0x0
 
 Command Complete
 
 >i2cread 1 0x48 0x04ad 2 1
 
-37.980.738:[C3][T]read success
-37.981.410:[C3][T]0x0
+42.358.184:[C3][T]read success
+42.358.856:[C3][T]0x0
 
 Command Complete
 
 >i2cread 1 0x48 0x0312 2 1
-38.401.000:[C3][T]read success
-38.401.672:[C3][T]0x0
+43.586.124:[C3][T]read success
+43.586.796:[C3][T]0x0
 
 Command Complete

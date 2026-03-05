@@ -32,9 +32,9 @@ i2cwrite 1 0x48 0x0325 2 1 0x80
 i2cwrite 1 0x48 0x0313 2 1 0x02 
 
 #sysctl log -p ddr
-log perf
-sysctl PIXTER_CSI_DPHY 800
+log perfinfo
+sysctl PIXTER_CSI_DPHY 600
 pmtest -r ipu_is -p own -s 1 -d 6
 
-dmtest -r  test_isys_only_stream_hkr1a  --stream-cnt 1 --sensor PIXTER --port 0 --in-width 1920  --in-height 1080 --fps 30 --format GRBG10 --lane 4 --frame-count 100 --repeat-count 1
+dmtest -r  test_isys_only_stream_hkr1a  --stream-cnt 1 --sensor PIXTER --port 0 --in-width 1920  --in-height 1280 --fps 30 --format GRBG12 --lane 4 --frame-count 100 --repeat-count 1
 
