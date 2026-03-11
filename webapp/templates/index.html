@@ -14,7 +14,7 @@
                     <span class="title-icon">⚡</span>
                     <span class="title-text">Sensor Configuration Converter</span>
                 </h1>
-                <p class="subtitle">Transform configuration files between vendor, INI, FreeRTOS, and ADI FAE formats</p>
+                <p class="subtitle">Transform configuration files between vendor, INI, FreeRTOS, ADI FAE, and TI960 log formats</p>
             </div>
             <div class="mode-tabs">
                 <button class="mode-tab active" onclick="switchMode('converter')" id="tab-converter">
@@ -37,15 +37,25 @@
                     </div>
                     
                     <div class="card-body">
-                        <div 
-                            class="upload-zone" 
+                        <!-- Input mode toggle -->
+                        <div class="input-mode-toggle">
+                            <button class="input-mode-btn active" onclick="switchInputMode('upload')" id="mode-upload">
+                                <span class="mode-icon">📁</span> Upload File
+                            </button>
+                            <button class="input-mode-btn" onclick="switchInputMode('paste')" id="mode-paste">
+                                <span class="mode-icon">✏️</span> Paste Text
+                            </button>
+                        </div>
+
+                        <!-- Upload zone -->
+                        <div class="upload-zone" 
                             id="uploadZone"
                             onclick="document.getElementById('fileInput').click()"
                         >
                             <input 
                                 type="file" 
                                 id="fileInput" 
-                                accept=".txt,.ini,.cfg,.cpp" 
+                                accept=".txt,.ini,.cfg,.cpp,.log" 
                                 style="display: none"
                             >
                             <div class="upload-icon">📁</div>
@@ -53,7 +63,36 @@
                                 <strong>Click to upload</strong> or drag and drop
                             </div>
                             <div class="upload-hint">
-                                Supported formats: .txt, .ini, .cfg, .cpp
+                                Supported formats: .txt, .ini, .cfg, .cpp, .log
+                            </div>
+                        </div>
+
+                        <!-- Text paste area -->
+                        <div class="text-input-zone" id="textInputZone" style="display: none;">
+                            <textarea 
+                                id="textInput" 
+                                placeholder="Paste your configuration text here...
+
+Example (Vendor format):
+0x0001,0x01
+0x0002,0x02
+0x0003,0x03
+
+Example (FreeRTOS format):
+i2cwrite 1 0x6C 0x0001 2 1 0x01
+i2cwrite 1 0x6C 0x0002 2 1 0x02
+
+Example (INI format):
+I2CADDR= 0x6C
+MODE= 16BITREG_BYTEWRITE
+REG= 0x0001,0x01"
+                                spellcheck="false"
+                            ></textarea>
+                            <div class="text-input-footer">
+                                <div class="text-input-hint">
+                                    <span id="textCharCount">0</span> characters | Auto-detects format
+                                </div>
+                                <button class="btn-remove-small" onclick="removeTextContent()">✕</button>
                             </div>
                         </div>
 
@@ -141,6 +180,15 @@
                                     <div class="mode-icon">💾</div>
                                     <div class="mode-label">ADI FAE → FreeRTOS</div>
                                     <div class="mode-desc">MAX9295/96 C++ to CLI format</div>
+                                </div>
+                            </label>
+
+                            <label class="mode-option">
+                                <input type="radio" name="conversionMode" value="ti960_log_to_freertos">
+                                <div class="mode-card">
+                                    <div class="mode-icon">📜</div>
+                                    <div class="mode-label">TI960 Log → FreeRTOS</div>
+                                    <div class="mode-desc">TI960 driver log to CLI format</div>
                                 </div>
                             </label>
                         </div>

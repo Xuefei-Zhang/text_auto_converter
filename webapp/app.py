@@ -13,6 +13,7 @@ Usage:
 """
 
 import os
+import re
 import sys
 import uuid
 from datetime import datetime
@@ -40,6 +41,7 @@ from unified_converter import (
     convert_adi_fae_to_txt,
 )
 from i2c_log_parser import parse_i2c_log, format_output
+from ti960_log_converter import convert_ti960_log_to_txt, parse_ti960_log_file
 
 app = Flask(__name__)
 
@@ -66,7 +68,7 @@ def allowed_file(filename):
 def detect_file_format(content, filename):
     """
     Detect the format of the input file
-    Returns: 'vendor', 'ini', 'freertos', or 'adi_fae'
+    Returns: 'vendor', 'ini', 'freertos', 'adi_fae', or 'ti960_log'
     """
     # Check by file extension first
     if filename.endswith(".ini"):
@@ -78,6 +80,12 @@ def detect_file_format(content, filename):
     # Analyze content
     lines = content.split("\n")[:20]  # Check first 20 lines
     content_sample = "\n".join(lines)
+
+    # Check for TI960 FreeRTOS log format
+    # Pattern: [SERDES]:i2c-1 write addr: 0x3d, [0x1, 0x1]
+    # or with timestamp: 25.831.647:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x1, 0x1]
+    if re.search(r"\[(SERDES|Sensor)\]:i2c-\d+", content_sample):
+        return "ti960_log"
 
     # Check for INI format markers
     if "I2CADDR=" in content_sample or "MODE=" in content_sample:
@@ -130,6 +138,7 @@ def convert_file(input_path, output_path, conversion_mode):
             - vendor_to_txt
             - ini_to_freertos
             - freertos_to_ini
+            - ti960_log_to_freertos
             - vendor_to_both
 
     Returns:
@@ -162,6 +171,10 @@ def convert_file(input_path, output_path, conversion_mode):
             operations = parse_adi_fae_config(content)
             output_content = convert_adi_fae_to_txt(operations)
 
+        elif conversion_mode == "ti960_log_to_freertos":
+            # Convert TI960 FreeRTOS log to unified TXT format
+            output_content = convert_ti960_log_to_txt(content)
+
         elif conversion_mode == "ini_to_freertos":
             if detected_format != "ini":
                 return {
@@ -190,6 +203,8 @@ def convert_file(input_path, output_path, conversion_mode):
                 output_content = convert_ini_to_txt(content)
             elif detected_format == "freertos":
                 output_content = convert_txt_to_ini(content)
+            elif detected_format == "ti960_log":
+                output_content = convert_ti960_log_to_txt(content)
             else:
                 return {
                     "success": False,
@@ -221,6 +236,81 @@ def convert_file(input_path, output_path, conversion_mode):
 def index():
     """Serve the main page"""
     return render_template("index.html")
+
+
+@app.route("/api/convert-text", methods=["POST"])
+def convert_text():
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"success": False, "error": "No data provided"}), 400
+
+    content = data.get("content")
+    conversion_mode = data.get("mode", "auto")
+
+    if not content:
+        return jsonify({"success": False, "error": "No content provided"}), 400
+
+    session_id = str(uuid.uuid4())[:8]
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    detected_format = detect_file_format(content, "pasted_text.txt")
+
+    input_filename = f"paste_{session_id}_{timestamp}.txt"
+    input_path = Path(app.config["UPLOAD_FOLDER"]) / input_filename
+
+    try:
+        with open(input_path, "w", encoding="utf-8") as f:
+            f.write(content)
+
+        output_ext_map = {
+            "vendor": "ini",
+            "ini": "txt",
+            "freertos": "ini",
+            "adi_fae": "ini",
+            "ti960_log": "txt",
+        }
+        output_ext = output_ext_map.get(detected_format, "txt")
+
+        if conversion_mode == "vendor_to_ini" or conversion_mode == "adi_fae_to_ini":
+            output_ext = "ini"
+        elif conversion_mode in [
+            "vendor_to_txt",
+            "ini_to_freertos",
+            "adi_fae_to_txt",
+            "ti960_log_to_freertos",
+        ]:
+            output_ext = "txt"
+
+        output_filename = f"paste_{session_id}_{timestamp}_converted.{output_ext}"
+        output_path = Path(app.config["OUTPUT_FOLDER"]) / output_filename
+
+        result = convert_file(input_path, output_path, conversion_mode)
+
+        try:
+            input_path.unlink()
+        except:
+            pass
+
+        if result["success"]:
+            return jsonify(
+                {
+                    "success": True,
+                    "output_filename": output_filename,
+                    "message": result.get("message", "Conversion successful"),
+                    "download_url": f"/api/download/{output_filename}",
+                    "detected_format": detected_format,
+                }
+            )
+        else:
+            return jsonify(result), 400
+
+    except Exception as e:
+        try:
+            input_path.unlink()
+        except:
+            pass
+        return jsonify({"success": False, "error": str(e)}), 500
 
 
 @app.route("/api/upload", methods=["POST"])

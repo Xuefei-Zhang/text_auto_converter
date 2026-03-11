@@ -1,6 +1,8 @@
 // State management
 let currentFile = null;
 let currentConversionMode = 'auto';
+let currentInputMode = 'upload'; // 'upload' or 'paste'
+let currentTextContent = null;
 
 // I2C Log Parser state
 let currentI2cFile = null;
@@ -42,6 +44,146 @@ document.querySelectorAll('input[name="conversionMode"]').forEach(radio => {
         currentConversionMode = e.target.value;
     });
 });
+
+function switchInputMode(mode) {
+    currentInputMode = mode;
+    const uploadBtn = document.getElementById('mode-upload');
+    const pasteBtn = document.getElementById('mode-paste');
+    const uploadZone = document.getElementById('uploadZone');
+    const textInputZone = document.getElementById('textInputZone');
+    const fileInfo = document.getElementById('fileInfo');
+    
+    if (mode === 'upload') {
+        uploadBtn.classList.add('active');
+        pasteBtn.classList.remove('active');
+        uploadZone.style.display = 'block';
+        textInputZone.style.display = 'none';
+        fileInfo.style.display = 'none';
+        currentTextContent = null;
+    } else {
+        pasteBtn.classList.add('active');
+        uploadBtn.classList.remove('active');
+        uploadZone.style.display = 'none';
+        textInputZone.style.display = 'block';
+        fileInfo.style.display = 'none';
+        currentFile = null;
+        
+        setTimeout(() => {
+            document.getElementById('textInput').focus();
+        }, 100);
+    }
+    
+    document.getElementById('convertBtn').disabled = true;
+}
+
+const textInput = document.getElementById('textInput');
+if (textInput) {
+    textInput.addEventListener('input', (e) => {
+        const content = e.target.value.trim();
+        const charCount = document.getElementById('textCharCount');
+        
+        if (charCount) {
+            charCount.textContent = content.length;
+        }
+        
+        const convertBtn = document.getElementById('convertBtn');
+        if (content.length > 0) {
+            currentTextContent = content;
+            convertBtn.disabled = false;
+            
+            const fileFormat = document.getElementById('fileFormat');
+            const detectedFormat = detectFormatFromText(content);
+            if (fileFormat && currentInputMode === 'paste') {
+                fileFormat.textContent = detectedFormat.toUpperCase();
+                const formatColors = {
+                    'VENDOR': 'linear-gradient(135deg, #ff006e, #ff6b35)',
+                    'INI': 'linear-gradient(135deg, #00f0ff, #0088ff)',
+                    'FREERTOS': 'linear-gradient(135deg, #00ff88, #00cc6a)',
+                    'ADI_FAE': 'linear-gradient(135deg, #9d4edd, #ff00ff)'
+                };
+                fileFormat.style.background = formatColors[detectedFormat.toUpperCase()] || formatColors.INI;
+                fileFormat.style.color = '#0a0a0f';
+            }
+        } else {
+            currentTextContent = null;
+            convertBtn.disabled = true;
+        }
+    });
+}
+
+function detectFormatFromText(content) {
+    const lines = content.split('\n').slice(0, 20);
+    const contentSample = lines.join('\n');
+    
+    if (/\[(SERDES|Sensor)\]:i2c-\d+/.test(contentSample)) {
+        return 'ti960_log';
+    }
+    if (contentSample.includes('I2CADDR=') || contentSample.includes('MODE=')) {
+        return 'ini';
+    }
+    if (contentSample.includes('i2cwrite') || contentSample.includes('i2cread')) {
+        return 'freertos';
+    }
+    
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed && !trimmed.startsWith('//') && !trimmed.startsWith('#')) {
+            if (trimmed.startsWith('0x')) {
+                const parts = trimmed.replace(/,$/, '').split(',').map(p => p.trim());
+                if (parts.length === 5 && parts.every(p => p.startsWith('0x'))) {
+                    return 'adi_fae';
+                }
+            }
+        }
+    }
+    
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed && !trimmed.startsWith('#')) {
+            if (trimmed.length === 6 && trimmed.startsWith('0x')) {
+                return 'vendor';
+            }
+            if (trimmed.includes(',') && trimmed.startsWith('0x')) {
+                return 'vendor';
+            }
+        }
+    }
+    
+    return 'freertos';
+}
+    if (contentSample.includes('I2CADDR=') || contentSample.includes('MODE=')) {
+        return 'ini';
+    }
+    if (contentSample.includes('i2cwrite') || contentSample.includes('i2cread')) {
+        return 'freertos';
+    }
+    
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed && !trimmed.startsWith('//') && !trimmed.startsWith('#')) {
+            if (trimmed.startsWith('0x')) {
+                const parts = trimmed.replace(/,$/, '').split(',').map(p => p.trim());
+                if (parts.length === 5 && parts.every(p => p.startsWith('0x'))) {
+                    return 'adi_fae';
+                }
+            }
+        }
+    }
+    
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed && !trimmed.startsWith('#')) {
+            if (trimmed.length === 6 && trimmed.startsWith('0x')) {
+                return 'vendor';
+            }
+            if (trimmed.includes(',') && trimmed.startsWith('0x')) {
+                return 'vendor';
+            }
+        }
+    }
+    
+    return 'freertos';
+}
 
 async function handleFile(file) {
     const allowedTypes = ['txt', 'ini', 'cfg', 'md', 'log', 'cpp'];
@@ -118,13 +260,30 @@ function removeFile() {
     document.getElementById('fileInput').value = '';
     document.getElementById('convertBtn').disabled = true;
     
-    // Hide result section if visible
+    document.getElementById('resultSection').style.display = 'none';
+}
+
+function removeTextContent() {
+    currentTextContent = null;
+    
+    const textInputZone = document.getElementById('textInputZone');
+    const textInput = document.getElementById('textInput');
+    const charCount = document.getElementById('textCharCount');
+    
+    textInput.value = '';
+    if (charCount) {
+        charCount.textContent = '0';
+    }
+    textInputZone.style.display = 'none';
+    uploadZone.style.display = 'block';
+    
+    document.getElementById('convertBtn').disabled = true;
     document.getElementById('resultSection').style.display = 'none';
 }
 
 async function convertFile() {
-    if (!currentFile) {
-        showToast('Please upload a file first', 'error');
+    if (!currentFile && !currentTextContent) {
+        showToast('Please upload a file or paste text first', 'error');
         return;
     }
     
@@ -135,16 +294,30 @@ async function convertFile() {
     try {
         showToast('Converting...', 'info');
         
-        const response = await fetch('/api/convert', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                filename: currentFile.filename,
-                mode: currentConversionMode
-            })
-        });
+        let response;
+        if (currentInputMode === 'paste' && currentTextContent) {
+            response = await fetch('/api/convert-text', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: currentTextContent,
+                    mode: currentConversionMode
+                })
+            });
+        } else {
+            response = await fetch('/api/convert', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    filename: currentFile.filename,
+                    mode: currentConversionMode
+                })
+            });
+        }
         
         const result = await response.json();
         
