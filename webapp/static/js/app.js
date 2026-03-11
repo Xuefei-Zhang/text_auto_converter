@@ -44,11 +44,11 @@ document.querySelectorAll('input[name="conversionMode"]').forEach(radio => {
 });
 
 async function handleFile(file) {
-    const allowedTypes = ['txt', 'ini', 'cfg', 'cpp'];
+    const allowedTypes = ['txt', 'ini', 'cfg', 'md', 'log', 'cpp'];
     const fileExt = file.name.split('.').pop().toLowerCase();
     
     if (!allowedTypes.includes(fileExt)) {
-        showToast('Invalid file type. Please upload .txt, .ini, .cfg, or .cpp files', 'error');
+        showToast('Invalid file type. Please upload .txt, .ini, .cfg, .md, .log, or .cpp files', 'error');
         return;
     }
     
