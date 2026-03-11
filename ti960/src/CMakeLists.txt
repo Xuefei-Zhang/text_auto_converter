@@ -1,0 +1,6 @@
+
+file(GLOB LOCAL_SRCS ${CMAKE_CURRENT_LIST_DIR}/*.c)
+set(TI960_SRCS
+    ${LOCAL_SRCS}
+    CACHE INTERNAL "ti960 ti953 driver sources"
+)

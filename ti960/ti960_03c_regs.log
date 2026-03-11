@@ -1,0 +1,1268 @@
+=~=~=~=~=~=~=~=~=~=~=~= MobaXterm log 2026.03.11 15:39:02 =~=~=~=~=~=~=~=~=~=~=~=
+
+
+>dmtest -r test_isys_only_stream_hkr1a --stream-cnt 1 --sensor OX03C --frame-count 5 --port 0 --in-width 1920 --in-height 1280 --format GRBG12 --fps 30 --repeat-count 1
+TestFramework: Run loop: 1
+TestFramework: Start to run case: tag: [pipe_executor] -> test_isys_only_stream_hkr1a
+25.641.851:[C3][I][PipeExecutor]:PIPE-0: create...
+25.643.044:[C3][I][PipeExecutor]:PIPE-0: created.
+25.644.129:[C3][T]========== ISYS only test ==========
+25.645.349:[C3][T]Port-0,  1 vc streams of sensor OX03C with 0 lanes
+25.646.874:[C3][T]1920x1280, GRBG12
+25.647.817:[C3][I][PipeExecutor]:Node: IPUNode-0: Input: 0, Output: 1
+25.649.343:[C3][I][PipeExecutor]:Node: NullSinkNode-1: Input: 1, Output: 0
+25.650.983:[C3][T]OX03C-0-A added to PE
+25.651.884:[C3][T]====================================
+25.653.108:[C3][I][PipeExecutor]:PIPE-0: building pipeline...
+25.654.482:[C3][I][PipeExecutor]:PIPE-0: number of nodes: 2
+25.655.813:[C3][I][PipeExecutor]:PIPE-0: analyze node: IPUNode-0
+25.657.252:[C3][I][PipeExecutor]:PIPE-0: analyze node: NullSinkNode-1
+25.658.797:[C3][I][PipeExecutor]:PIPE-0: found 1 valid links:
+25.660.171:[C3][I][PipeExecutor]: link-8 IPUNode-0 -> NullSinkNode-1 1920x1280@GRBG12 streamingmode:0 bufferlines:16 granularity:4
+25.663.028:[C3][I][PipeExecutor]:PIPE-0: link-8 alloc buffer ptr:0x36001000 size:4915200 1920x1280@GRBG12 pbk:255 slot:255
+25.665.710:[C3][I][PipeExecutor]:PIPE-0: link-8 alloc buffer ptr:0x364b2000 size:4915200 1920x1280@GRBG12 pbk:255 slot:255
+25.668.392:[C3][I][PipeExecutor]:PIPE-0: configure nodes...
+25.669.727:[C3][I][PipeExecutor]:PIPE-0: Node: IPUNode-0 OUTPUT: link id: 8 stream: 0 pbk:255 slot:255
+25.671.978:[C3][I][PipeExecutor]:PIPE-0: Node: IPUNode-0 configure...
+25.673.523:[C3][I][IPU_NODE]:Set FPS: 30/1
+25.674.489:[C3][I][CameraDevice]:Cam:0 init
+25.675.497:[C3][I][CameraDevice]:Cam:0 cfg
+25.676.443:[C3][I][CameraDevice]:Cam:0 pipe: isys
+25.677.559:[C3][I][CameraDevice]:Cam:0 output:0 config:GRBG12(1920x1280), usage:579009794 mode 0 lines 16 granularity 4
+25.680.177:[C3][I][CameraDevice]:PrivConfig->cb_pipe is 0
+25.681.587:[C3][I][ISysDevFactoryCreate ISysDevice for camera:0, OX03C-0-A port 0 VC 0 with type:580203520
+25.683.903:[C3][I][ISysDevice]:Camera:0 created
+25.684.978:[C3][I][IPU]:IPU IRQ enabled
+25.685.874:[C3][D][PMUCCU]:IP=PM_IPU, clock enable 1: 0x108c028c->0xea000001
+25.687.567:[C3][D][PMUCCU]:IP=PM_PBK, clock enable 1: 0x108c046c->0xea000001
+25.689.267:[C3][D][PMUCCU]:IP=PM_SENSOR0, clock enable 1: 0x108c0438->0xea000001
+25.691.045:[C3][D][PMUCCU]:IP=PM_IS_PWM, clock enable 1: 0x108c048c->0xea000001
+25.692.808:[C3][D][PMUCCU]:IP=PM_BISR, clock enable 1: 0x108c047c->0xea000001
+25.694.521:[C3][I][IPU]:IPU Power up: 1, pwr_sts 0x0
+25.695.702:[C3][I][IPU]:ISYS power up 1
+25.696.604:[C3][I][IPU]:Isys power on: pwr_sts 0x10001
+25.697.830:[C3][I][IPU]:irq_enable : 0x1 irq_mask: 0x1
+25.699.051:[C3][I][IPU]:IPU ISYS IRQ enabled
+25.700.142:[C3][I][IPU]:CI_BUILD_TAG: 
+25.700.987:[C3][I][IPU]:IPU Driver Version: 1.0.0.20260311
+25.702.296:[C3][I][IPU]:HW_VERSION: 9
+25.703.155:[C3][I][IPU_BOOT]:FW_GIT_COMMIT_SHORT_SHA1: 6ab812ba
+25.704.572:[C3][I][IPU_BOOT]:FW_GIT_DATE: Fri Jan 10 09:44:15 2025
+25.706.053:[C3][I][IPU_BOOT]:FW_GIT_SUBJECT: [HKR][IPU7][RVP]Integrate FW tag fw_ipu7_master_internal_release_20250105_2015
+25.708.758:[C3][I][IPU]:IPU_VERSION_ID: 7 IPU_SKU_ID: 0
+25.710.481:[C3][I][IPU]:ISYS fw logger dump base address 0x5c400000
+25.711.951:[C3][I][IPU_BOOT]:FW metadata: ---
+ isys
+ 1.8.0.250109105654
+ build_id:2387594990
+ commit_id:5f6e9abd
+ ---
+
+25.714.675:[C3][I][IPU_BOOT]:HOST_RAW_BIN ADDR = 0x1f000000
+25.716.006:[C3][I][IPU_BOOT]:IPU_RAW_BIN ADDR(8MB aligned) = 0x1f000000, RAW_BIN SIZE = 0x27680
+25.718.109:[C3][I][IPU_BOOT]:Loading IPU raw_bin to 0x1f600000
+25.719.607:[C3][I][IPU_BOOT]:cell_ctrl_reg addr = 0x2200, force 0
+25.721.031:[C3][I][IPU_BOOT]:Already reset = 1, run = 0. Doing nothing.
+25.722.620:[C3][I][IPU_BOOT]:Set FW RESET VECTOR (address:0x2204) to value:0x600000
+25.724.466:[C3][I][IPU_BOOT]:XTENSA_FW_CODE_OFFSET address 0x23003c, value 0x1f000000
+25.726.355:[C3][I][IPU_BOOT]:XTENSA_FW_CODE_BASE address: 0x230000, value 0x1f000000
+25.728.223:[C3][I][IPU_BOOT]:Exiting reset state. Reset bit = 0, Run bit = 0.
+25.729.940:[C3][I][IPU]:fw loaded, not yet kicked
+25.731.060:[C3][I][IPU_BOOT]:Input queues 17, output queues 3
+25.732.432:[C3][D][IPU_BOOT]:Isys hw_printf logger addr 0x5c400000 size 2097152
+25.734.191:[C3][I][IPU_BOOT]:Isys config use_source_severity 0 wdt_timer1_us 0 wdt_timer2_us 0
+25.736.273:[C3][I][IPU_BOOT]:Isys config timeout_val_ms 1000 checksum 40630
+25.737.950:[C3][D][IPU_BOOT]:queue_configs[0]: max_capacity = 40, token_size_in_bytes = 72
+25.739.944:[C3][D][IPU_BOOT]:queue_configs[1]: max_capacity = 512, token_size_in_bytes = 72
+25.741.961:[C3][D][IPU_BOOT]:queue_configs[2]: max_capacity = 0, token_size_in_bytes = 0
+25.743.915:[C3][D][IPU_BOOT]:queue_configs[3]: max_capacity = 16, token_size_in_bytes = 24
+25.745.911:[C3][D][IPU_BOOT]:queue_configs[4]: max_capacity = 16, token_size_in_bytes = 24
+25.747.908:[C3][D][IPU_BOOT]:queue_configs[5]: max_capacity = 16, token_size_in_bytes = 24
+25.749.904:[C3][D][IPU_BOOT]:queue_configs[6]: max_capacity = 16, token_size_in_bytes = 24
+25.751.900:[C3][D][IPU_BOOT]:queue_configs[7]: max_capacity = 16, token_size_in_bytes = 24
+25.753.897:[C3][D][IPU_BOOT]:queue_configs[8]: max_capacity = 16, token_size_in_bytes = 24
+25.755.893:[C3][D][IPU_BOOT]:queue_configs[9]: max_capacity = 16, token_size_in_bytes = 24
+25.757.890:[C3][D][IPU_BOOT]:queue_configs[10]: max_capacity = 16, token_size_in_bytes = 24
+25.759.908:[C3][D][IPU_BOOT]:queue_configs[11]: max_capacity = 16, token_size_in_bytes = 24
+25.761.925:[C3][D][IPU_BOOT]:queue_configs[12]: max_capacity = 16, token_size_in_bytes = 24
+25.763.943:[C3][D][IPU_BOOT]:queue_configs[13]: max_capacity = 16, token_size_in_bytes = 24
+25.765.961:[C3][D][IPU_BOOT]:queue_configs[14]: max_capacity = 16, token_size_in_bytes = 24
+25.767.979:[C3][D][IPU_BOOT]:queue_configs[15]: max_capacity = 16, token_size_in_bytes = 24
+25.769.997:[C3][D][IPU_BOOT]:queue_configs[16]: max_capacity = 16, token_size_in_bytes = 24
+25.772.015:[C3][D][IPU_BOOT]:queue_configs[17]: max_capacity = 16, token_size_in_bytes = 24
+25.774.033:[C3][D][IPU_BOOT]:queue_configs[18]: max_capacity = 16, token_size_in_bytes = 24
+25.776.050:[C3][D][IPU_BOOT]:queue_configs[19]: max_capacity = 16, token_size_in_bytes = 24
+25.778.068:[C3][D][IPU_BOOT]:Total isys syscom size 45K
+25.779.323:[C3][D][IPU_BOOT]:fw_boot_config_ipu ipu_addr is: 0x2100c000 size 436
+25.781.098:[C3][I][IPU_BOOT]:Starting cell
+25.785.512:[C3][I][IPU_BOOT]:msg version is 1.0.0.0
+25.786.638:[C3][I][IPU]:isys device opened
+25.787.621:[C3][I][IPU]:device isys0 initialized
+25.788.703:[C2][I][IPU]:isys isr run started
+25.789.712:[C3][I][IPU]:device isys0 opened(id 200000, open_count 1)
+25.791.234:[C3][I][ISysDevice]:Camera:0 ISYS driver FD:200000
+25.792.605:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_QUERYCAP) subdev id 0 port 0
+25.794.193:[C3][I][ISysDevice]:Camera:0 ISYS driver name isys version: 65536
+25.795.894:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_CONFIG) subdev id 0 port 0
+25.797.436:[C3][I][IPU]:subdev[0] = 210000
+25.798.400:[C3][I][IPU]:csi video init port 0 vc 0
+25.799.539:[C3][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+25.800.848:[C3][I][Sensor]:sensor mode(1920x1280) format(91) 30/1 fps selected
+25.802.589:[C3][I][Sensor]:OX03C-0-A update fps to 30
+25.803.789:[C3][D][Sensor]:OX03C-0-A get ctrl CSF_IOC_CTRL_FRAME_RATE val 30
+25.805.484:[C3][D][Sensor]:fps same as before, no update
+25.806.753:[C3][I][IPU]:open I2C port I2C_1
+25.807.743:[C3][I][SERDES]:ti960-0 gpio-40 reset
+25.808.840:[C3][D][PMUCCU]:IP=PM_GPIO, clock enable 1: 0x108c038c->0xea000001
+25.810.551:[C3][D][PMUCCU]:IP=PM_GPIO, clock enable 1: 0x108c0390->0xea000001
+25.812.269:[C3][D][DW_GPIO]:gpio_id = 1 port = 40 set 0 done 
+25.813.643:[C3][D][PMUCCU]:IP=PM_GPIO, clock enable 0: 0x108c038c->0x20000000
+25.815.984:[C3][D][PMUCCU]:IP=PM_GPIO, CBC clock status polling timeout
+25.817.537:[C3][D][PMUCCU]:IP=PM_GPIO, clock enable 0: 0x108c0390->0xea000001
+25.821.259:[C3][D][PMUCCU]:IP=PM_GPIO, clock enable 1: 0x108c038c->0xea000001
+25.822.943:[C3][D][PMUCCU]:IP=PM_GPIO, clock enable 1: 0x108c0390->0xea000001
+25.824.661:[C3][D][DW_GPIO]:gpio_id = 1 port = 40 set 1 done 
+25.826.034:[C3][D][PMUCCU]:IP=PM_GPIO, clock enable 0: 0x108c038c->0x20000000
+25.828.375:[C3][D][PMUCCU]:IP=PM_GPIO, CBC clock status polling timeout
+25.829.929:[C3][D][PMUCCU]:IP=PM_GPIO, clock enable 0: 0x108c0390->0xea000001
+25.831.647:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x1, 0x1]
+25.833.308:[C3][I][SERDES]:i2c-1 read addr: 0x3d, [0x0, 0x7a]
+25.834.648:[C3][D][SERDES]:ti960 reset check loop 0
+25.835.807:[C3][I][SERDES]:TI960 device ID 0x7a
+25.836.880:[C3][I][SERDES]:ti960-0 config
+25.837.825:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x10, 0x81]
+25.839.425:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x11, 0x85]
+25.840.997:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x12, 0x89]
+25.842.564:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x13, 0x8d]
+25.844.130:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0xc, 0xf]
+25.845.654:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x1f, 0x6]
+25.847.199:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x4c, 0x1]
+25.848.743:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x58, 0x5e]
+25.850.310:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x5c, 0xb0]
+25.851.876:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x5d, 0x6c]
+25.853.442:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x65, 0x60]
+25.855.009:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x6d, 0x7c]
+25.856.575:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x7c, 0x81]
+25.858.142:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x70, 0x1e]
+25.859.709:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x71, 0x2c]
+25.861.275:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x72, 0xe4]
+25.862.842:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0xd2, 0x1a]
+25.864.408:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x4c, 0x12]
+25.865.974:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x58, 0x5e]
+25.867.540:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x5c, 0xb2]
+25.869.107:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x5d, 0x6c]
+25.870.673:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x65, 0x62]
+25.872.239:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x6d, 0x7c]
+25.873.805:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x7c, 0x81]
+25.875.372:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x70, 0x1e]
+25.876.938:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x71, 0x2c]
+25.878.505:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x72, 0xe4]
+25.880.071:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0xd2, 0x1a]
+25.881.637:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x4c, 0x24]
+25.883.204:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x58, 0x5e]
+25.884.770:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x5c, 0xb4]
+25.886.337:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x5d, 0x6c]
+25.887.903:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x65, 0x64]
+25.889.469:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x6d, 0x7c]
+25.891.036:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x7c, 0x81]
+25.892.602:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x70, 0x1e]
+25.894.168:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x71, 0x2c]
+25.895.734:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x72, 0xe4]
+25.897.301:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0xd2, 0x1a]
+25.898.867:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x4c, 0x38]
+25.900.434:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x58, 0x5e]
+25.902.000:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x5c, 0xb6]
+25.903.566:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x5d, 0x6c]
+25.905.133:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x65, 0x66]
+25.906.699:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x6d, 0x7c]
+25.908.266:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x7c, 0x81]
+25.909.832:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x70, 0x1e]
+25.911.399:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x71, 0x2c]
+25.912.965:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x72, 0xe4]
+25.914.531:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0xd2, 0x1a]
+25.916.098:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0xb0, 0x14]
+25.917.664:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0xb1, 0x3]
+25.919.209:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0xb2, 0x4]
+25.920.754:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0xb1, 0x4]
+25.922.299:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0xb2, 0x4]
+25.923.844:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x20, 0xf0]
+25.925.410:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x21, 0x3]
+25.926.955:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x32, 0x1]
+25.928.500:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x1f, 0x0]
+25.930.045:[C3][I][SERDES]:ti960 deskew enabled
+25.931.083:[C3][I][SERDES]:ti960 lane 4, link_freq 0x0 enable
+25.932.457:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x33, 0x0]
+25.934.038:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x33, 0x43]
+25.935.707:[C3][I][SERDES]:i2c-1 read addr: 0x3d, [0x0, 0x7a]
+25.937.047:[C3][I][SERDES]:ti960 device ID: 0x7a initialized
+25.938.418:[C3][I][IPU]:USER STREAM CONFIG DUMP:
+25.939.494:[C3][I][IPU]:dev type: CSI
+25.940.352:[C3][I][IPU]:port 0
+25.941.061:[C3][I][IPU]:vc 0
+25.941.726:[C3][I][IPU]:numerator 30
+25.942.563:[C3][I][IPU]:denominator 1
+25.943.422:[C3][I][IPU]:pixelformat[0] width 1920
+25.944.538:[C3][I][IPU]:pixelformat[0] height 1280
+25.945.676:[C3][I][IPU]:pixelformat[0] code 91
+25.946.728:[C3][I][IPU]:pixelformat[0] bpp 12
+25.947.758:[C3][I][IPU]:pixelformat[0] stride 3840
+25.948.896:[C3][I][IPU]:pixelformat[0] sizeimage 4915200
+25.950.163:[C3][I][IPU]:pixelformat[1] width 1920
+25.951.279:[C3][I][IPU]:pixelformat[1] height 2
+25.952.352:[C3][I][IPU]:pixelformat[1] code 149
+25.953.426:[C3][I][IPU]:pixelformat[1] bpp 12
+25.954.456:[C3][I][IPU]:pixelformat[1] stride 3840
+25.955.594:[C3][I][IPU]:pixelformat[1] sizeimage 7680
+25.956.796:[C3][I][IPU]:num_links 1
+25.957.612:[C3][I][IPU]:link[0].buffer_lines = 0
+25.958.706:[C3][I][IPU]:link[0].foreign_key = 65535
+25.959.865:[C3][I][IPU]:link[0].granularity_pointer_update = 0
+25.961.261:[C3][I][IPU]:link[0].streaming_mode = 0
+25.962.399:[C3][I][IPU]:link[0].pbk_id = 255
+25.963.408:[C3][I][IPU]:link[0].pbk_slot_id = 255
+25.964.524:[C3][I][IPU]:link[0].dest = 0
+25.965.447:[C3][I][IPU]:link[0].use_sw_managed = 1
+25.966.585:[C3][I][IPU]:sync_group_id 1
+25.967.486:[C3][I][IPU]:num_streams 4
+25.968.345:[C3][I][IPU]:sensor OX03C-0-A
+25.969.271:[C3][I][IPU]:IPU_ISYS_STREAM_CFG_DATA
+25.970.363:[C3][I][IPU]:Source 0
+25.971.114:[C3][I][IPU]:VC 0
+25.971.779:[C3][I][IPU]:Stream event msg map 0x3ff
+25.972.917:[C3][I][IPU]:Nof input pins 2
+25.973.840:[C3][I][IPU]:Nof output pins 2
+25.974.785:[C3][I][IPU]:Input pin 0
+25.975.601:[C3][I][IPU]:Sync msg map 0x0
+25.976.524:[C3][I][IPU]:Mipi data type 0x2c
+25.977.511:[C3][I][IPU]:Mipi unpack disable 0
+25.978.541:[C3][I][IPU]:Mapped data type 0x40
+25.979.572:[C3][I][IPU]:Input res width 1920
+25.980.581:[C3][I][IPU]:Input res height 1280
+25.981.611:[C3][I][IPU]:Input pin 1
+25.982.427:[C3][I][IPU]:Sync msg map 0xff
+25.983.371:[C3][I][IPU]:Mipi data type 0x12
+25.984.359:[C3][I][IPU]:Mipi unpack disable 0
+25.985.389:[C3][I][IPU]:Mapped data type 0x2c
+25.986.420:[C3][I][IPU]:Input res width 1920
+25.987.429:[C3][I][IPU]:Input res height 2
+25.988.395:[C3][I][IPU]:----------------
+25.989.318:[C3][I][IPU]:Output pin 0
+25.990.155:[C3][I][IPU]:Output input pin id 0
+25.991.185:[C3][I][IPU]:Early_ack_en 0
+25.992.065:[C3][I][IPU]:Stride 3840
+25.992.881:[C3][I][IPU]:Ft 24
+25.993.568:[C3][I][IPU]:Foreign Key 65535
+25.994.513:[C3][I][IPU]:Buffer lines 0
+25.995.393:[C3][I][IPU]:Granularity_pointer_update 0
+25.996.573:[C3][I][IPU]:Streaming mode 0
+25.997.497:[C3][I][IPU]:PBK id 255 slot id 255
+25.998.548:[C3][I][IPU]:Dest 0
+25.999.257:[C3][I][IPU]:PBK sw_managed 1
+26.000.180:[C3][I][IPU]:Send irq 1
+26.000.974:[C3][I][IPU]:----------------
+26.001.897:[C3][I][IPU]:Output pin 1
+26.002.734:[C3][I][IPU]:Output input pin id 1
+26.003.765:[C3][I][IPU]:Early_ack_en 1
+26.004.645:[C3][I][IPU]:Stride 3840
+26.005.461:[C3][I][IPU]:Ft 24
+26.006.148:[C3][I][IPU]:Foreign Key 65535
+26.007.092:[C3][I][IPU]:Buffer lines 0
+26.007.974:[C3][I][IPU]:Granularity_pointer_update 0
+26.009.153:[C3][I][IPU]:Streaming mode 0
+26.010.076:[C3][I][IPU]:PBK id 255 slot id 255
+26.011.128:[C3][I][IPU]:Dest 0
+26.011.836:[C3][I][IPU]:PBK sw_managed 1
+26.012.759:[C3][I][IPU]:Send irq 1
+26.013.554:[C3][I][IPU]:----------------
+26.014.477:[C3][I][IPU]:hostlib: libcall stream 0 open
+26.015.702:[C3][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 216, queue_id = 255, sequence_number = 255, checksum = 22921
+
+26.018.602:[C3][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 16, queue_id = 255, sequence_number = 255, checksum = 57240
+
+26.021.475:[C3][D][IPU]:[SYSCOM]sending with ipu_addr 0x21011800 on queue_id 4
+26.023.722:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 0 type 0
+26.025.276:[C3][D][IPU]:response buf_id(buf_handle) 0x2285c4e0 ipu_addr 0x0
+26.026.954:[C3][D][IPU]:hostlib: resp 00 IPU_ISYS_RESP_TYPE_STREAM_OPEN_DONE, stream 0, timestamp 4294967298, pin 0
+26.029.493:[C2][I][IPU]:IPU_ISYS_SYNC_GROUP_0 enabled
+26.030.690:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_G_SENSOR) subdev id 210000 port 0
+26.032.383:[C2][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+26.033.692:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_G_SENSOR) subdev id 210000 port 0
+26.035.388:[C2][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+26.036.697:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_G_SENSOR) subdev id 210000 port 0
+26.038.393:[C2][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+26.039.702:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_G_SENSOR) subdev id 210000 port 0
+26.041.398:[C2][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+26.042.707:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_G_SENSOR) subdev id 210000 port 0
+26.044.404:[C2][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+26.045.762:[C2][I][PipeExecutor]:PIPE-0: Node: IPUNode-0 configure done
+26.047.318:[C2][I][PipeExecutor]:PIPE-0: Node: NullSinkNode-1 INPUT: link id: 8 stream: 0 pbk:255 slot:255
+26.049.658:[C2][I][PipeExecutor]:PIPE-0: Node: NullSinkNode-1 configure...
+26.051.310:[C2][I][PipeExecutor]:PIPE-0: Node: NullSinkNode-1 configure done
+26.053.007:[C2][I][PipeExecutor]:PIPE-0: configure nodes done...
+26.054.444:[C2][I][PipeExecutor]:PIPE-0: building pipeline done...
+26.055.926:[C2][I][PipeExecutor]:PIPE-0: start streaming with 5 frames
+26.057.516:[C3][I][PipeExecutor]:PIPE-0: Node: IPUNode-0 start...
+26.058.953:[C3][I][CameraDevice]:Cam:0 start
+26.060.060:[C3][I][ISysDevice]:Camera:0 exit with pending action.
+26.061.533:[C1][I][PipeExecutor]:PIPE-0: Node: IPUNode-0 start done
+26.063.002:[C1][I][PipeExecutor]:PIPE-0: Node: NullSinkNode-1 start...
+26.064.569:[C1][I][PipeExecutor]:PIPE-0: Node: NullSinkNode-1 start done
+26.066.179:[C1][I][PipeExecutor]:PIPE-0: sending initial buffers to nodes...
+26.067.946:[C2][I][PipeExecutor]:PIPE-0: start streaming done...
+26.069.356:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_MAPBUF) subdev id 210000 port 0
+26.071.009:[C2][I][PipeExecutor]:PIPE-0: waiting for 5 frames being processed...
+26.072.791:[C3][D][IPU]:buf 0x36001000 mapped to 0x36001000
+26.074.117:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_MAPBUF) subdev id 210000 port 0
+26.075.769:[C3][D][IPU]:buf 0x22965000 mapped to 0x22965000
+26.077.107:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_QBUF) subdev id 210000 port 0
+26.078.714:[C3][D][IPU]:port 0 queued buffer 0x22965000 type 1 link 0 id 0 frame_id 0
+26.080.603:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_QBUF) subdev id 210000 port 0
+26.082.213:[C3][D][IPU]:port 0 queued buffer 0x36001000 type 0 link 0 id 0 frame_id 0
+26.084.106:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_G_SENSOR) subdev id 210000 port 0
+26.085.795:[C3][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+26.087.104:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_STREAMON) subdev id 210000 port 0
+26.088.799:[C3][D][IPU]:check buf queue config stream 0 queue depth 1
+26.090.347:[C3][D][IPU]:set frame buf type 0 output pin 0 addr 0x36001000, id 0
+26.092.109:[C3][D][IPU]:set frame buf type 1 output pin 1 addr 0x22965000, id 0
+26.093.870:[C3][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 72, queue_id = 255, sequence_number = 255, checksum = 18230
+
+26.096.746:[C3][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 16, queue_id = 255, sequence_number = 255, checksum = 6910
+
+26.099.597:[C3][D][IPU]:[SYSCOM]sending with ipu_addr 0x2100c400 on queue_id 4
+26.101.745:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 0 type 1
+26.103.302:[C3][D][IPU]:hostlib: resp 01 IPU_ISYS_RESP_TYPE_STREAM_START_AND_CAPTURE_ACK, stream 0, timestamp 4294967298, pin 0
+26.106.100:[C2][I][IPU]:open streams 1/1 on CSI0
+26.107.189:[C2][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+26.108.494:[C2][I][IPU]:1 streams in group, broadcast mode 0
+26.109.847:[C2][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+26.111.157:[C2][D][Sensor]:OX03C get serializer id first token OX03C
+26.112.680:[C2][D][Sensor]:OX03C get serializer id next token 0
+26.114.097:[C2][D][Sensor]:OX03C get serializer id next token A
+26.115.514:[C2][I][Sensor]:Get serilizer id 0 for sensor OX03C-0-A
+26.116.995:[C2][I][SERDES]:i2c-1 write addr: 0x3d, [0x4c, 0x1]
+26.118.576:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x5c, 0x80]
+26.120.246:[C3][I][SERDES]:i2c-1 read addr: 0x3d, [0x4d, 0x13]
+26.121.607:[C3][I][SERDES]:ti960 rx_port 0 locked
+26.122.723:[C3][I][SERDES]:lock check loop 0
+26.123.841:[C3][I][SERDES]:i2c-1 read addr: 0x40, [0xf0, 0x5f]
+26.125.308:[C3][I][SERDES]:i2c-1 read addr: 0x40, [0xf1, 0x55]
+26.126.774:[C3][I][SERDES]:i2c-1 read addr: 0x40, [0xf2, 0x42]
+26.128.241:[C3][I][SERDES]:i2c-1 read addr: 0x40, [0xf3, 0x39]
+26.129.708:[C3][I][SERDES]:i2c-1 read addr: 0x40, [0xf4, 0x35]
+26.131.175:[C3][I][SERDES]:i2c-1 read addr: 0x40, [0xf5, 0x33]
+26.132.536:[C3][I][SERDES]:TI953 0x40 detected
+26.133.588:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0x1, 0x2]
+26.140.250:[C3][I][SERDES]:i2c-1 read addr: 0x40, [0x0, 0x30]
+26.141.590:[C3][I][SERDES]:ti953 pull down succeed, loop time 0
+26.143.007:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0x2, 0x73]
+26.144.592:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0x3, 0x10]
+26.146.149:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0x6, 0x41]
+26.147.700:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0x7, 0x28]
+26.149.251:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0xb, 0x13]
+26.150.802:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0xc, 0x26]
+26.152.353:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0xe, 0xf0]
+26.153.904:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0xd, 0x8]
+26.155.433:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0xd, 0x8]
+26.156.963:[C3][I][SERDES]:i2c-1 write addr: 0x40, [0x2, 0x73]
+26.158.514:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x4c, 0x1]
+26.160.061:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x5d, 0x6c]
+26.161.627:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x4c, 0x1]
+26.163.172:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x65, 0x88]
+26.164.738:[C3][I][SERDES]:register index 0 serilizer-0
+26.165.950:[C3][D][Sensor]:OX03C get serializer id first token OX03C
+26.167.473:[C3][D][Sensor]:OX03C get serializer id next token 0
+26.168.889:[C3][D][Sensor]:OX03C get serializer id next token A
+26.170.306:[C3][I][Sensor]:Get serilizer id 0 for sensor OX03C-0-A
+26.171.788:[C3][D][SERDES]:set_pre(true)-<config> rx-0
+26.173.011:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x4c, 0x1]
+26.174.591:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x6d, 0x7c]
+26.176.165:[C1][I][SERDES]:rx_port 0, csi_vc_map 0x0
+26.177.312:[C1][I][SERDES]:i2c-1 write addr: 0x3d, [0x72, 0x0]
+26.178.893:[C3][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+26.180.169:[C3][I][IPU]:stream on OX03C-0-A stream_id 0
+26.181.414:[C3][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+26.182.724:[C3][I][IPU]:enable csi rx 0, lane 4
+26.183.799:[C3][I][IPU]:set DPHY2 bit rate 1600Mbps
+26.184.964:[C3][I][IPU]:DPHY2 aggregation mode 200ohm termination
+26.186.537:[C3][I][IPU]:DPHY2 power up successfully, state 0x8
+26.187.899:[C3][I][IPU]:rext cal val 0x8
+26.188.821:[C3][I][IPU]:DPHY2 off
+26.189.594:[C3][I][IPU]:set DPHY0 bit rate 1600Mbps
+26.190.761:[C3][I][IPU]:DPHY0 aggregation mode 200ohm termination
+26.192.354:[C3][I][IPU]:DPHY0 power up successfully, state 0x7
+26.193.715:[C3][I][IPU]:set DPHY1 bit rate 1600Mbps
+26.195.021:[C3][I][IPU]:DPHY1 power up successfully, state 0x7
+26.196.645:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x300a, 0x58]
+26.198.048:[C3][I][Sensor]:Sensor ID0 0x58
+26.199.014:[C3][I][Sensor]:OX03C-0-A set status 1
+26.200.131:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x100, 0x0]
+26.201.548:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x103, 0x1]
+26.202.964:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x107, 0x1]
+26.204.381:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x0, 0xa]
+26.205.755:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4d5a, 0x1c]
+26.207.215:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4d09, 0xff]
+26.208.674:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4d09, 0xdf]
+26.210.134:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3208, 0x4]
+26.211.572:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4620, 0x4]
+26.213.011:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3208, 0x14]
+26.214.470:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3208, 0x5]
+26.215.909:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4620, 0x4]
+26.217.347:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3208, 0x15]
+26.218.807:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3208, 0x2]
+26.220.245:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3208, 0x12]
+26.221.705:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3208, 0xa2]
+26.223.164:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x304, 0x0]
+26.224.581:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x305, 0xfa]
+26.226.019:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x307, 0x3]
+26.227.436:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x309, 0x2]
+26.228.853:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x320, 0x2]
+26.230.270:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x323, 0x5]
+26.231.687:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x324, 0x1]
+26.233.104:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x325, 0x2c]
+26.234.542:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x362, 0x88]
+26.235.980:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x409, 0x51]
+26.237.418:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x40c, 0xac]
+26.238.856:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x40d, 0x47]
+26.240.295:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x2803, 0xfe]
+26.241.755:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x280c, 0x79]
+26.243.214:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3005, 0x80]
+26.244.674:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3007, 0x1]
+26.246.112:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3008, 0x80]
+26.247.572:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3020, 0x5]
+26.249.010:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3700, 0x28]
+26.250.470:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3701, 0x15]
+26.251.930:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3702, 0x19]
+26.253.389:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3703, 0x23]
+26.254.849:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3704, 0xa]
+26.256.287:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3706, 0x3e]
+26.257.747:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3707, 0xd]
+26.259.185:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3708, 0x50]
+26.260.645:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3709, 0x5a]
+26.262.105:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x370b, 0x96]
+26.263.565:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3711, 0x11]
+26.265.024:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x372c, 0x40]
+26.266.484:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3738, 0x36]
+26.267.944:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3739, 0x36]
+26.269.403:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x373a, 0x25]
+26.270.863:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x373b, 0x25]
+26.272.323:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3747, 0x28]
+26.273.783:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3748, 0x28]
+26.275.242:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3749, 0x19]
+26.276.702:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3755, 0x1a]
+26.278.162:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3756, 0xa]
+26.279.600:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3757, 0x1c]
+26.281.060:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3765, 0x19]
+26.282.520:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3766, 0x5]
+26.283.958:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3767, 0x5]
+26.285.396:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3768, 0x13]
+26.286.856:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3778, 0x20]
+26.288.316:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x377c, 0xc8]
+26.289.775:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3781, 0x2]
+26.291.214:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3783, 0x2]
+26.292.652:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37c0, 0x1]
+26.294.090:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37c4, 0x3e]
+26.295.550:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37c5, 0x3e]
+26.297.010:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37c6, 0x2a]
+26.298.469:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37c7, 0x28]
+26.299.929:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37c9, 0x12]
+26.301.389:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37cb, 0x29]
+26.302.849:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37cd, 0x29]
+26.304.308:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37d3, 0x73]
+26.305.768:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37d7, 0x6b]
+26.307.228:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37df, 0x54]
+26.308.688:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37f9, 0x1]
+26.310.126:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x37fb, 0x19]
+26.311.585:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c03, 0x1]
+26.313.024:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c04, 0x1]
+26.314.462:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c06, 0x21]
+26.315.922:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c08, 0x1]
+26.317.360:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c09, 0x1]
+26.318.798:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c0a, 0x1]
+26.320.237:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c0b, 0x21]
+26.321.696:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c13, 0x21]
+26.323.156:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c14, 0x82]
+26.324.616:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c16, 0x13]
+26.326.076:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c22, 0xf3]
+26.327.535:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c37, 0x12]
+26.328.995:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c38, 0x31]
+26.330.455:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c3c, 0x0]
+26.331.893:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c3d, 0x3]
+26.333.331:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c44, 0x16]
+26.334.791:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c5c, 0x8a]
+26.336.251:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c5f, 0x3]
+26.337.689:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c6f, 0x2b]
+26.339.149:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c70, 0x5f]
+26.340.609:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c71, 0x2c]
+26.342.068:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c72, 0x2c]
+26.343.528:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c73, 0x2c]
+26.344.988:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3c76, 0x12]
+26.346.447:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3182, 0x12]
+26.347.907:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3219, 0x8]
+26.349.346:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3506, 0x30]
+26.350.805:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3586, 0x60]
+26.352.265:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3549, 0x40]
+26.353.725:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x35c6, 0xa0]
+26.355.184:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3605, 0x16]
+26.356.644:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3609, 0xf0]
+26.358.104:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x360a, 0x1]
+26.359.542:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x360f, 0x10]
+26.361.002:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3610, 0x70]
+26.362.462:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3611, 0x3a]
+26.363.921:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3612, 0x28]
+26.365.381:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x361a, 0x29]
+26.366.841:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x361b, 0x6c]
+26.368.300:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x361c, 0xb]
+26.369.739:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x361d, 0x0]
+26.371.177:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x364d, 0xf]
+26.372.615:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x364e, 0x18]
+26.374.075:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x364f, 0x12]
+26.375.535:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3653, 0x1c]
+26.376.994:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3655, 0x1f]
+26.378.454:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3656, 0x1f]
+26.379.914:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3657, 0xc]
+26.381.352:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3658, 0xa]
+26.382.790:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3659, 0x14]
+26.384.250:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x365a, 0x18]
+26.385.710:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x365b, 0x14]
+26.387.170:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x365c, 0x10]
+26.388.629:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x365e, 0x12]
+26.390.089:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3674, 0x8]
+26.391.527:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3677, 0x3a]
+26.392.987:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3678, 0x3a]
+26.394.447:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3679, 0x19]
+26.395.907:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3803, 0x2]
+26.397.345:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3807, 0xd]
+26.398.783:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x380b, 0x4]
+26.400.221:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3820, 0x20]
+26.401.681:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3821, 0x19]
+26.403.141:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3832, 0x0]
+26.404.579:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3834, 0x0]
+26.406.017:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b40, 0x5]
+26.407.456:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b41, 0x40]
+26.408.915:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b43, 0x90]
+26.410.375:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b45, 0x20]
+26.411.835:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b47, 0x20]
+26.413.295:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b48, 0x19]
+26.414.754:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b49, 0x12]
+26.416.214:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b4a, 0x16]
+26.417.674:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b4b, 0x2e]
+26.419.134:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b87, 0x34]
+26.420.593:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b89, 0x8]
+26.422.032:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b8a, 0x5]
+26.423.470:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b8b, 0x0]
+26.424.908:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b8d, 0x80]
+26.426.368:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b92, 0x5]
+26.427.806:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b93, 0x0]
+26.429.244:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b95, 0x80]
+26.430.704:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3b9e, 0x9]
+26.432.142:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3d82, 0x73]
+26.433.602:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3d85, 0x5]
+26.435.040:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3d9a, 0x9f]
+26.436.500:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3d9c, 0xa0]
+26.437.960:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3da4, 0x0]
+26.439.398:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3da7, 0x50]
+26.440.858:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x420e, 0x6b]
+26.442.318:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x420f, 0x6e]
+26.443.777:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4210, 0x6]
+26.445.216:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4211, 0xc1]
+26.446.675:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x421f, 0x45]
+26.448.135:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4221, 0x1]
+26.449.573:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4301, 0xff]
+26.451.033:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x430a, 0x13]
+26.452.493:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x430d, 0x93]
+26.453.952:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4319, 0x3]
+26.455.391:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x431f, 0x20]
+26.456.851:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4583, 0x7]
+26.458.289:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4584, 0x6a]
+26.459.748:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4585, 0x8]
+26.461.187:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4586, 0x5]
+26.462.625:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4587, 0x4]
+26.464.063:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4588, 0x73]
+26.465.523:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4589, 0x5]
+26.466.961:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x458a, 0x1f]
+26.468.421:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x458b, 0x2]
+26.469.859:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x458c, 0xdc]
+26.471.319:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x458d, 0x3]
+26.472.757:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x458e, 0x2]
+26.474.196:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4597, 0x7]
+26.475.634:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4598, 0x40]
+26.477.093:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4599, 0xe]
+26.478.532:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x459a, 0xe]
+26.479.970:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x459b, 0xfb]
+26.481.430:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x459c, 0xf3]
+26.482.890:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4603, 0x13]
+26.484.349:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x480a, 0x22]
+26.485.809:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4837, 0x20]
+26.487.269:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4d12, 0x64]
+26.488.729:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4d15, 0x7d]
+26.490.188:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4d34, 0x7d]
+26.491.648:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4d3c, 0x7d]
+26.493.108:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4f00, 0x0]
+26.494.546:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4f01, 0x0]
+26.495.984:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4f02, 0x0]
+26.497.422:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4f03, 0x20]
+26.498.882:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5002, 0x7f]
+26.500.342:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5003, 0x7a]
+26.501.802:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x507a, 0x4]
+26.503.240:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x507b, 0x9]
+26.504.678:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6007, 0x4]
+26.506.116:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6008, 0x5]
+26.507.555:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6009, 0x2]
+26.508.993:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x600b, 0x8]
+26.510.431:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x600c, 0x7]
+26.511.869:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x600d, 0x88]
+26.513.329:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6027, 0x4]
+26.514.767:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6028, 0x5]
+26.516.206:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6029, 0x2]
+26.517.644:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x602b, 0x8]
+26.519.082:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x602c, 0x7]
+26.520.521:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x602d, 0x88]
+26.521.980:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6047, 0x4]
+26.523.419:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6048, 0x5]
+26.524.857:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6049, 0x2]
+26.526.295:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x604b, 0x8]
+26.527.733:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x604c, 0x7]
+26.529.172:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x604d, 0x88]
+26.530.631:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6067, 0x4]
+26.532.070:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6068, 0x5]
+26.533.508:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6069, 0x2]
+26.534.946:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x606b, 0x8]
+26.536.384:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x606c, 0x7]
+26.537.823:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x606d, 0x88]
+26.539.282:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6087, 0x4]
+26.540.721:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6088, 0x5]
+26.542.159:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x6089, 0x2]
+26.543.597:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x608b, 0x8]
+26.545.036:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x608c, 0x7]
+26.546.474:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x608d, 0x88]
+26.547.933:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e00, 0x0]
+26.549.372:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e01, 0x9]
+26.550.810:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e02, 0xc]
+26.552.248:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e03, 0xc]
+26.553.687:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e04, 0xd]
+26.555.125:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e05, 0xe]
+26.556.563:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e06, 0xf]
+26.558.001:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e07, 0x12]
+26.559.461:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e08, 0x14]
+26.560.921:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e09, 0x15]
+26.562.381:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e0a, 0x16]
+26.563.840:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e0b, 0x17]
+26.565.300:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e0c, 0x0]
+26.566.738:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e0d, 0x0]
+26.568.177:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e0e, 0x0]
+26.569.615:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e0f, 0x0]
+26.571.053:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e10, 0x0]
+26.572.491:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e11, 0x0]
+26.573.930:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e12, 0x0]
+26.575.368:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e13, 0x0]
+26.576.806:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e14, 0x0]
+26.578.245:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e15, 0x0]
+26.579.683:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e16, 0x0]
+26.581.121:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e17, 0x0]
+26.582.559:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e18, 0x0]
+26.583.998:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e19, 0x0]
+26.585.436:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e1a, 0x0]
+26.586.874:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e1b, 0x0]
+26.588.312:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e1c, 0x0]
+26.589.751:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e1d, 0x0]
+26.591.189:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e1e, 0x0]
+26.592.627:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e1f, 0x0]
+26.594.065:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e20, 0x0]
+26.595.504:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e21, 0x0]
+26.596.942:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e24, 0xff]
+26.598.402:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e26, 0x4]
+26.599.840:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e29, 0x1]
+26.601.278:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e2c, 0x1]
+26.602.716:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e2f, 0x1]
+26.604.155:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e32, 0x1]
+26.605.593:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e38, 0x1]
+26.607.031:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e39, 0x50]
+26.608.491:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e3b, 0x1]
+26.609.929:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e3e, 0x0]
+26.611.368:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e3f, 0xc0]
+26.612.827:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e41, 0x0]
+26.614.266:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e42, 0xf0]
+26.615.725:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e44, 0x0]
+26.617.163:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e47, 0x0]
+26.618.602:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e4a, 0x0]
+26.620.040:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e4d, 0x0]
+26.621.478:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e50, 0x0]
+26.622.917:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e53, 0x0]
+26.624.355:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e56, 0x0]
+26.625.793:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e59, 0x0]
+26.627.231:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e5c, 0x0]
+26.628.670:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e5f, 0x0]
+26.630.108:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e62, 0x0]
+26.631.546:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e65, 0x0]
+26.632.984:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e68, 0x0]
+26.634.423:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e6b, 0x0]
+26.635.861:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e6e, 0x0]
+26.637.299:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e71, 0x0]
+26.638.738:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e74, 0x0]
+26.640.176:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e77, 0x0]
+26.641.614:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e7a, 0x0]
+26.643.052:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e7d, 0x0]
+26.644.491:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e80, 0x0]
+26.645.929:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5e84, 0x0]
+26.647.367:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4008, 0x2]
+26.648.805:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4009, 0x3]
+26.650.244:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4022, 0x40]
+26.651.703:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4023, 0x20]
+26.653.163:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4082, 0x1]
+26.654.601:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4083, 0x53]
+26.656.061:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4084, 0x1]
+26.657.499:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4085, 0x2b]
+26.658.959:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4086, 0x0]
+26.660.397:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4087, 0xb3]
+26.661.857:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4641, 0x11]
+26.663.317:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4642, 0xe]
+26.664.755:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4643, 0xee]
+26.666.215:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4646, 0xf]
+26.667.653:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4d09, 0xff]
+26.669.113:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4d09, 0xdf]
+26.670.573:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5b80, 0x8]
+26.672.011:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c00, 0x8]
+26.673.449:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c80, 0x0]
+26.674.887:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5b8e, 0x60]
+26.676.347:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5b92, 0x80]
+26.677.807:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5b97, 0x20]
+26.679.267:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5b9a, 0x40]
+26.680.726:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5b9b, 0x20]
+26.682.186:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5b9c, 0x0]
+26.683.624:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5b9f, 0x0]
+26.685.063:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5ba0, 0x0]
+26.686.501:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5ba1, 0x0]
+26.687.939:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5ba3, 0x0]
+26.689.377:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5ba4, 0x0]
+26.690.816:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5ba5, 0x0]
+26.692.254:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bae, 0x0]
+26.693.692:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5baf, 0x80]
+26.695.152:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bb0, 0x0]
+26.696.590:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bb1, 0xc0]
+26.698.050:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bb2, 0x1]
+26.699.488:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bb3, 0x0]
+26.700.926:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c30, 0x0]
+26.702.365:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c31, 0xc0]
+26.703.824:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c32, 0x1]
+26.705.263:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c9d, 0x0]
+26.706.701:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5ca5, 0x0]
+26.708.139:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5be7, 0x80]
+26.709.599:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bd2, 0x20]
+26.711.059:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bd4, 0x40]
+26.712.519:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bd5, 0x20]
+26.713.978:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bd6, 0x0]
+26.715.416:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bd7, 0x0]
+26.716.855:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bd8, 0x0]
+26.718.293:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bd9, 0x0]
+26.719.731:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bda, 0x0]
+26.721.170:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bdb, 0x0]
+26.722.608:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bdc, 0x0]
+26.724.046:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bdd, 0x0]
+26.725.484:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bde, 0x0]
+26.726.923:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5bdf, 0x0]
+26.728.361:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5be0, 0x0]
+26.729.799:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c4d, 0x40]
+26.731.259:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c51, 0x60]
+26.732.719:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c52, 0x20]
+26.734.178:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c55, 0x80]
+26.735.638:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c56, 0x20]
+26.737.098:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c57, 0x0]
+26.738.536:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c59, 0x40]
+26.739.996:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c5a, 0x20]
+26.741.456:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c5b, 0x0]
+26.742.894:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c5c, 0x0]
+26.744.332:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c5d, 0x80]
+26.745.792:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c5e, 0x0]
+26.747.230:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c5f, 0x0]
+26.748.668:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5c60, 0x0]
+26.750.107:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5cd5, 0x80]
+26.751.566:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5cd6, 0x60]
+26.753.026:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5cd9, 0x80]
+26.754.486:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5cda, 0x80]
+26.755.945:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5cdb, 0x40]
+26.757.405:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5cdd, 0x80]
+26.758.865:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5cde, 0x80]
+26.760.326:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5cdf, 0x80]
+26.761.784:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5ce2, 0x80]
+26.763.244:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5ce3, 0x80]
+26.764.704:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5ce4, 0x80]
+26.766.164:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x52c9, 0x2]
+26.767.602:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x52ca, 0x1]
+26.769.040:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x52cb, 0x1]
+26.770.478:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x52cd, 0x2]
+26.771.917:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x52ce, 0x1]
+26.773.355:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x52cf, 0x1]
+26.774.793:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x54c9, 0x2]
+26.776.231:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x54ca, 0x1]
+26.777.670:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x54cb, 0x1]
+26.779.108:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x54cd, 0x2]
+26.780.547:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x54ce, 0x1]
+26.781.985:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x54cf, 0x1]
+26.783.423:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x56c9, 0x2]
+26.784.861:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x56ca, 0x1]
+26.786.299:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x56cb, 0x1]
+26.787.738:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x56cd, 0x2]
+26.789.176:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x56ce, 0x1]
+26.790.614:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x56cf, 0x1]
+26.792.052:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x58c9, 0x2]
+26.793.491:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x58ca, 0x1]
+26.794.929:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x58cb, 0x1]
+26.796.367:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x58cd, 0x2]
+26.797.806:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x58ce, 0x1]
+26.799.244:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x58cf, 0x1]
+26.800.682:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d15, 0x5]
+26.802.120:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d16, 0x5]
+26.803.559:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d17, 0x5]
+26.804.997:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d09, 0xb6]
+26.806.457:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d0b, 0xb6]
+26.807.916:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d19, 0xb6]
+26.809.376:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d62, 0x1]
+26.810.814:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d40, 0x2]
+26.812.253:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d63, 0x20]
+26.813.712:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d65, 0xff]
+26.815.172:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d59, 0x20]
+26.816.632:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d5b, 0x20]
+26.818.092:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d5e, 0x3]
+26.819.530:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d5f, 0xb6]
+26.820.990:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d60, 0x3]
+26.822.428:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d61, 0xb6]
+26.823.888:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d4a, 0x2]
+26.825.326:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d4b, 0x40]
+26.826.786:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d4c, 0x10]
+26.828.245:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d4d, 0x40]
+26.829.705:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d4e, 0x10]
+26.831.165:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d4f, 0x40]
+26.832.624:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d50, 0x18]
+26.834.084:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d51, 0x80]
+26.835.544:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d52, 0x20]
+26.837.004:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d53, 0x80]
+26.838.463:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d54, 0x20]
+26.839.923:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d55, 0x80]
+26.841.383:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d47, 0x20]
+26.842.843:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d49, 0x60]
+26.844.302:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5d66, 0x1]
+26.845.741:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5004, 0x1e]
+26.847.200:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4221, 0x3]
+26.848.639:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x380c, 0x8]
+26.850.077:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x380d, 0x7f]
+26.851.537:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3501, 0x1]
+26.852.975:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3502, 0xc8]
+26.854.435:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3541, 0x1]
+26.855.873:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3542, 0xc8]
+26.857.333:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x35c2, 0x1]
+26.858.771:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x420e, 0x66]
+26.860.231:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x420f, 0x5d]
+26.861.690:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4210, 0xa8]
+26.863.150:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4211, 0x55]
+26.864.610:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x507a, 0x5f]
+26.866.070:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x507b, 0x46]
+26.867.529:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4f01, 0x1]
+26.868.968:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4f02, 0x80]
+26.870.427:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4f03, 0x2c]
+26.871.887:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4f04, 0xf8]
+26.873.347:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3548, 0x7]
+26.874.785:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x100, 0x1]
+26.945.690:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x100, 0x1]
+26.947.309:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x103, 0x0]
+26.948.927:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x107, 0x0]
+26.950.288:[C3][I][Sensor]:sensor mode(1920x1280) format(91) 30/1 fps selected
+26.952.027:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x100, 0x0]
+26.953.909:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x100, 0x0]
+26.955.270:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3802, 0x0]
+26.957.173:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3802, 0x0]
+26.958.556:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3803, 0x4]
+26.960.459:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3803, 0x4]
+26.961.841:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3806, 0x5]
+26.963.744:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3806, 0x5]
+26.965.127:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3807, 0xd]
+26.967.030:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3807, 0xd]
+26.968.417:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3808, 0x7]
+26.970.315:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3808, 0x7]
+26.971.698:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3809, 0x80]
+26.973.622:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3809, 0x80]
+26.975.026:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x380a, 0x5]
+26.976.929:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x380a, 0x5]
+26.978.312:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x380b, 0x0]
+26.980.215:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x380b, 0x0]
+26.981.597:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3810, 0x0]
+26.983.501:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3810, 0x0]
+26.984.883:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3811, 0x8]
+26.986.786:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3811, 0x8]
+26.988.168:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3812, 0x0]
+26.990.072:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3812, 0x0]
+26.991.454:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3813, 0x4]
+26.993.357:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3813, 0x4]
+26.994.740:[C3][D][Sensor]:OX03C-0-A get ctrl CSF_IOC_CTRL_FRAME_RATE val 30
+26.996.436:[C3][D][Sensor]:fps same as before, no update
+26.997.702:[C3][D][Sensor]:OX03C-0-A get ctrl CSF_IOC_CTRL_VTS val 923
+26.999.269:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_EXPOSURE_TIME val 305->305
+27.001.158:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3501, 0x131]
+27.003.203:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3501, 0x131]
+27.004.629:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_EXPOSURE_TIME_S val 16->16
+27.006.518:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x35c1, 0x10]
+27.008.541:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x35c1, 0x10]
+27.009.945:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_ANALOG_GAIN val 1920->1920
+27.011.834:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3508, 0x780]
+27.013.878:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3508, 0x780]
+27.015.304:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_ANALOG_GAIN_S val 256->256
+27.017.193:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x35c8, 0x100]
+27.019.237:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x35c8, 0x100]
+27.020.663:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_DIGITAL_GAIN val 1024->1024
+27.022.573:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x350a, 0x1]
+27.024.477:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x350a, 0x1]
+27.025.859:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x350b, 0x100]
+27.027.805:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x350b, 0x0]
+27.029.188:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x350c, 0x10000]
+27.031.177:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x350c, 0x0]
+27.032.559:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x358a, 0x1]
+27.034.462:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x358a, 0x1]
+27.035.845:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x358b, 0x100]
+27.037.791:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x358b, 0x0]
+27.039.174:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x358c, 0x10000]
+27.041.163:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x358c, 0x0]
+27.042.545:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_DIGITAL_GAIN_S val 1024->1024
+27.044.499:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x35ca, 0x1]
+27.046.402:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x35ca, 0x1]
+27.047.784:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x35cb, 0x100]
+27.049.730:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x35cb, 0x0]
+27.051.113:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x35cc, 0x10000]
+27.053.101:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x35cc, 0x0]
+27.054.484:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_RED_BALANCE val 1928->1928
+27.056.373:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5286, 0x788]
+27.058.418:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5286, 0x788]
+27.059.843:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5486, 0x788]
+27.061.887:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5486, 0x788]
+27.063.313:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5886, 0x788]
+27.065.357:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5886, 0x788]
+27.066.783:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_BLUE_BALANCE val 1576->1576
+27.068.693:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5280, 0x628]
+27.070.738:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5280, 0x628]
+27.072.164:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5480, 0x628]
+27.074.208:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5480, 0x628]
+27.075.634:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5880, 0x628]
+27.077.678:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5880, 0x628]
+27.079.104:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_GREEN_BALANCE val 1024->1024
+27.081.036:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5282, 0x400]
+27.083.081:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5282, 0x400]
+27.084.506:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5284, 0x400]
+27.086.551:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5284, 0x400]
+27.087.976:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5482, 0x400]
+27.090.020:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5482, 0x400]
+27.091.448:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5484, 0x400]
+27.093.490:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5484, 0x400]
+27.094.916:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5882, 0x400]
+27.096.960:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5882, 0x400]
+27.098.385:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5884, 0x400]
+27.100.430:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5884, 0x400]
+27.101.855:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_RED_BALANCE_S val 1928->1928
+27.103.787:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5686, 0x788]
+27.105.832:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5686, 0x788]
+27.107.257:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_BLUE_BALANCE_S val 1576->1576
+27.109.210:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5680, 0x628]
+27.111.255:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5680, 0x628]
+27.112.680:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_GREEN_BALANCE_S val 1024->1024
+27.114.655:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5682, 0x400]
+27.116.700:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5682, 0x400]
+27.118.126:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x5684, 0x400]
+27.120.170:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x5684, 0x400]
+27.121.595:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_VTS val 923->923
+27.123.270:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x380e, 0x39b]
+27.125.314:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x380e, 0x39b]
+27.126.740:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3882, 0x381]
+27.128.785:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3882, 0x381]
+27.130.210:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_HTS val 2175->2175
+27.131.928:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x380c, 0x87f]
+27.133.972:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x380c, 0x87f]
+27.135.398:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_HTS_S val 555->555
+27.137.115:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x388c, 0x22b]
+27.139.159:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x388c, 0x22b]
+27.140.585:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3823, 0x0]
+27.142.488:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3823, 0x0]
+27.143.871:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3015, 0x8]
+27.145.774:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3015, 0x8]
+27.147.156:[C3][I][Sensor]:OX03C-0-A syncMode change to 0
+27.148.444:[C3][D][Sensor]:OX03C-0-A set ctrl CSF_IOC_CTRL_SYNC_MODE val 0->0
+27.150.162:[C3][D][Sensor]:OX03C-0-A get ctrl CSF_IOC_CTRL_FRAME_RATE val 30
+27.151.857:[C3][D][Sensor]:fps same as before, no update
+27.153.124:[C3][I][Sensor]:PWM config. sensor: OX03C-0-A mode: 0 enable: 1
+27.154.777:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x100, 0x1]
+27.156.658:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x100, 0x1]
+27.159.020:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x430d, 0x12]
+27.160.909:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x430d, 0x12]
+27.162.313:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3208, 0x4]
+27.164.216:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3208, 0x0]
+27.165.599:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x350e, 0x2]
+27.167.502:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x350e, 0x1]
+27.168.885:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3512, 0x2]
+27.170.788:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3512, 0x0]
+27.172.170:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x350a, 0x4]
+27.174.073:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x350a, 0x1]
+27.175.456:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x3208, 0x14]
+27.177.381:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x3208, 0x0]
+27.178.763:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x4317, 0x20]
+27.180.688:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x4317, 0x20]
+27.182.092:[C3][I][IPU]:streamon at 652370197
+27.183.123:[C3][D][Sensor]:OX03C-0-A get ctrl CSF_IOC_CTRL_SYNC_MODE val 0
+27.184.775:[C3][D][SERDES]:set_post(enable)-<forward> rx>-0
+27.186.211:[C3][I][SERDES]:i2c-1 read addr: 0x3d, [0x20, 0xf0]
+27.187.572:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x20, 0xe0]
+27.189.234:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_G_SENSOR) subdev id 210000 port 0
+27.190.903:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_DQEVENT) subdev id 210000 port 0
+27.192.578:[C3][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+27.193.887:[C2][D][IPU]:isys stream 0 waiting for event...
+27.195.197:[C3][I][ISysDevice]:SENSOR_IOC_VTS:923, ret:0
+27.196.458:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_G_SENSOR) subdev id 210000 port 0
+27.198.154:[C3][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+27.199.463:[C3][I][ISysDevice]:SENSOR_IOC_FRAMERATE:30, ret:0
+27.200.850:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_MAPBUF) subdev id 210000 port 0
+27.202.490:[C3][D][IPU]:buf 0x364b2000 mapped to 0x364b2000
+27.203.821:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_MAPBUF) subdev id 210000 port 0
+27.205.474:[C3][D][IPU]:buf 0x22968000 mapped to 0x22968000
+27.206.811:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_QBUF) subdev id 210000 port 0
+27.208.420:[C2][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 0 type 7
+27.210.011:[C3][D][IPU]:port 0 queued buffer 0x22968000 type 1 link 0 id 1 frame_id 1
+27.211.898:[C2][D][IPU]:hostlib: resp 07 IPU_ISYS_RESP_TYPE_FRAME_SOF, stream 0, timestamp 652981574, pin 1
+27.214.259:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_QBUF) subdev id 210000 port 0
+27.215.869:[C2][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 0 type 6
+27.217.460:[C3][D][IPU]:port 0 queued buffer 0x364b2000 type 0 link 0 id 1 frame_id 1
+27.219.347:[C2][D][IPU]:hostlib: resp 06 IPU_ISYS_RESP_TYPE_PIN_DATA_READY, stream 0, timestamp 652981574, pin 1
+27.221.816:[C3][D][IPU]:stream 0 capture next frame, buf index 1
+27.223.253:[C2][D][IPU]:stream 0 hw_fid 0 sequence 0 systimer 653323575
+27.224.842:[C3][D][IPU]:check buf queue config stream 0 queue depth 2
+27.226.387:[C2][D][IPU]:stream 0: add event type 1 index 0 sequence 0 to event queue
+27.228.260:[C3][D][IPU]:set frame buf type 0 output pin 0 addr 0x364b2000, id 1
+27.230.016:[C2][D][IPU]:stream 0 event id(0) type(1) link(0) sequence(0) dequeued
+27.231.819:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 0 type 6
+27.233.409:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_DQEVENT) subdev id 210000 port 0
+27.235.082:[C3][D][IPU]:hostlib: resp 06 IPU_ISYS_RESP_TYPE_PIN_DATA_READY, stream 0, timestamp 652981574, pin 0
+27.237.550:[C2][D][IPU]:isys stream 0 waiting for event...
+27.238.860:[C3][D][IPU]:stream 0 hw_fid 0 sequence 0 systimer 653701213
+27.240.449:[C2][D][IPU]:set frame buf type 1 output pin 1 addr 0x22968000, id 1
+27.242.209:[C3][D][IPU]:stream 0: add event type 0 index 0 sequence 0 to event queue
+27.244.085:[C2][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 72, queue_id = 255, sequence_number = 255, checksum = 1518
+
+27.246.932:[C3][D][IPU]:stream 0 event id(0) type(0) link(0) sequence(0) dequeued
+27.248.734:[C2][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 0 type 8
+27.250.323:[C2][D][IPU]:hostlib: resp 08 IPU_ISYS_RESP_TYPE_FRAME_EOF, stream 0, timestamp 653539416, pin 1
+27.252.685:[C3][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 16, queue_id = 255, sequence_number = 255, checksum = 1789
+
+27.255.534:[C3][D][IPU]:[SYSCOM]sending with ipu_addr 0x2100d800 on queue_id 4
+27.257.318:[C2][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 1 type 7
+27.258.879:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_DQEVENT) subdev id 210000 port 0
+27.260.556:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_QBUF) subdev id 210000 port 0
+27.262.162:[C3][D][IPU]:isys stream 0 waiting for event...
+27.263.471:[C2][D][IPU]:port 0 queued buffer 0x22965000 type 1 link 0 id 0 frame_id 2
+27.265.361:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 1 type 8
+27.266.951:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_QBUF) subdev id 210000 port 0
+27.268.563:[C2][D][IPU]:port 0 queued buffer 0x36001000 type 0 link 0 id 0 frame_id 2
+27.270.442:[C2][D][IPU]:stream 0 capture next frame, buf index 0
+27.271.881:[C2][D][IPU]:check buf queue config stream 0 queue depth 2
+27.273.426:[C2][D][IPU]:set frame buf type 0 output pin 0 addr 0x36001000, id 0
+27.275.192:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 1 type 7
+27.276.783:[C2][D][IPU]:set frame buf type 1 output pin 1 addr 0x22965000, id 0
+27.278.541:[C3][D][IPU]:hostlib: resp 07 IPU_ISYS_RESP_TYPE_FRAME_SOF, stream 0, timestamp 654583881, pin 1
+27.280.902:[C2][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 72, queue_id = 255, sequence_number = 255, checksum = 17721
+
+27.283.779:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 1 type 6
+27.285.368:[C3][D][IPU]:hostlib: resp 06 IPU_ISYS_RESP_TYPE_PIN_DATA_READY, stream 0, timestamp 654583881, pin 1
+27.287.836:[C2][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 16, queue_id = 255, sequence_number = 255, checksum = 6909
+
+27.290.691:[C3][D][IPU]:stream 0 hw_fid 1 sequence 2 systimer 654908065
+27.292.279:[C2][D][IPU]:[SYSCOM]sending with ipu_addr 0x2100c400 on queue_id 4
+27.294.019:[C3][D][IPU]:stream 0: add event type 1 index 1 sequence 2 to event queue
+27.295.901:[C2][D][IPU]:stream 0 event id(1) type(1) link(0) sequence(2) dequeued
+27.297.718:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_DQEVENT) subdev id 210000 port 0
+27.299.364:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 1 type 6
+27.300.954:[C2][D][IPU]:isys stream 0 waiting for event...
+27.302.261:[C3][D][IPU]:hostlib: resp 06 IPU_ISYS_RESP_TYPE_PIN_DATA_READY, stream 0, timestamp 654583881, pin 0
+27.304.726:[C3][D][IPU]:stream 0 hw_fid 1 sequence 2 systimer 655313426
+27.306.315:[C3][D][IPU]:stream 0: add event type 0 index 1 sequence 2 to event queue
+27.308.202:[C2][D][IPU]:stream 0 event id(1) type(0) link(0) sequence(2) dequeued
+27.309.990:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 1 type 8
+27.311.583:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_DQEVENT) subdev id 210000 port 0
+27.313.253:[C3][D][IPU]:hostlib: resp 08 IPU_ISYS_RESP_TYPE_FRAME_EOF, stream 0, timestamp 655141738, pin 1
+27.315.613:[C2][D][IPU]:isys stream 0 waiting for event...
+27.316.923:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 2 type 7
+27.318.514:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_QBUF) subdev id 210000 port 0
+27.320.122:[C3][D][IPU]:hostlib: resp 07 IPU_ISYS_RESP_TYPE_FRAME_SOF, stream 0, timestamp 655385042, pin 1
+27.322.482:[C2][D][IPU]:port 0 queued buffer 0x22968000 type 1 link 0 id 1 frame_id 3
+27.324.372:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 2 type 6
+27.325.963:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_QBUF) subdev id 210000 port 0
+27.327.571:[C3][D][IPU]:hostlib: resp 06 IPU_ISYS_RESP_TYPE_PIN_DATA_READY, stream 0, timestamp 655385042, pin 1
+27.330.040:[C2][D][IPU]:port 0 queued buffer 0x364b2000 type 0 link 0 id 1 frame_id 3
+27.331.929:[C3][D][IPU]:stream 0 hw_fid 2 sequence 3 systimer 655920951
+27.333.517:[C2][D][IPU]:stream 0 capture next frame, buf index 1
+27.334.955:[C3][D][IPU]:stream 0: add event type 1 index 2 sequence 3 to event queue
+27.336.827:[C2][D][IPU]:check buf queue config stream 0 queue depth 2
+27.338.369:[C3][D][IPU]:stream 0 event id(0) type(1) link(0) sequence(3) dequeued
+27.340.171:[C2][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 2 type 6
+27.341.763:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_DQEVENT) subdev id 210000 port 0
+27.343.435:[C2][D][IPU]:hostlib: resp 06 IPU_ISYS_RESP_TYPE_PIN_DATA_READY, stream 0, timestamp 655385042, pin 0
+27.345.903:[C3][D][IPU]:isys stream 0 waiting for event...
+27.347.213:[C2][D][IPU]:stream 0 hw_fid 2 sequence 3 systimer 656301683
+27.348.802:[C3][D][IPU]:set frame buf type 0 output pin 0 addr 0x364b2000, id 1
+27.350.561:[C2][D][IPU]:stream 0: add event type 0 index 2 sequence 3 to event queue
+27.352.438:[C3][D][IPU]:set frame buf type 1 output pin 1 addr 0x22968000, id 1
+27.354.189:[C2][D][IPU]:stream 0 event id(0) type(0) link(0) sequence(3) dequeued
+27.355.993:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 2 type 8
+27.357.583:[C2][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 72, queue_id = 255, sequence_number = 255, checksum = 1006
+
+27.360.437:[C3][D][IPU]:hostlib: resp 08 IPU_ISYS_RESP_TYPE_FRAME_EOF, stream 0, timestamp 655942899, pin 1
+27.362.797:[C2][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 16, queue_id = 255, sequence_number = 255, checksum = 1789
+
+27.365.647:[C2][D][IPU]:[SYSCOM]sending with ipu_addr 0x2100d800 on queue_id 4
+27.367.426:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 3 type 7
+27.368.987:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_DQEVENT) subdev id 210000 port 0
+27.370.660:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 3 type 8
+27.372.250:[C2][D][IPU]:isys stream 0 waiting for event...
+27.373.558:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_QBUF) subdev id 210000 port 0
+27.375.168:[C2][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 3 type 7
+27.376.759:[C3][D][IPU]:port 0 queued buffer 0x22965000 type 1 link 0 id 0 frame_id 4
+27.378.646:[C2][D][IPU]:hostlib: resp 07 IPU_ISYS_RESP_TYPE_FRAME_SOF, stream 0, timestamp 656987364, pin 1
+27.381.006:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_QBUF) subdev id 210000 port 0
+27.382.622:[C0][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 3 type 6
+27.384.208:[C3][D][IPU]:port 0 queued buffer 0x36001000 type 0 link 0 id 0 frame_id 4
+27.386.095:[C2][D][IPU]:hostlib: resp 06 IPU_ISYS_RESP_TYPE_PIN_DATA_READY, stream 0, timestamp 656987364, pin 1
+27.388.564:[C3][D][IPU]:stream 0 capture next frame, buf index 0
+27.390.001:[C2][D][IPU]:stream 0 hw_fid 3 sequence 5 systimer 657325528
+27.391.589:[C3][D][IPU]:check buf queue config stream 0 queue depth 2
+27.393.135:[C2][D][IPU]:stream 0: add event type 1 index 3 sequence 5 to event queue
+27.395.007:[C3][D][IPU]:set frame buf type 0 output pin 0 addr 0x36001000, id 0
+27.396.764:[C2][D][IPU]:stream 0 event id(1) type(1) link(0) sequence(5) dequeued
+27.398.567:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 3 type 6
+27.400.157:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_DQEVENT) subdev id 210000 port 0
+27.401.830:[C3][D][IPU]:hostlib: resp 06 IPU_ISYS_RESP_TYPE_PIN_DATA_READY, stream 0, timestamp 656987364, pin 0
+27.404.298:[C2][D][IPU]:isys stream 0 waiting for event...
+27.405.607:[C3][D][IPU]:stream 0 hw_fid 3 sequence 5 systimer 657703155
+27.407.196:[C2][D][IPU]:set frame buf type 1 output pin 1 addr 0x22965000, id 0
+27.408.956:[C3][D][IPU]:stream 0: add event type 0 index 3 sequence 5 to event queue
+27.410.833:[C2][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 72, queue_id = 255, sequence_number = 255, checksum = 17209
+
+27.413.701:[C3][D][IPU]:stream 0 event id(1) type(0) link(0) sequence(5) dequeued
+27.415.503:[C2][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 3 type 8
+27.417.093:[C2][D][IPU]:hostlib: resp 08 IPU_ISYS_RESP_TYPE_FRAME_EOF, stream 0, timestamp 657545222, pin 1
+27.419.454:[C3][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 16, queue_id = 255, sequence_number = 255, checksum = 6909
+
+27.422.303:[C3][D][IPU]:[SYSCOM]sending with ipu_addr 0x2100c400 on queue_id 4
+27.424.082:[C2][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 4 type 7
+27.425.650:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_DQEVENT) subdev id 210000 port 0
+27.427.315:[C3][D][IPU]:isys stream 0 waiting for event...
+27.431.210:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 4 type 8
+27.441.485:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 4 type 7
+27.443.042:[C3][D][IPU]:hostlib: resp 07 IPU_ISYS_RESP_TYPE_FRAME_SOF, stream 0, timestamp 658589687, pin 1
+27.445.420:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 4 type 6
+27.446.992:[C3][D][IPU]:hostlib: resp 06 IPU_ISYS_RESP_TYPE_PIN_DATA_READY, stream 0, timestamp 658589687, pin 1
+27.449.460:[C3][D][IPU]:stream 0 hw_fid 4 sequence 7 systimer 658787024
+27.451.049:[C3][D][IPU]:stream 0: add event type 1 index 4 sequence 7 to event queue
+27.452.935:[C2][D][IPU]:stream 0 event id(0) type(1) link(0) sequence(7) dequeued
+27.454.753:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_DQEVENT) subdev id 210000 port 0
+27.456.398:[C2][D][IPU]:isys stream 0 waiting for event...
+27.464.720:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 4 type 6
+27.466.277:[C3][D][IPU]:hostlib: resp 06 IPU_ISYS_RESP_TYPE_PIN_DATA_READY, stream 0, timestamp 658589687, pin 0
+27.468.745:[C3][D][IPU]:stream 0 hw_fid 4 sequence 7 systimer 659249874
+27.470.333:[C3][D][IPU]:stream 0: add event type 0 index 4 sequence 7 to event queue
+27.472.220:[C2][D][IPU]:stream 0 event id(0) type(0) link(0) sequence(7) dequeued
+27.474.009:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 4 type 8
+27.475.599:[C2][I][PipeExecutor]:PIPE-0: 5 frames processed done...
+27.477.102:[C3][D][IPU]:hostlib: resp 08 IPU_ISYS_RESP_TYPE_FRAME_EOF, stream 0, timestamp 659147544, pin 1
+27.479.460:[C2][I][PipeExecutor]:PIPE-0: stop streaming...
+27.480.770:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 5 type 7
+27.482.361:[C2][I][PipeExecutor]:PIPE-0: Node: NullSinkNode-1 stop...
+27.483.899:[C2][I][PipeExecutor]:PIPE-0: Node: NullSinkNode-1 stop done
+27.485.487:[C2][I][PipeExecutor]:PIPE-0: Node: IPUNode-0 stop...
+27.486.926:[C2][I][CameraDevice]:Cam:0 stop
+27.487.966:[C2][D][IPU]:ioctl(IPU_ISYS_IOC_STREAMOFF) subdev id 210000 port 0
+27.489.651:[C2][I][IPU]:IPU_ISYS_SYNC_GROUP_0 enabled
+27.490.853:[C2][I][IPU]:hostlib: libcall stream 0 flush(0)
+27.492.164:[C2][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 16, queue_id = 255, sequence_number = 255, checksum = 65531
+
+27.495.039:[C2][D][IPU]:[SYSCOM]sending on queue_id 3
+27.496.483:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 0 type 4
+27.498.040:[C3][D][IPU]:hostlib: resp 04 IPU_ISYS_RESP_TYPE_STREAM_FLUSH_ACK, stream 0, timestamp 0, pin 0
+27.500.397:[C2][I][IPU]:hostlib: libcall stream 0 close
+27.501.629:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 5 type 8
+27.503.219:[C2][D][IPU]:fusa_msg_trailer_lib_fill_trailer: msg_size = 16, queue_id = 255, sequence_number = 255, checksum = 65530
+
+27.506.088:[C2][D][IPU]:[SYSCOM]sending on queue_id 4
+27.507.520:[C3][D][IPU]:isys ack queue id 0 stream_id 0 hw_fid 0 type 5
+27.509.076:[C3][D][IPU]:hostlib: resp 05 IPU_ISYS_RESP_TYPE_STREAM_CLOSE_ACK, stream 0, timestamp 4294967298, pin 0
+27.511.616:[C2][I][IPU]:post capture done semaphore
+27.512.767:[C2][I][IPU]:close streams 0/0 on CSI0
+27.513.883:[C2][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+27.515.192:[C2][D][Sensor]:OX03C get serializer id first token OX03C
+27.516.716:[C2][D][Sensor]:OX03C get serializer id next token 0
+27.518.133:[C2][D][Sensor]:OX03C get serializer id next token A
+27.519.549:[C2][I][Sensor]:Get serilizer id 0 for sensor OX03C-0-A
+27.521.031:[C2][D][SERDES]:set_pre(true)-<config> rx-0
+27.522.254:[C2][I][SERDES]:i2c-1 write addr: 0x3d, [0x4c, 0x1]
+27.523.835:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x6d, 0x7c]
+27.525.402:[C3][I][SERDES]:rx_port 0, csi_vc_map 0x0
+27.526.548:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x72, 0x0]
+27.528.129:[C3][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+27.529.404:[C3][I][IPU]:stream off OX03C-0-A
+27.530.414:[C3][D][IPU]:OX03C-0-A port 0, lanes 4 selected
+27.531.723:[C3][I][Sensor]:i2c-1 write addr: 0x44, [0x100, 0x0]
+27.533.606:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x100, 0x0]
+27.535.968:[C3][I][Sensor]:PWM config. sensor: OX03C-0-A mode: 0 enable: 0
+27.537.587:[C3][I][Sensor]:OX03C-0-A set status 0
+27.538.706:[C3][D][Sensor]:OX03C-0-A get ctrl CSF_IOC_CTRL_SYNC_MODE val 0
+27.540.356:[C3][D][SERDES]:set_post(disable)-<forward> rx>-0
+27.541.813:[C3][I][SERDES]:i2c-1 read addr: 0x3d, [0x20, 0xe0]
+27.543.174:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x20, 0xf0]
+27.544.775:[C3][I][SERDES]:ti960-0 uninit
+27.545.686:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x1, 0x20]
+27.547.264:[C3][I][IPU]:disable csi rx 0
+27.548.153:[C3][I][IPU]:DPHY0 off
+27.548.925:[C3][I][IPU]:DPHY1 off
+27.549.735:[C2][I][ISysDevice]:Camera:0 ISYS device poll thread exited.
+27.551.341:[C3][I][ISysDevice]:Thread requestExitAndWait
+27.552.660:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_UNMAPBUF) subdev id 210000 port 0
+27.554.324:[C3][D][IPU]:buf 0x36001000 unmapped
+27.555.397:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_UNMAPBUF) subdev id 210000 port 0
+27.557.093:[C3][D][IPU]:buf 0x364b2000 unmapped
+27.558.167:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_UNMAPBUF) subdev id 210000 port 0
+27.559.862:[C3][D][IPU]:buf 0x22965000 unmapped
+27.560.936:[C3][D][IPU]:ioctl(IPU_ISYS_IOC_UNMAPBUF) subdev id 210000 port 0
+27.562.631:[C3][D][IPU]:buf 0x22968000 unmapped
+27.563.757:[C3][I][PipeExecutor]:PIPE-0: Node: IPUNode-0 stop done
+27.565.224:[C2][I][PipeExecutor]:PIPE-0: stop streaming done...
+27.566.621:[C2][I][PipeExecutor]:PIPE-0: destroy...
+27.568.196:[C2][I][PipeExecutor]:PIPE-0: link-8 free buffer ptr:0x36001000 size:4915200 1920x1280@GRBG12 pbk:255 slot:255
+27.570.834:[C2][I][PipeExecutor]:PIPE-0: link-8 free buffer ptr:0x364b2000 size:4915200 1920x1280@GRBG12 pbk:255 slot:255
+27.573.493:[C2][I][PipeExecutor]:PIPE-0: Link size 1
+27.574.669:[C2][I][PipeExecutor]:PIPE-0: Node: IPUNode-0, use_count 1
+27.576.215:[C2][I][PipeExecutor]:PIPE-0: Node: NullSinkNode-1, use_count 1
+27.577.873:[C2][I][CameraDevice]:Cam:0 deinit
+27.578.899:[C2][I][PipeExecutor]:PIPE-0: ignore callback event in stopped state.
+27.580.851:[C2][I][ISysDevice]:Camera:0 destroyed
+27.581.966:[C2][I][IPU]:isys0 stream 0 released
+27.583.202:[C2][I][IPU]:stream 0 closed, open_count 0
+27.584.377:[C2][D][IPU]:ipu fw logger off
+27.585.319:[C3][I][IPU]:isys isr run exited
+27.586.339:[C2][I][IPU]:hostlib: libcall device_close
+27.587.506:[C2][I][IPU_BOOT]:Start to shutdown fw(ssid 1)
+27.686.576:[C2][I][IPU_BOOT]:Shutdown fw done
+27.687.686:[C2][I][IPU]:irq_disable : 0x0 irq_mask: 0x0
+27.688.898:[C2][I][IPU]:IPU Power up: 0, pwr_sts 0xa0003
+27.690.164:[C2][I][IPU]:ISYS power up 0
+27.691.066:[C2][I][IPU]:Power off: pwr_sts 0xb0002
+27.692.204:[C2][I][IPU_BOOT]:cell_ctrl_reg addr = 0x2200, force 1
+27.693.663:[C2][I][IPU_BOOT]:Entering reset state. Reset bit = 1, Run bit = 0.
+27.695.403:[C2][D][PMUCCU]:IP=PM_IPU, clock enable 0: 0x108c028c->0x20000000
+27.697.099:[C2][D][PMUCCU]:IP=PM_PBK, clock enable 0: 0x108c046c->0x20000000
+27.698.795:[C2][D][PMUCCU]:IP=PM_SENSOR0, clock enable 0: 0x108c0438->0x20000000
+27.701.200:[C2][D][PMUCCU]:IP=PM_IS_PWM, CBC clock status polling timeout
+27.702.797:[C2][D][PMUCCU]:IP=PM_IS_PWM, clock enable 0: 0x108c048c->0xea000001
+27.704.559:[C2][D][PMUCCU]:IP=PM_BISR, clock enable 0: 0x108c047c->0x20000000
+27.706.275:[C2][I][IPU]:device isys0 closed
+27.707.265:[C2][I][ISysDevice]:Camera:0 successfully close isys
+27.709.567:[C2][I][PipeExecutor]:PIPE-0: destroyed.
+TestFramework: Run case done: test_isys_only_stream_hkr1a with PASSED
+
+============================ Test Report ============================
+TestFramework: All tests passed. (Total 1 cases)
+TestFramework: Run loop: 1 PASSED...
+
+Command Complete
+
+>
