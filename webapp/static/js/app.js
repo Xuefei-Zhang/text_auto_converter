@@ -49,66 +49,80 @@ function switchInputMode(mode) {
     currentInputMode = mode;
     const uploadBtn = document.getElementById('mode-upload');
     const pasteBtn = document.getElementById('mode-paste');
-    const uploadZone = document.getElementById('uploadZone');
+    const uploadZoneEl = document.getElementById('uploadZone');
     const textInputZone = document.getElementById('textInputZone');
     const fileInfo = document.getElementById('fileInfo');
     
     if (mode === 'upload') {
-        uploadBtn.classList.add('active');
-        pasteBtn.classList.remove('active');
-        uploadZone.style.display = 'block';
-        textInputZone.style.display = 'none';
-        fileInfo.style.display = 'none';
+        if (uploadBtn) uploadBtn.classList.add('active');
+        if (pasteBtn) pasteBtn.classList.remove('active');
+        if (uploadZoneEl) uploadZoneEl.style.display = 'block';
+        if (textInputZone) textInputZone.style.display = 'none';
+        if (fileInfo) fileInfo.style.display = 'none';
         currentTextContent = null;
     } else {
-        pasteBtn.classList.add('active');
-        uploadBtn.classList.remove('active');
-        uploadZone.style.display = 'none';
-        textInputZone.style.display = 'block';
-        fileInfo.style.display = 'none';
+        if (pasteBtn) pasteBtn.classList.add('active');
+        if (uploadBtn) uploadBtn.classList.remove('active');
+        if (uploadZoneEl) uploadZoneEl.style.display = 'none';
+        if (textInputZone) textInputZone.style.display = 'block';
+        if (fileInfo) fileInfo.style.display = 'none';
         currentFile = null;
         
-        setTimeout(() => {
-            document.getElementById('textInput').focus();
-        }, 100);
+        const textInput = document.getElementById('textInput');
+        if (textInput) {
+            setTimeout(() => {
+                textInput.focus();
+            }, 100);
+        }
     }
     
-    document.getElementById('convertBtn').disabled = true;
+    const convertBtn = document.getElementById('convertBtn');
+    if (convertBtn) {
+        convertBtn.disabled = true;
+    }
 }
 
-const textInput = document.getElementById('textInput');
-if (textInput) {
-    textInput.addEventListener('input', (e) => {
-        const content = e.target.value.trim();
-        const charCount = document.getElementById('textCharCount');
-        
-        if (charCount) {
-            charCount.textContent = content.length;
-        }
-        
-        const convertBtn = document.getElementById('convertBtn');
-        if (content.length > 0) {
-            currentTextContent = content;
-            convertBtn.disabled = false;
+function initTextInput() {
+    const textInput = document.getElementById('textInput');
+    if (textInput) {
+        textInput.addEventListener('input', (e) => {
+            const content = e.target.value.trim();
+            const charCount = document.getElementById('textCharCount');
             
-            const fileFormat = document.getElementById('fileFormat');
-            const detectedFormat = detectFormatFromText(content);
-            if (fileFormat && currentInputMode === 'paste') {
-                fileFormat.textContent = detectedFormat.toUpperCase();
-                const formatColors = {
-                    'VENDOR': 'linear-gradient(135deg, #ff006e, #ff6b35)',
-                    'INI': 'linear-gradient(135deg, #00f0ff, #0088ff)',
-                    'FREERTOS': 'linear-gradient(135deg, #00ff88, #00cc6a)',
-                    'ADI_FAE': 'linear-gradient(135deg, #9d4edd, #ff00ff)'
-                };
-                fileFormat.style.background = formatColors[detectedFormat.toUpperCase()] || formatColors.INI;
-                fileFormat.style.color = '#0a0a0f';
+            if (charCount) {
+                charCount.textContent = content.length;
             }
-        } else {
-            currentTextContent = null;
-            convertBtn.disabled = true;
-        }
-    });
+            
+            const convertBtn = document.getElementById('convertBtn');
+            if (content.length > 0) {
+                currentTextContent = content;
+                if (convertBtn) convertBtn.disabled = false;
+                
+                const fileFormat = document.getElementById('fileFormat');
+                const detectedFormat = detectFormatFromText(content);
+                if (fileFormat && currentInputMode === 'paste') {
+                    fileFormat.textContent = detectedFormat.toUpperCase();
+                    const formatColors = {
+                        'VENDOR': 'linear-gradient(135deg, #ff006e, #ff6b35)',
+                        'INI': 'linear-gradient(135deg, #00f0ff, #0088ff)',
+                        'FREERTOS': 'linear-gradient(135deg, #00ff88, #00cc6a)',
+                        'ADI_FAE': 'linear-gradient(135deg, #9d4edd, #ff00ff)'
+                    };
+                    fileFormat.style.background = formatColors[detectedFormat.toUpperCase()] || formatColors.INI;
+                    fileFormat.style.color = '#0a0a0f';
+                }
+            } else {
+                currentTextContent = null;
+                if (convertBtn) convertBtn.disabled = true;
+            }
+        });
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTextInput);
+} else {
+    initTextInput();
 }
 
 function detectFormatFromText(content) {
