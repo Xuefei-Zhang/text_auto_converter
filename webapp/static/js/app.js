@@ -1,48 +1,50 @@
 // State management
 let currentFile = null;
 let currentConversionMode = 'auto';
-let currentInputMode = 'upload'; // 'upload' or 'paste'
+let currentInputMode = 'upload';
 let currentTextContent = null;
 
 // I2C Log Parser state
 let currentI2cFile = null;
 
-// Initialize upload zone
-const uploadZone = document.getElementById('uploadZone');
-const fileInput = document.getElementById('fileInput');
-
-// Drag and drop handlers
-uploadZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadZone.classList.add('dragover');
-});
-
-uploadZone.addEventListener('dragleave', () => {
-    uploadZone.classList.remove('dragover');
-});
-
-uploadZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadZone.classList.remove('dragover');
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('fileInput');
     
-    const files = e.dataTransfer.files;
-    if (files.length > 0) {
-        handleFile(files[0]);
+    if (uploadZone && fileInput) {
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+        
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+        
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
     }
-});
-
-// File input change handler
-fileInput.addEventListener('change', (e) => {
-    if (e.target.files.length > 0) {
-        handleFile(e.target.files[0]);
-    }
-});
-
-// Mode selection handler
-document.querySelectorAll('input[name="conversionMode"]').forEach(radio => {
-    radio.addEventListener('change', (e) => {
-        currentConversionMode = e.target.value;
+    
+    document.querySelectorAll('input[name="conversionMode"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            currentConversionMode = e.target.value;
+        });
     });
+    
+    initTextInput();
 });
 
 function switchInputMode(mode) {
