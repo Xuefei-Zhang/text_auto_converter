@@ -121,12 +121,6 @@ function initTextInput() {
     }
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTextInput);
-} else {
-    initTextInput();
-}
-
 function detectFormatFromText(content) {
     const lines = content.split('\n').slice(0, 20);
     const contentSample = lines.join('\n');
@@ -134,39 +128,6 @@ function detectFormatFromText(content) {
     if (/\[(SERDES|Sensor)\]:i2c-\d+/.test(contentSample)) {
         return 'ti960_log';
     }
-    if (contentSample.includes('I2CADDR=') || contentSample.includes('MODE=')) {
-        return 'ini';
-    }
-    if (contentSample.includes('i2cwrite') || contentSample.includes('i2cread')) {
-        return 'freertos';
-    }
-    
-    for (const line of lines) {
-        const trimmed = line.trim();
-        if (trimmed && !trimmed.startsWith('//') && !trimmed.startsWith('#')) {
-            if (trimmed.startsWith('0x')) {
-                const parts = trimmed.replace(/,$/, '').split(',').map(p => p.trim());
-                if (parts.length === 5 && parts.every(p => p.startsWith('0x'))) {
-                    return 'adi_fae';
-                }
-            }
-        }
-    }
-    
-    for (const line of lines) {
-        const trimmed = line.trim();
-        if (trimmed && !trimmed.startsWith('#')) {
-            if (trimmed.length === 6 && trimmed.startsWith('0x')) {
-                return 'vendor';
-            }
-            if (trimmed.includes(',') && trimmed.startsWith('0x')) {
-                return 'vendor';
-            }
-        }
-    }
-    
-    return 'freertos';
-}
     if (contentSample.includes('I2CADDR=') || contentSample.includes('MODE=')) {
         return 'ini';
     }
