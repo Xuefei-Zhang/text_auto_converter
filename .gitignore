@@ -1,0 +1,104 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# AI assistant caches
+.gemini/
+.qwen/
+
+# Ruff cache
+.ruff_cache/
+
+# Local temporary files (generated during conversion)
+local_temp/
+
+# Test files and outputs
+*.log
+*_test_results.*
+test_*.txt
+test_*.ini
+debug_*.txt
+debug_*.ini
+parsed_*.txt
+correct_test_results.txt
+
+# Converted files
+converted_*.txt
+converted_*.ini
+*_converted.*
+reverse_*.txt
+roundtrip_*.txt
+updated_*.ini
+fixed_*.ini
+final_*.ini
+corrected_*.ini
+manual_*.ini
+manual_*.txt
+
+# Output directories (except in webapp)
+outputs/
+uploads/
+restore/
+
+# Generated C headers
+*.h
+
+# Batch scripts
+*.bat
+
+# Old converter scripts (replaced by webapp)
+config_converter.py
+freertos_log_converter.py
+unified_converter.py
+vendor_converter.py
+parse_i2c_log.py
+parse_debug_log.py
+i2c_log_parser.py
+
+# Specific test files
+address_conversion_test.ini
+final_address_test.ini
+final_conversion.ini
+reverse_address_test.txt
+reverse_final.txt
+reverse_final_test.txt
+serdes_pattern.md
+serdes_pattern_simple.md
+ww09_*.md
+
+# Old config files (keep only in refer/)
+*.ini
+*.txt
+
+# Documentation (keep only in webapp/ and refer/)
+README.md
+IMPLEMENTATION_SUMMARY.md
+UNIFIED_README.md
+VENDOR_README.md
+
+# PDFs (keep only in refer/)
+*.pdf
