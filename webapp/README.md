@@ -5,15 +5,16 @@ A modern web-based GUI for converting sensor configuration files between differe
 ## Features
 
 - **Drag & Drop Upload**: Easy file upload with drag-and-drop support
-- **Auto-Detection**: Automatically detects file format (Vendor TXT, INI, FreeRTOS TXT, ADI FAE)
+- **Auto-Detection**: Automatically detects file format (Vendor TXT, INI, FreeRTOS TXT, ADI FAE, TI960 Log)
 - **Multiple Conversion Modes**:
   - Auto-Detect (recommended)
   - Vendor TXT → INI
   - Vendor TXT → FreeRTOS TXT
   - INI → FreeRTOS TXT
   - FreeRTOS TXT → INI
-  - **NEW**: ADI FAE (MAX9295/96) → INI
-  - **NEW**: ADI FAE (MAX9295/96) → FreeRTOS TXT
+  - ADI FAE (MAX9295/96) → INI
+  - ADI FAE (MAX9295/96) → FreeRTOS TXT
+  - **NEW**: TI960 FreeRTOS Log → FreeRTOS TXT
 - **I2C Log Parser**: Parse FreeRTOS I2C read logs into simplified reg=value format
 - **File Preview**: Preview converted files before downloading
 - **Self-Contained**: All Python modules included - no external dependencies needed
@@ -62,6 +63,7 @@ webapp/
 ├── app.py                    # Flask backend (self-contained)
 ├── unified_converter.py      # Conversion logic (included)
 ├── i2c_log_parser.py         # I2C log parser (included)
+├── ti960_log_converter.py    # TI960 log to FreeRTOS converter (included)
 ├── requirements.txt          # Python dependencies
 ├── start.bat                 # Windows startup script
 ├── start.sh                  # Linux/Mac startup script
@@ -107,6 +109,24 @@ Analog Devices FAE C++ format for MAX9295/MAX9296:
 ```cpp
 0x04,0x90,0x03,0x13,0x00, //  (CSI_OUT_EN): CSI output disabled
 0x00,0x78, // 120 msec delay
+```
+
+### TI960 FreeRTOS Log (NEW)
+TI960 driver log output from FreeRTOS debugging:
+```
+25.831.647:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x1, 0x1]
+26.196.645:[C3][I][Sensor]:i2c-1 read addr: 0x44, [0x300a, 0x58]
+```
+
+Converts to FreeRTOS TXT format:
+```
+# Device: SERDES
+# I2C Slave Address: 0x3d
+i2cwrite 1 0x3d 0x1 1 1 0x01
+
+# Device: Sensor
+# I2C Slave Address: 0x44
+i2cread 1 0x44 0x300a 2 1
 ```
 
 ### I2C Log Parser Input
