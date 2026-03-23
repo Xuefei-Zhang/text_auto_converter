@@ -108,7 +108,8 @@ function initTextInput() {
                         'VENDOR': 'linear-gradient(135deg, #ff006e, #ff6b35)',
                         'INI': 'linear-gradient(135deg, #00f0ff, #0088ff)',
                         'FREERTOS': 'linear-gradient(135deg, #00ff88, #00cc6a)',
-                        'ADI_FAE': 'linear-gradient(135deg, #9d4edd, #ff00ff)'
+                        'ADI_FAE': 'linear-gradient(135deg, #9d4edd, #ff00ff)',
+                        'COM_LOG': 'linear-gradient(135deg, #ffd700, #ff8c00)'
                     };
                     fileFormat.style.background = formatColors[detectedFormat.toUpperCase()] || formatColors.INI;
                     fileFormat.style.color = '#0a0a0f';
@@ -124,8 +125,12 @@ function initTextInput() {
 function detectFormatFromText(content) {
     const lines = content.split('\n').slice(0, 20);
     const contentSample = lines.join('\n');
+    const searchableContent = content;
     
-    if (/\[(SERDES|Sensor)\]:i2c-\d+/.test(contentSample)) {
+    if (/\[fd\]\d+\.\d+\.\d+:\[C\d+\]\[I\]\[[^\]]+\]:i2c-\d+\s+write\s+addr:/.test(searchableContent)) {
+        return 'com_log';
+    }
+    if (/\[(SERDES|Sensor)\]:i2c-\d+/.test(searchableContent)) {
         return 'ti960_log';
     }
     if (contentSample.includes('I2CADDR=') || contentSample.includes('MODE=')) {
@@ -213,7 +218,8 @@ function displayFileInfo(fileData) {
         'VENDOR': 'linear-gradient(135deg, #ff006e, #ff6b35)',
         'INI': 'linear-gradient(135deg, #00f0ff, #0088ff)',
         'FREERTOS': 'linear-gradient(135deg, #00ff88, #00cc6a)',
-        'ADI_FAE': 'linear-gradient(135deg, #9d4edd, #ff00ff)'
+        'ADI_FAE': 'linear-gradient(135deg, #9d4edd, #ff00ff)',
+        'COM_LOG': 'linear-gradient(135deg, #ffd700, #ff8c00)'
     };
     fileFormat.style.background = formatColors[fileData.detected_format.toUpperCase()] || formatColors.INI;
     fileFormat.style.color = '#0a0a0f';

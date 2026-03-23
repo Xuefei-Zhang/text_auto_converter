@@ -41,6 +41,7 @@ from unified_converter import (
     convert_adi_fae_to_txt,
 )
 from i2c_log_parser import parse_i2c_log, format_output
+from com2freerots_converter import convert_com_log_to_txt
 from ti960_log_converter import convert_ti960_log_to_txt, parse_ti960_log_file
 
 app = Flask(__name__)
@@ -68,7 +69,7 @@ def allowed_file(filename):
 def detect_file_format(content, filename):
     """
     Detect the format of the input file
-    Returns: 'vendor', 'ini', 'freertos', 'adi_fae', or 'ti960_log'
+    Returns: 'vendor', 'ini', 'freertos', 'adi_fae', 'com_log', or 'ti960_log'
     """
     # Check by file extension first
     if filename.endswith(".ini"):
@@ -78,13 +79,20 @@ def detect_file_format(content, filename):
         return "adi_fae"
 
     # Analyze content
-    lines = content.split("\n")[:20]  # Check first 20 lines
+    lines = content.split("\n")[:20]
     content_sample = "\n".join(lines)
+    full_content = content
+
+    if re.search(
+        r"\[fd\]\d+\.\d+\.\d+:\[C\d+\]\[I\]\[[^\]]+\]:i2c-\d+\s+write\s+addr:",
+        full_content,
+    ):
+        return "com_log"
 
     # Check for TI960 FreeRTOS log format
     # Pattern: [SERDES]:i2c-1 write addr: 0x3d, [0x1, 0x1]
     # or with timestamp: 25.831.647:[C3][I][SERDES]:i2c-1 write addr: 0x3d, [0x1, 0x1]
-    if re.search(r"\[(SERDES|Sensor)\]:i2c-\d+", content_sample):
+    if re.search(r"\[(SERDES|Sensor)\]:i2c-\d+", full_content):
         return "ti960_log"
 
     # Check for INI format markers
@@ -139,6 +147,7 @@ def convert_file(input_path, output_path, conversion_mode):
             - ini_to_freertos
             - freertos_to_ini
             - ti960_log_to_freertos
+            - com2freerots
             - vendor_to_both
 
     Returns:
@@ -175,6 +184,9 @@ def convert_file(input_path, output_path, conversion_mode):
             # Convert TI960 FreeRTOS log to unified TXT format
             output_content = convert_ti960_log_to_txt(content)
 
+        elif conversion_mode == "com2freerots":
+            output_content = convert_com_log_to_txt(content)
+
         elif conversion_mode == "ini_to_freertos":
             if detected_format != "ini":
                 return {
@@ -205,6 +217,8 @@ def convert_file(input_path, output_path, conversion_mode):
                 output_content = convert_txt_to_ini(content)
             elif detected_format == "ti960_log":
                 output_content = convert_ti960_log_to_txt(content)
+            elif detected_format == "com_log":
+                output_content = convert_com_log_to_txt(content)
             else:
                 return {
                     "success": False,
@@ -268,6 +282,7 @@ def convert_text():
             "ini": "txt",
             "freertos": "ini",
             "adi_fae": "ini",
+            "com_log": "txt",
             "ti960_log": "txt",
         }
         output_ext = output_ext_map.get(detected_format, "txt")
@@ -278,6 +293,7 @@ def convert_text():
             "vendor_to_txt",
             "ini_to_freertos",
             "adi_fae_to_txt",
+            "com2freerots",
             "ti960_log_to_freertos",
         ]:
             output_ext = "txt"
@@ -399,6 +415,7 @@ def convert():
         "vendor_to_txt": "txt",
         "ini_to_freertos": "txt",
         "freertos_to_ini": "ini",
+        "com2freerots": "txt",
         "auto": "txt",  # Will be adjusted based on detection
     }
 
@@ -418,8 +435,10 @@ def convert():
                 new_ext = "txt"
             elif detected == "freertos":
                 new_ext = "ini"
-            else:  # vendor
+            elif detected in ["vendor", "adi_fae"]:
                 new_ext = "ini"
+            else:
+                new_ext = "txt"
 
             output_filename = f"{input_name_parts[0]}_converted_{timestamp}.{new_ext}"
             output_path = Path(app.config["OUTPUT_FOLDER"]) / output_filename
